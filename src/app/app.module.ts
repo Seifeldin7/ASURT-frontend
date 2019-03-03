@@ -2,13 +2,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //Directives
 
 
 // Services
-import { AuthenticationService } from './Services/Authentication/authentication.service';
+import { AuthenticationService, JwtInterceptor, APIInterceptor } from './Services/Authentication/authentication.service';
 import { GeneralService } from './Services/General/general.service';
 import { ProfileService } from './Services/Profile/profile.service';
 
@@ -58,6 +58,9 @@ import { AuthenticationModule } from './Components/authentication/authentication
     AuthenticationService,
     GeneralService,
     ProfileService,
+
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
