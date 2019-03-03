@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //Directives
 
@@ -14,7 +15,6 @@ import { ProfileService } from './Services/Profile/profile.service';
 
 
 // Routers
-import { AuthenticationRoutesModule } from './Routing/Authentication/authentication.service';
 import { GeneralRoutesModule } from './Routing/General/general.service';
 import { ProfileRoutesModule } from './Routing/Profile/profile.router';
 
@@ -43,6 +43,9 @@ import { AuthenticationModule } from './Components/authentication/authentication
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
+
     GeneralRoutesModule,
     ProfileRoutesModule,
 
