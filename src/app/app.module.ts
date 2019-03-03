@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
+import { AuthenticationModule } from './Components/authentication/authentication.module';
 
 
 
@@ -42,9 +43,12 @@ import { GeneralComponent } from './Components/general/general.component';
   ],
   imports: [
     BrowserModule,
-    AuthenticationRoutesModule,
     GeneralRoutesModule,
     ProfileRoutesModule,
+
+    // Modules
+    AuthenticationModule,
+
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login' }
