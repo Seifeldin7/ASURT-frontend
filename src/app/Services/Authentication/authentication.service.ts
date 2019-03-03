@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import {
   AuthService,
@@ -106,7 +105,7 @@ export class AuthenticationService {
     }
   }
 
-  userIsExist(email:string){
+  userIsExist(data:string){
     /**
      * Check if this email exists before
      * API -> path = "/api/user-exist"

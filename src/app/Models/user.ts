@@ -1,7 +1,7 @@
-export class User {
-  id: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
+export interface User {
+  id: number,
+  username: string,
+  first_Name: string,
+  last_Name: string,
+  groups: Array<number>
 }
