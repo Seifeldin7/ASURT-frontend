@@ -1,6 +1,6 @@
 <h5 class="card-title text-center">Sign Up</h5>
 <form class="form-signin">
-          
+
   <div class="form-label-group">
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
     <label for="inputEmail">Email address</label>
@@ -19,7 +19,7 @@
   </div>
 
   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
-  <a class="d-block text-center mt-2 small" href="#">Sign In</a>
+  <a class="d-block text-center mt-2 small" [routerLink]="[ '/auth/login']">Sign In</a>
   <hr class="my-4">
   <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i>
     Sign up with Google</button>
