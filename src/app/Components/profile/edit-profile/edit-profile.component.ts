@@ -23,11 +23,10 @@ export class EditProfileComponent implements OnInit {
   passcoverbase64 = '';
   submitBtn= false;
   loading =false;
+  savepic =false;
   data: any;
   cropperSettings: CropperSettings;
   @ViewChild('f') profileform: NgForm;
-  @ViewChild('cropper', undefined)
-  cropper:ImageCropperComponent;
   constructor(private profileservice: ProfileService, private http: HttpClient, private router: Router) { 
     this.cropperSettings = new CropperSettings();
         this.cropperSettings.width = 100;
@@ -36,7 +35,7 @@ export class EditProfileComponent implements OnInit {
         this.cropperSettings.croppedHeight = 100;
         this.cropperSettings.canvasWidth = 400;
         this.cropperSettings.canvasHeight = 300;
- 
+        this.cropperSettings.rounded =true;
         this.data = {};
   }
 
@@ -50,7 +49,7 @@ export class EditProfileComponent implements OnInit {
           this.profileservice.fetchProfile().subscribe(
             (response)=> {
               console.log(response)
-              this.profil =response['0'];
+              this.profil =response;
               this.profileform.controls['name'].setValue(this.profil.Fullname);
               this.profileform.controls['mobile'].setValue(this.profil.Mobile);
               this.profileform.controls['uni'].setValue(this.profil.University);
@@ -161,13 +160,13 @@ export class EditProfileComponent implements OnInit {
   }
   onUploadChange(evt: any, index: number) {
     const file = evt.target.files[0];
-    var that =this;
+    if (index == 0) {
+      this.profilepicbase64 = this.data.image ;
+      
+    }
     if (file) {
       const reader = new FileReader();
-      var that = this;
-      if (index == 0) {
-        reader.onload = this.handleReaderLoaded0.bind(this);
-      }
+      
       if (index == 1) {
         reader.onload = this.handleReaderLoaded1.bind(this);
       }
@@ -179,13 +178,6 @@ export class EditProfileComponent implements OnInit {
       }
       reader.readAsBinaryString(file);
     }
-  }
-  handleReaderLoaded0(e) {
-    var image:any = new Image();
-    image.src =e.target.result;
-   // this.cropper.setImage(image);
-    console.log(this.cropper.image);
-    this.profilepicbase64 = 'data:image/png;base64,' + btoa(e.target.result);
   }
   handleReaderLoaded1(e) {
     this.nationalfrontbase64 = 'data:image/png;base64,' + btoa(e.target.result);
@@ -199,7 +191,11 @@ export class EditProfileComponent implements OnInit {
   /*ngOnDestroy() {
     this.subscription.unsubscribe();
   }*/
-
-
+ onSave(){
+  this.profilepicbase64 = this.data.image ;
+  this.savepic =true;
+ }
+onCancelpic(){
+  this.savepic =false;
 }
-
+}

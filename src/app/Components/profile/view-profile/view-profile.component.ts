@@ -21,7 +21,7 @@ export class ViewProfileComponent implements OnInit {
   getProfile(){
     this.profileservice.fetchProfile().subscribe(
       (profile) => {
-        this.pro = profile['0'];
+        this.pro = profile;
         this.profileservice.setProfile(this.pro);
         
         if(this.pro.profilepic==null || this.pro.profilepic ==''){
@@ -42,11 +42,44 @@ export class ViewProfileComponent implements OnInit {
     )
   }
   ngOnInit() {
+   
    this.getProfile();
+   
   }
- 
   
   onEdit(){
     this.router.navigate(['../profile/create']);
   }
+
+  previewNational_ID_Front(){
+    Swal.fire({
+      title: 'National ID',
+      imageUrl: this.pro.National_id_front,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      animation: false
+    })
+  }
+  previewPassport_ID(){
+    Swal.fire({
+      title: 'Passport ID',
+      imageUrl: this.pro.Passport_id_im,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      animation: false
+    })
+  }
+  previewNational_ID_Back(){
+    Swal.fire({
+      title: 'National ID',
+      imageUrl: this.pro.National_id_back,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      animation: false
+    })
+  }
 }
+

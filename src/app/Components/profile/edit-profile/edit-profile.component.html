@@ -15,15 +15,17 @@
           <div class="row">
             <div class="  col-md-10 offset-md-1">
               <div class="form-group ">
-                  <label for="image" class="mr-4">Profile Pic</label>
-                  <img-cropper #cropper [image]="data" [settings]="cropperSettings" (change)="onUploadChange($event,0)" name="im" accept=".png, .jpg, .jpeg, .pdf"
-                  id="im"></img-cropper>
-                  
-                <!-- <img src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg">
-                <input type="file" (change)="onUploadChange($event,0)" name="im" accept=".png, .jpg, .jpeg, .pdf"
-                  id="im" class="form-control uploadphoto" ngf-max-size="600KB"> -->
-              </div>             
-              
+                <label for="image" class="mr-4">Profile Pic</label>
+                <div class="row">
+                    <img-cropper  [image]="data" [settings]="cropperSettings"  accept=".png, .jpg, .jpeg, .pdf" ></img-cropper>
+                  <img [src]="data.image" [width]="cropperSettings.croppedWidth"
+                    [height]="cropperSettings.croppedHeight" />
+                    <button type="button" class="btn btn-danger " [disabled]="savepic" (click)="onSave()">Save</button>
+                    <button type="button" class="btn btn-danger ml-3"  (click)="onCancelpic()">Cancel</button>
+                </div>
+                
+              </div>
+
             </div>
           </div>
         </div>
@@ -31,10 +33,13 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" placeholder="name" pattern="^([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})"class="form-control" ngModel required
-                #name="ngModel">
-                <span class="help-block text-danger" *ngIf="!name.valid && name.touched && name.dirty">please enter your name as follows "first middle last"</span>
-                <span class="help-block text-danger" *ngIf="!name.valid && name.touched && !name.dirty">this field is required</span>
+              <input type="text" id="name" name="name" placeholder="name"
+                pattern="^([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})" class="form-control" ngModel
+                required #name="ngModel">
+              <span class="help-block text-danger" *ngIf="!name.valid && name.touched && name.dirty">please enter your
+                name as follows "first middle last"</span>
+              <span class="help-block text-danger" *ngIf="!name.valid && name.touched && !name.dirty">this field is
+                required</span>
             </div>
           </div>
         </div>
@@ -57,7 +62,7 @@
               <label for="uni">University</label>
               <input type="text" id="uni" name="uni" class="form-control" placeholder="university" ngModel required
                 #uni="ngModel">
-                <span class="help-block text-danger" *ngIf="!uni.valid && uni.touched">this is a required field</span>
+              <span class="help-block text-danger" *ngIf="!uni.valid && uni.touched">this is a required field</span>
             </div>
           </div>
         </div>
@@ -67,7 +72,8 @@
               <label for="faculty">Faculty</label>
               <input type="text" id="faculty" name="faculty" placeholder="faculty" class="form-control" ngModel required
                 #faculty="ngModel">
-                <span class="help-block text-danger" *ngIf="!faculty.valid && faculty.touched">this is a required field</span>
+              <span class="help-block text-danger" *ngIf="!faculty.valid && faculty.touched">this is a required
+                field</span>
             </div>
           </div>
         </div>
@@ -77,7 +83,8 @@
               <label for="coll_id">College ID</label>
               <input type="text" id="coll_id" name="coll_id" class="form-control" placeholder="College ID" ngModel
                 required #coll_id="ngModel">
-                <span class="help-block text-danger" *ngIf="!coll_id.valid && coll_id.touched">this is a required field</span>
+              <span class="help-block text-danger" *ngIf="!coll_id.valid && coll_id.touched">this is a required
+                field</span>
             </div>
           </div>
         </div>
@@ -87,7 +94,8 @@
               <label for="coll_dep">College Department</label>
               <input type="text" id="coll_dep" name="coll_dep" placeholder="department" class="form-control" ngModel
                 required #coll_dep="ngModel">
-                <span class="help-block text-danger" *ngIf="!coll_dep.valid && coll_dep.touched">this is a required field</span>
+              <span class="help-block text-danger" *ngIf="!coll_dep.valid && coll_dep.touched">this is a required
+                field</span>
             </div>
           </div>
         </div>
@@ -102,7 +110,8 @@
                 <option value='2021'>2022</option>
                 <option value='2021'>2023</option>
               </select>
-              <span class="help-block text-danger" *ngIf="!grad_year.valid && grad_year.touched && !grad_year.dirty">this field is required</span>
+              <span class="help-block text-danger"
+                *ngIf="!grad_year.valid && grad_year.touched && !grad_year.dirty">this field is required</span>
             </div>
           </div>
         </div>
@@ -112,7 +121,8 @@
               <label for="address">Address</label>
               <input type="text" id="address" name="address" class="form-control" ngModel required placeholder="address"
                 #address="ngModel">
-                <span class="help-block text-danger" *ngIf="!address.valid && address.touched">this is a required field</span>
+              <span class="help-block text-danger" *ngIf="!address.valid && address.touched">this is a required
+                field</span>
             </div>
           </div>
         </div>
@@ -129,8 +139,8 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="n_id">National ID</label>
-              <input type="text" name="n_id" id="n_id" placeholder="national id" pattern="^(\d{14})" class="form-control" ngModel required
-                #n_id="ngModel">
+              <input type="text" name="n_id" id="n_id" placeholder="national id" pattern="^(\d{14})"
+                class="form-control" ngModel required #n_id="ngModel">
               <span class="help-block text-danger" *ngIf="!n_id.valid && n_id.touched && n_id.dirty">this id is not
                 correct</span>
               <span class="help-block text-danger" *ngIf="!n_id.valid && n_id.touched && !n_id.dirty">this field is
@@ -144,8 +154,9 @@
               <label for="n_id_f_c">National ID Front Cover</label>
               <input (change)="onUploadChange($event,1)" name="n_id_f_c" accept=".png, .jpg, .jpeg, .pdf" type="file"
                 id="n_id_f_c" class="form-control" ngModel required #n_id_f_c="ngModel" ngf-max-size="500KB">
-                <span class="help-block text-danger" *ngIf="!n_id_f_c.valid && n_id_f_c.touched && !n_id_f_c.dirty">this field is
-                  required</span>
+              <span class="help-block text-danger" *ngIf="!n_id_f_c.valid && n_id_f_c.touched && !n_id_f_c.dirty">this
+                field is
+                required</span>
             </div>
           </div>
         </div>
@@ -155,8 +166,9 @@
               <label for="n_id_b_c">National ID Back Cover</label>
               <input (change)="onUploadChange($event,2)" name="n_id_b_c" accept=".png, .jpg, .jpeg, .pdf" type="file"
                 id="n_id_b_c" class="form-control" ngModel required #n_id_b_c="ngModel" ngf-max-size="500KB">
-                <span class="help-block text-danger" *ngIf="!n_id_b_c.valid && n_id_b_c.touched && !n_id_b_c.dirty">this field is
-                  required</span>
+              <span class="help-block text-danger" *ngIf="!n_id_b_c.valid && n_id_b_c.touched && !n_id_b_c.dirty">this
+                field is
+                required</span>
             </div>
           </div>
         </div>
@@ -164,8 +176,10 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="pass_id">Passport ID</label>
-              <input type="text" id="pass_id" name="pass_id" class="form-control" placeholder="passport id" ngModel required #pass_id="ngModel">
-              <span class="help-block text-danger" *ngIf="!pass_id.valid && pass_id.touched && !pass_id.dirty">this field is
+              <input type="text" id="pass_id" name="pass_id" class="form-control" placeholder="passport id" ngModel
+                required #pass_id="ngModel">
+              <span class="help-block text-danger" *ngIf="!pass_id.valid && pass_id.touched && !pass_id.dirty">this
+                field is
                 required</span>
             </div>
           </div>
@@ -176,8 +190,9 @@
               <label for="pass_id_img">Passport ID First Page Image</label>
               <input (change)="onUploadChange($event,3)" name="pass_id_img" accept=".png, .jpg, .jpeg, .pdf" type="file"
                 id="pass_id_img" class="form-control" ngModel required #pass_id_img="ngModel" ngf-max-size="500KB">
-                <span class="help-block text-danger" *ngIf="!pass_id_img.valid && pass_id_img.touched && !pass_id_img.dirty">this field is
-                  required</span>
+              <span class="help-block text-danger"
+                *ngIf="!pass_id_img.valid && pass_id_img.touched && !pass_id_img.dirty">this field is
+                required</span>
             </div>
           </div>
         </div>
@@ -185,9 +200,8 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="em_name">Emergecy Contact Name</label>
-              <input type="text" id="em_name" name="em_name" class="form-control"
-                placeholder="emergency contact name" ngModel required #em_name="ngModel"
-                pattern="([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})">
+              <input type="text" id="em_name" name="em_name" class="form-control" placeholder="emergency contact name"
+                ngModel required #em_name="ngModel" pattern="([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})(\s)([a-zA-Z]{2,20})">
               <span class="help-block text-danger" *ngIf="!em_name.valid && em_name.touched && em_name.dirty">please
                 enter the name as follows "first middle last"</span>
               <span class="help-block text-danger" *ngIf="!em_name.valid && em_name.touched && !em_name.dirty">this
@@ -200,10 +214,12 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="em_mobile">Emergecy Contact Mobile</label>
-              <input type="text" id="em_mobile" name="em_mobile" class="form-control" pattern="^(0)(\d{10})" placeholder="ex: 01xxxxxxxx" ngModel required
-                #em_mobile="ngModel">
-                <span class="help-block text-danger" *ngIf="!em_mobile.valid && em_mobile.touched && em_mobile.dirty">this number is not valid</span>
-                <span class="help-block text-danger" *ngIf="!em_mobile.valid && em_mobile.touched && !em_mobile.dirty">this field is required</span>
+              <input type="text" id="em_mobile" name="em_mobile" class="form-control" pattern="^(0)(\d{10})"
+                placeholder="ex: 01xxxxxxxx" ngModel required #em_mobile="ngModel">
+              <span class="help-block text-danger" *ngIf="!em_mobile.valid && em_mobile.touched && em_mobile.dirty">this
+                number is not valid</span>
+              <span class="help-block text-danger"
+                *ngIf="!em_mobile.valid && em_mobile.touched && !em_mobile.dirty">this field is required</span>
             </div>
           </div>
         </div>
@@ -211,10 +227,11 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="em_relation">Emergecy Contact Relation</label>
-              <input type="text" id="em_relation" name="em_relation" class="form-control" placeholder="ex: cousin" ngModel required
-                #em_relation="ngModel">
-                <span class="help-block text-danger" *ngIf="!em_relation.valid && em_relation.touched && !em_relation.dirty">this field is
-                  required</span>
+              <input type="text" id="em_relation" name="em_relation" class="form-control" placeholder="ex: cousin"
+                ngModel required #em_relation="ngModel">
+              <span class="help-block text-danger"
+                *ngIf="!em_relation.valid && em_relation.touched && !em_relation.dirty">this field is
+                required</span>
             </div>
           </div>
         </div>
