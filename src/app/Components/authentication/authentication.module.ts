@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
 
 // Components
 import { SignupComponent } from './signup/signup.component';
@@ -19,8 +25,30 @@ import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authe
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AuthenticationRoutesModule
+    AuthenticationRoutesModule,
+    
+    // angular-6-social-login
+    SocialLoginModule,
   ],
+  providers:[
+    { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs },
+  ]
 
 })
 export class AuthenticationModule { }
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider("2065091893721004")
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider("1044068226622-mivg9jeilmvd0mkjicsmfqqsk5dk1ihm.apps.googleusercontent.com")
+        },
+      ]
+  );
+  return config;
+}

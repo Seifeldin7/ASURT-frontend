@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //Directives
@@ -45,6 +45,7 @@ import { AuthenticationModule } from './Components/authentication/authentication
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
 
     GeneralRoutesModule,
     ProfileRoutesModule,
