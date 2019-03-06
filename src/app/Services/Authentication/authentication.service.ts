@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClient } from '@angular/common/http';
 
 import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import {
-  AuthService,
+  AuthService as SocialAuthService ,
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
@@ -18,7 +18,8 @@ import * as jwt_decode from "jwt-decode";
 export class AuthenticationService {
 
   constructor(private http: HttpClient,
-    private socialAuthService: AuthService) { }
+    private socialAuthService: SocialAuthService
+    ) { }
 
   signup(data) {
     /**
@@ -29,7 +30,7 @@ export class AuthenticationService {
       email: data.email,
       password: data.password
     }
-    return this.http.post("api/register/", request_body);
+    return this.http.post<{email:string,password:string}>("api/register/", request_body);
   }
 
   login(provider: string = 'email-login', data = null) {
@@ -75,7 +76,7 @@ export class AuthenticationService {
                  * Store JWT to local-storage
                  */
                 if (response.token) {
-                  localStorage.setItem('token', JSON.stringify(response.token));
+                  this.storeToken(response.token)
                 }
               },
               err => {
@@ -98,7 +99,7 @@ export class AuthenticationService {
              * Store JWT to local-storage
              */
             if (response.token) {
-              localStorage.setItem('token', JSON.stringify(response.token));
+              this.storeToken(response.token)
             }
           },
           err => {
@@ -138,12 +139,12 @@ export class AuthenticationService {
      * API -> path = "/api/token-verify"
      */
     let request_body = {
-      token: localStorage.getItem('token'),
+      token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
     }
 
     let verify: Subject<boolean> = new Subject();
 
-    this.http.post<any>("api/token-verify/", request_body).
+    this.http.post<{token:string}>("api/token-verify/", request_body).
       subscribe(
         (Response) => {
           if (Response.token) {
@@ -162,6 +163,10 @@ export class AuthenticationService {
     return verify;
   }
 
+  storeToken(token:string){
+    localStorage.setItem('token', JSON.stringify(token));
+  }
+
   logout() {
     /**
      * Clear JWT from local storage
@@ -169,6 +174,25 @@ export class AuthenticationService {
     localStorage.removeItem('token');
   }
 }
+
+/**
+ * Functions
+ */
+
+export function passwordMatchValidator(ac: AbstractControl) {
+  /**
+   * Confirmation password validator
+   * required to name fields password1 | password2
+   */
+  const flag = ac.get('password1').value === ac.get('password2').value;
+  if(!flag){
+      ac.get('password2').setErrors({passwordMatch:true});
+      return null;
+  }else{
+      return null;
+  }
+}
+
 
 /**
  * Authentication Interceptors
@@ -192,7 +216,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
-  baseUrl = 'http://127.0.0.1:8000/';
+  // baseUrl = 'http://127.0.0.1:8000/';
+  baseUrl = 'http://localhost:3000/';
   // baseUrl ='https://domain-name.com/';
   constructor() { }
 
