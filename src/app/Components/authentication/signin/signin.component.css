@@ -1,3 +1,14 @@
+/**
+* ng class style
+*/
+
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+/**
+* Default Style
+*/
 .form-signin {
   width: 100%;
 }
@@ -11,7 +22,8 @@
   transition: all 0.2s;
 }
 
-.form-label-group {
+.form-label-group,
+.form-check {
   position: relative;
   margin-bottom: 1rem;
 }
@@ -19,6 +31,10 @@
 .form-label-group input {
   height: auto;
   border-radius: 2rem;
+}
+
+.form-label-group input:hover {
+  cursor: pointer;
 }
 
 .form-label-group>input,
@@ -72,6 +88,7 @@
   font-size: 12px;
   color: #777;
 }
+
 
 .btn-google {
   color: white;

@@ -5,7 +5,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClient } from
 import { Observable, Subject } from 'rxjs';
 
 import {
-  AuthService as SocialAuthService ,
+  AuthService as SocialAuthService,
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
@@ -19,7 +19,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient,
     private socialAuthService: SocialAuthService
-    ) { }
+  ) { }
 
   signup(data) {
     /**
@@ -30,10 +30,10 @@ export class AuthenticationService {
       email: data.email,
       password: data.password
     }
-    return this.http.post<{email:string,password:string}>("api/register/", request_body);
+    return this.http.post<{ email: string, password: string }>("api/register/", request_body);
   }
 
-  login(provider: string = 'email-login', data = null) {
+  login(data = null, provider: string = 'email-login') {
     /**
      * provider -> email-login , facebook , google
      * API -> path = "/api/login"
@@ -41,6 +41,7 @@ export class AuthenticationService {
      * data changes between providers
      */
     let request_body = {};
+    
     if (provider == 'google' || provider == 'facebook') {
       let socialPlatformProvider;
       if (provider == 'google') {
@@ -69,20 +70,7 @@ export class AuthenticationService {
           }
 
           // Send request to backend
-          return this.http.post<any>('api/social/', request_body)
-            .subscribe(
-              response => {
-                /**
-                 * Store JWT to local-storage
-                 */
-                if (response.token) {
-                  this.storeToken(response.token)
-                }
-              },
-              err => {
-                console.log('social login error');
-              }
-            );
+          return this.http.post<any>('api/social/', request_body);
         }
       );
 
@@ -92,20 +80,7 @@ export class AuthenticationService {
         password: data.password,
         remember_me: data.remember_me
       }
-      return this.http.post<any>('api/login/', request_body)
-        .subscribe(
-          response => {
-            /**
-             * Store JWT to local-storage
-             */
-            if (response.token) {
-              this.storeToken(response.token)
-            }
-          },
-          err => {
-            console.log('normal login error');
-          }
-        );
+      return this.http.post<any>('api/login/', request_body);
     }
   }
 
@@ -144,7 +119,7 @@ export class AuthenticationService {
 
     let verify: Subject<boolean> = new Subject();
 
-    this.http.post<{token:string}>("api/token-verify/", request_body).
+    this.http.post<{ token: string }>("api/token-verify/", request_body).
       subscribe(
         (Response) => {
           if (Response.token) {
@@ -163,7 +138,7 @@ export class AuthenticationService {
     return verify;
   }
 
-  storeToken(token:string){
+  storeToken(token: string) {
     localStorage.setItem('token', JSON.stringify(token));
   }
 
@@ -185,11 +160,11 @@ export function passwordMatchValidator(ac: AbstractControl) {
    * required to name fields password1 | password2
    */
   const flag = ac.get('password1').value === ac.get('password2').value;
-  if(!flag){
-      ac.get('password2').setErrors({passwordMatch:true});
-      return null;
-  }else{
-      return null;
+  if (!flag) {
+    ac.get('password2').setErrors({ passwordMatch: true });
+    return null;
+  } else {
+    return null;
   }
 }
 
