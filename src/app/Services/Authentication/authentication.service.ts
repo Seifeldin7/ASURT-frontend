@@ -138,7 +138,15 @@ export class AuthenticationService {
     return verify;
   }
 
-  storeToken(token: string) {
+  tokenVerify(token:string){
+    let request_body = {
+      "token": token,
+    }
+    // console.log(request_body.token);
+    return this.http.post<any>("api/token-verify/", request_body)
+  }
+
+  storeToken(token:string){
     localStorage.setItem('token', JSON.stringify(token));
   }
 
