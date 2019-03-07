@@ -14,18 +14,14 @@ import { SigninComponent } from './signin/signin.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authentication.service';
-<<<<<<< HEAD
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-=======
 import { ChangePasswordGuardService } from 'src/app/Routing/Authentication/change-password-guard.service';
->>>>>>> cc41c7a6a56f939b798bd0d8f1a2a9c3e24c294d
 
 @NgModule({
   declarations: [
     SignupComponent,
     SigninComponent,
     ChangePasswordComponent,
-    ForgetPasswordComponent,
+    // ForgetPasswordComponent,
   ],
   imports: [
     CommonModule,
