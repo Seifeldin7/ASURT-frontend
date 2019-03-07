@@ -31,6 +31,7 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { AuthenticationModule } from './Components/authentication/authentication.module';
+//import { ForgetPasswordComponent } from './Components/authentication/forget-password/forget-password.component';
 
 
 
@@ -40,6 +41,7 @@ import { AuthenticationModule } from './Components/authentication/authentication
     AuthenticationComponent,
     ProfileComponent,
     GeneralComponent,
+  //  ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,
