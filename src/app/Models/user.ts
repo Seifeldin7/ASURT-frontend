@@ -1,7 +1,7 @@
 export interface User {
   id: number,
-  username: string,
+  email: string,
   first_Name: string,
   last_Name: string,
-  groups: Array<number>
+  groups: Array<String>
 }
