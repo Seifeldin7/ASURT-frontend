@@ -33,7 +33,12 @@ import { GeneralComponent } from './Components/general/general.component';
 import { AuthenticationModule } from './Components/authentication/authentication.module';
 //import { ForgetPasswordComponent } from './Components/authentication/forget-password/forget-password.component';
 
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
+// library.add(faFacebook);
+// library.add(faGoogle);
 
 @NgModule({
   declarations: [
@@ -41,13 +46,14 @@ import { AuthenticationModule } from './Components/authentication/authentication
     AuthenticationComponent,
     ProfileComponent,
     GeneralComponent,
-  //  ForgetPasswordComponent,
+    //  ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    // FontAwesomeModule,
 
     GeneralRoutesModule,
     ProfileRoutesModule,

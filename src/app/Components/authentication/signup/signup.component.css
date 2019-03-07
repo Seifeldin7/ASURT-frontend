@@ -1,12 +1,4 @@
 /**
-* ng class style
-*/
-
-input.ng-invalid.ng-touched{
-  border-color: red;
-}
-
-/**
 * Default Style
 */
 .form-signin {
@@ -30,6 +22,10 @@ input.ng-invalid.ng-touched{
 .form-label-group input {
   height: auto;
   border-radius: 2rem;
+}
+
+.form-label-group input:hover {
+  cursor: pointer;
 }
 
 .form-label-group>input,

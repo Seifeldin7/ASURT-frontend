@@ -41,7 +41,7 @@ export class AuthenticationService {
      * data changes between providers
      */
     let request_body = {};
-    
+
     if (provider == 'google' || provider == 'facebook') {
       let socialPlatformProvider;
       if (provider == 'google') {
@@ -138,7 +138,7 @@ export class AuthenticationService {
     return verify;
   }
 
-  tokenVerify(token:string){
+  tokenVerify(token: string) {
     let request_body = {
       "token": token,
     }
@@ -146,7 +146,7 @@ export class AuthenticationService {
     return this.http.post<any>("api/token-verify/", request_body)
   }
 
-  storeToken(token:string){
+  storeToken(token: string) {
     localStorage.setItem('token', JSON.stringify(token));
   }
 
@@ -156,6 +156,19 @@ export class AuthenticationService {
      */
     localStorage.removeItem('token');
   }
+
+  forgetPassword(email: string) {
+    let request_body = {
+      "email": email,
+    }
+    return this.http.post<any>("api/forget-password/", request_body)
+  }
+
+  changePassword(request_body) {
+    return this.http.post<any>("api/change-password/", request_body);
+  }
+
+
 }
 
 /**

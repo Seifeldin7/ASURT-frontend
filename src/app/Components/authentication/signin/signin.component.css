@@ -1,12 +1,4 @@
 /**
-* ng class style
-*/
-
-input.ng-invalid.ng-touched {
-  border-color: red;
-}
-
-/**
 * Default Style
 */
 .form-signin {
@@ -98,4 +90,22 @@ input.ng-invalid.ng-touched {
 .btn-facebook {
   color: white;
   background-color: #3b5998;
+}
+
+.btn-google:hover,
+.btn-google:focus,
+.btn-google:active,
+.btn-google.active,
+.open>.dropdown-toggle.btn-google {
+  color: #fff;
+  background-color: #bd3c2d;
+}
+
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active,
+.btn-facebook.active,
+.open>.dropdown-toggle.btn-facebook {
+  color: #fff;
+  background-color: #354885;
 }

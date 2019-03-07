@@ -12,13 +12,10 @@ export const router = [
   {path:'auth', component:AuthenticationComponent, children:[
     {path:'register',component:SignupComponent },
     {path:'login',component:SigninComponent},
-<<<<<<< HEAD
     {path:'change-password',component:ChangePasswordComponent},
-    {path:'forget',component: ForgetPasswordComponent}
-=======
+    {path:'forget',component: ForgetPasswordComponent},
     {path:'change-password/:token',component:ChangePasswordComponent, canActivate: [ChangePasswordGuardService]},
     {path:'change-password',component:ChangePasswordComponent, canActivate: [ChangePasswordGuardService]},
->>>>>>> cc41c7a6a56f939b798bd0d8f1a2a9c3e24c294d
   ]},
   //{ path: '**', redirectTo: '/' },
   //{ path: '', redirectTo: '/', pathMatch: 'full' }
