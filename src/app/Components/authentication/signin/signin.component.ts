@@ -21,6 +21,10 @@ import {
 
 export class SigninComponent implements OnInit {
 
+  loading = false;
+    submitted = false;
+    returnUrl: string;
+
   /**
      * HTML Elements
   **/
