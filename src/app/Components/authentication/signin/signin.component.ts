@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-// import { AlertService } from '../../../Services/Authentication/alert.service';
+import { AlertService } from '../../../Services/Authentication/alert.service';
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
 import {
   AuthService,
@@ -33,37 +33,66 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService,
+    private socialAuthService: AuthService
   ) { }
 
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
 
-    this.authService.logout();
+    // reset login status
+    this.authenticationService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-    this.authService.login({
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
-      remember_me: this.loginForm.value.remember_me,
-    }).subscribe(
-      (response: any) => {
-        if (response.token) {
-          this.authService.storeToken(response.token);
-          this.router.navigate(['/']);
-          console.log('logged in');
-        } else {
-          console.log('login form response error');
-        }
-      },
-      (err) => {
-        console.log('login form err submit');
-      }
-    )
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.login(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
   }
+
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform == "facebook") {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform == "google") {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+
+
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + " sign in data : ", userData);
+        // Now sign-in with userData    
+      }
+    );
+  }
+
 }

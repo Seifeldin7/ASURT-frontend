@@ -9,14 +9,15 @@ import { AuthenticationComponent } from 'src/app/Components/authentication/authe
 import { ChangePasswordGuardService } from './change-password-guard.service';
 
 export const router = [
-  {path:'auth', component:AuthenticationComponent, children:[
-    {path:'register',component:SignupComponent },
-    {path:'login',component:SigninComponent},
-    {path:'change-password',component:ChangePasswordComponent},
-    {path:'forget',component: ForgetPasswordComponent},
-    {path:'change-password/:token',component:ChangePasswordComponent, canActivate: [ChangePasswordGuardService]},
-    {path:'change-password',component:ChangePasswordComponent, canActivate: [ChangePasswordGuardService]},
-  ]},
+  {
+    path: 'auth', component: AuthenticationComponent, children: [
+      { path: 'register', component: SignupComponent },
+      { path: 'login', component: SigninComponent },
+      { path: 'forget-password', component: ForgetPasswordComponent },
+      { path: 'change-password/:token', component: ChangePasswordComponent, canActivate: [ChangePasswordGuardService] },
+      { path: 'change-password', component: ChangePasswordComponent, canActivate: [ChangePasswordGuardService] },
+    ]
+  },
   //{ path: '**', redirectTo: '/' },
   //{ path: '', redirectTo: '/', pathMatch: 'full' }
 ]

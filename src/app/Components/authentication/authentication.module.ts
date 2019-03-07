@@ -22,7 +22,7 @@ import { ChangePasswordGuardService } from 'src/app/Routing/Authentication/chang
     SignupComponent,
     SigninComponent,
     ChangePasswordComponent,
-    ForgetPasswordComponent,
+    // ForgetPasswordComponent,
   ],
   imports: [
     CommonModule,
