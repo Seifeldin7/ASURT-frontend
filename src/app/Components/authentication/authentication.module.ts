@@ -14,6 +14,7 @@ import { SigninComponent } from './signin/signin.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authentication.service';
+import { ChangePasswordGuardService } from 'src/app/Routing/Authentication/change-password-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authe
   ],
   providers:[
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs },
+    ChangePasswordGuardService,
   ]
 
 })

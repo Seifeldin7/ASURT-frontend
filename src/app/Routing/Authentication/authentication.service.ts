@@ -5,12 +5,14 @@ import { SignupComponent } from 'src/app/Components/authentication/signup/signup
 import { SigninComponent } from 'src/app/Components/authentication/signin/signin.component';
 import { ChangePasswordComponent } from 'src/app/Components/authentication/change-password/change-password.component';
 import { AuthenticationComponent } from 'src/app/Components/authentication/authentication.component';
+import { ChangePasswordGuardService } from './change-password-guard.service';
 
 export const router = [
   {path:'auth', component:AuthenticationComponent, children:[
-    {path:'register',component:SignupComponent},
+    {path:'register',component:SignupComponent },
     {path:'login',component:SigninComponent},
-    {path:'change-password',component:ChangePasswordComponent},
+    {path:'change-password/:token',component:ChangePasswordComponent, canActivate: [ChangePasswordGuardService]},
+    {path:'change-password',component:ChangePasswordComponent, canActivate: [ChangePasswordGuardService]},
   ]},
   //{ path: '**', redirectTo: '/' },
   //{ path: '', redirectTo: '/', pathMatch: 'full' }
