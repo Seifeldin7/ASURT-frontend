@@ -13,7 +13,7 @@ import { AuthenticationModule } from './Components/authentication/authentication
 
 // Services
 import { AuthenticationService, JwtInterceptor, APIInterceptor } from './Services/Authentication/authentication.service';
-import { GeneralService } from './Services/General/general.service';
+import { GeneralService, LoadingHttpInterseptorService } from './Services/General/general.service';
 import { ProfileService } from './Services/Profile/profile.service';
 
 
@@ -34,6 +34,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
+import { LoadingComponent } from './Components/general/loading/loading.component';
 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -48,6 +49,7 @@ import { GeneralComponent } from './Components/general/general.component';
     AuthenticationComponent,
     ProfileComponent,
     GeneralComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +79,7 @@ import { GeneralComponent } from './Components/general/general.component';
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingHttpInterseptorService, multi: true },
   ],
   bootstrap: [AppComponent]
 })
