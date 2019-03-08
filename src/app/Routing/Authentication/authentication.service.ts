@@ -6,7 +6,7 @@ import { SigninComponent } from 'src/app/Components/authentication/signin/signin
 import { ChangePasswordComponent } from 'src/app/Components/authentication/change-password/change-password.component';
 import { ForgetPasswordComponent } from 'src/app/Components/authentication/forget-password/forget-password.component';
 import { AuthenticationComponent } from 'src/app/Components/authentication/authentication.component';
-import { ChangePasswordGuardService } from './change-password-guard.service';
+import { ChangePasswordGuardService } from './auth-guard.service';
 
 export const router = [
   {

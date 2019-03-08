@@ -12,7 +12,7 @@ import { User } from 'src/app/Models/user';
 export class ChangePasswordComponent implements OnInit {
 
   private userMail:User;
-  private verified:boolean;
+  private token:string;
 
   changePasswordForm:FormGroup = this.formBuilder.group({
     password1: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
@@ -27,24 +27,31 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('change')
-
-    // let token:string;
-    // if(this.activatedRoute.snapshot.params.get('token')){
-    //   // token = this.activatedRoute.snapshot.params.get('token');
-    // }else{
-    //   // token = this.authService.tokenDecode(localStorage.getItem('token'));
-    // }
+    if(this.activatedRoute.snapshot.url[1]){
+      this.token = this.activatedRoute.snapshot.params.get('token');
+    }else{
+      this.token = localStorage.getItem('token');
+    }
     
-    // let payload = this.authService.tokenDecode(token);
-    // this.userMail = payload.email;
-
+    this.userMail = this.authService.tokenDecode(this.token).email;
   }
 
   get f() { return this.changePasswordForm.controls; }
 
   onSubmit(){
-    console.log('submit');
+    this.authService.changePassword({
+      email: this.userMail,
+      password: this.changePasswordForm.value.password1
+    }).subscribe(
+      response =>{
+        //TODO: navigate to login after change password
+        console.log('change password response');
+      },
+      err => {
+        //TODO: Handle All kined of errors
+        console.log('change password err');
+      }
+    );
   }
 
 }

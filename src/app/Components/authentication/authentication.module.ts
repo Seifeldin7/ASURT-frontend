@@ -15,14 +15,14 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authentication.service';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { ChangePasswordGuardService } from 'src/app/Routing/Authentication/change-password-guard.service';
+import { ChangePasswordGuardService } from 'src/app/Routing/Authentication/auth-guard.service';
 
 @NgModule({
   declarations: [
     SignupComponent,
     SigninComponent,
     ChangePasswordComponent,
-    // ForgetPasswordComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     CommonModule,

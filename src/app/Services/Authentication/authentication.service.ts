@@ -131,7 +131,8 @@ export class AuthenticationService {
         },
         (err) => {
           verify.next(false);
-          console.log("isLoggedIn Error ocurred")
+          console.log("isLoggedIn Error ocurred");
+          //TODO: Handle Err
         }
       )
 
@@ -140,9 +141,8 @@ export class AuthenticationService {
 
   tokenVerify(token: string) {
     let request_body = {
-      "token": token,
+      token: token
     }
-    // console.log(request_body.token);
     return this.http.post<any>("api/token-verify/", request_body)
   }
 
@@ -164,7 +164,11 @@ export class AuthenticationService {
     return this.http.post<any>("api/forget-password/", request_body)
   }
 
-  changePassword(request_body) {
+  changePassword(body:any) {
+    let request_body = {
+      email: body.email,
+      password: body.password
+    }
     return this.http.post<any>("api/change-password/", request_body);
   }
 
