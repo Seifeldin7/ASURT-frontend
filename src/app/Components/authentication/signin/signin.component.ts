@@ -1,9 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
-// import { AlertService } from '../../../Services/Authentication/alert.service';
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
 import {
   AuthService,
@@ -11,11 +9,11 @@ import {
   GoogleLoginProvider
 } from 'angular-6-social-login';
 
+
 @Component({
   selector: 'app-signin',
   templateUrl: 'signin.component.html',
   styleUrls: ['./signin.component.css']
-
 }
 )
 
