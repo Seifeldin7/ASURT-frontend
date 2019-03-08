@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
+import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
+import { AuthService } from 'angular-6-social-login';
 
 
 @Component({
