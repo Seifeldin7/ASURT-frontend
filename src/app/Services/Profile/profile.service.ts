@@ -17,13 +17,13 @@ export class ProfileService {
    
   constructor(private http:HttpClient){}
   fetchProfile(){
-  return this.http.get<Profile>('http://127.0.0.1:8000/profile/');
+  return this.http.get<Profile>('http://127.0.0.1:8000/api/Profile/');
   }
   EditProfile(data:Profile){
-    return this.http.put<Profile>('http://127.0.0.1:8000/profile/',data);
+    return this.http.put<Profile>('http://127.0.0.1:8000/api/Profile/',data);
   }
   CreateProfile(data:Profile){
-    return this.http.post<Profile>('http://127.0.0.1:8000/profile/',data);
+    return this.http.post<Profile>('http://127.0.0.1:8000/api/Profile/',data);
   }
   setProfile(p:Profile){
     this.profile =p;

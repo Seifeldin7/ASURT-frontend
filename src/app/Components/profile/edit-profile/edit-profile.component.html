@@ -17,9 +17,11 @@
               <div class="form-group ">
                 <label for="image" class="mr-4">Profile Pic</label>
                 <div class="row">
-                    <img-cropper  [image]="data" [settings]="cropperSettings"  accept=".png, .jpg, .jpeg, .pdf" ></img-cropper>
-                  <img [src]="data.image" [width]="cropperSettings.croppedWidth"
-                    [height]="cropperSettings.croppedHeight" />
+                  <img-cropper  [image]="data" [settings]="cropperSettings"  accept=".png, .jpg, .jpeg, .pdf" ></img-cropper>
+                  <img *ngIf="savepic" [src]="data.image" [width]="cropperSettings.croppedWidth"
+                    [height]="cropperSettings.croppedHeight" class="ml-3" />
+                    </div>
+                    <div class="row">
                     <button type="button" class="btn btn-danger " [disabled]="savepic" (click)="onSave()">Save</button>
                     <button type="button" class="btn btn-danger ml-3"  (click)="onCancelpic()">Cancel</button>
                 </div>

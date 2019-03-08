@@ -24,7 +24,7 @@ export class ViewProfileComponent implements OnInit {
         this.pro = profile;
         this.profileservice.setProfile(this.pro);
         
-        if(this.pro.profilepic==null || this.pro.profilepic ==''){
+        if(this.pro.profile_pic==null || this.pro.profile_pic ==''){
           this.NullImage=true
         }
         else{
@@ -54,7 +54,7 @@ export class ViewProfileComponent implements OnInit {
   previewNational_ID_Front(){
     Swal.fire({
       title: 'National ID',
-      imageUrl: this.pro.National_id_front,
+      imageUrl: this.pro.national_front,
       imageWidth: 400,
       imageHeight: 200,
       imageAlt: 'Custom image',
@@ -64,7 +64,7 @@ export class ViewProfileComponent implements OnInit {
   previewPassport_ID(){
     Swal.fire({
       title: 'Passport ID',
-      imageUrl: this.pro.Passport_id_im,
+      imageUrl: this.pro.passport_img,
       imageWidth: 400,
       imageHeight: 200,
       imageAlt: 'Custom image',
@@ -74,7 +74,7 @@ export class ViewProfileComponent implements OnInit {
   previewNational_ID_Back(){
     Swal.fire({
       title: 'National ID',
-      imageUrl: this.pro.National_id_back,
+      imageUrl: this.pro.national_back,
       imageWidth: 400,
       imageHeight: 200,
       imageAlt: 'Custom image',

@@ -36,8 +36,14 @@ export class EditProfileComponent implements OnInit {
         this.cropperSettings.canvasWidth = 400;
         this.cropperSettings.canvasHeight = 300;
         this.cropperSettings.rounded =true;
+        this.cropperSettings.cropperClass="cropper";
+        this.cropperSettings.croppingClass="cropping";
+
         this.data = {};
   }
+
+
+ 
 
   ngOnInit() {
     this.profileservice.profileExist();
@@ -50,23 +56,23 @@ export class EditProfileComponent implements OnInit {
             (response)=> {
               console.log(response)
               this.profil =response;
-              this.profileform.controls['name'].setValue(this.profil.Fullname);
-              this.profileform.controls['mobile'].setValue(this.profil.Mobile);
-              this.profileform.controls['uni'].setValue(this.profil.University);
-              this.profileform.controls['faculty'].setValue(this.profil.Faculty);
-              this.profileform.controls['coll_id'].setValue(this.profil.College_id);
-              this.profileform.controls['coll_dep'].setValue(this.profil.College_Department);
-              this.profileform.controls['grad_year'].setValue(this.profil.Expected_Year_Of_Graduation);
-              this.profileform.controls['address'].setValue(this.profil.Address);
-              this.profileform.controls['dob'].setValue(this.profil.DOB);
-              this.profileform.controls['n_id'].setValue(this.profil.National_id);
+              this.profileform.controls['name'].setValue(this.profil.name);
+              this.profileform.controls['mobile'].setValue(this.profil.mobile);
+              this.profileform.controls['uni'].setValue(this.profil.university);
+              this.profileform.controls['faculty'].setValue(this.profil.faculty);
+              this.profileform.controls['coll_id'].setValue(this.profil.college_id);
+              this.profileform.controls['coll_dep'].setValue(this.profil.college_department);
+              this.profileform.controls['grad_year'].setValue(this.profil.graduation_year);
+              this.profileform.controls['address'].setValue(this.profil.address);
+              this.profileform.controls['dob'].setValue(this.profil.birth_date);
+              this.profileform.controls['n_id'].setValue(this.profil.national_id);
               this.profileform.controls['n_id_f_c'].setValue('');
               this.profileform.controls['n_id_b_c'].setValue('');
-              this.profileform.controls['pass_id'].setValue(this.profil.Passport_id);
+              this.profileform.controls['pass_id'].setValue(this.profil.passport_id);
               this.profileform.controls['pass_id_img'].setValue('');
-              this.profileform.controls['em_name'].setValue(this.profil.Em_contact_name);
-              this.profileform.controls['em_mobile'].setValue(this.profil.Em_contact_mobile);
-              this.profileform.controls['em_relation'].setValue(this.profil.Em_contact_relation);       
+              this.profileform.controls['em_name'].setValue(this.profil.emergency_name);
+              this.profileform.controls['em_mobile'].setValue(this.profil.emergency_mobile);
+              this.profileform.controls['em_relation'].setValue(this.profil.emergency_relation);       
           },
             error => {
             Swal.fire({
@@ -194,8 +200,12 @@ export class EditProfileComponent implements OnInit {
  onSave(){
   this.profilepicbase64 = this.data.image ;
   this.savepic =true;
+  
+  this.cropperSettings.noFileInput= true;
+  
  }
 onCancelpic(){
   this.savepic =false;
+  this.cropperSettings.noFileInput= false;
 }
 }

@@ -2,24 +2,24 @@
 
 export class Profile{
     //public user: number;
-    public profilepic:string;
-    public Fullname:string;
-    public Mobile:string;
-    public DOB:string;
-    public Address:string;
-    public University:string;
-    public Faculty:string;
-    public College_Department:string;
-    public Expected_Year_Of_Graduation:string;
-    public College_id:string;
-    public Em_contact_name:string;
-    public Em_contact_mobile:string;
-    public Em_contact_relation:string;
-    public National_id:string;
-    public National_id_front:string;
-    public National_id_back:string;
-    public Passport_id:string;
-    public Passport_id_im:string;
+    public profile_pic:string;
+    public name:string;
+    public mobile:string;
+    public birth_date:string;
+    public address:string;
+    public university:string;
+    public faculty:string;
+    public college_department:string;
+    public graduation_year:string;
+    public college_id:string;
+    public emergency_name:string;
+    public emergency_mobile:string;
+    public emergency_relation:string;
+    public national_id:string;
+    public national_front:string;
+    public national_back:string;
+    public passport_id:string;
+    public passport_img:string;
 
     constructor(pic:string,Fullname:string,
          Mobile:string,University:string,Faculty:string,College_id:string,College_Department:string,Expected_Year_Of_Graduation:string,
@@ -27,23 +27,23 @@ export class Profile{
          Passport_id_im:string, Em_contact_name:string, Em_contact_mobile:string,Em_contact_relation:string
         ){
         //this.user =user;
-        this.profilepic= pic;
-        this.Address=Address;
-        this.College_Department=College_Department;
-        this.Fullname=Fullname;
-        this.College_id=College_id;
-        this.DOB=DOB;
-        this.University=University;
-        this.Em_contact_mobile=Em_contact_mobile;
-        this.Em_contact_name =Em_contact_name;
-        this.Expected_Year_Of_Graduation=Expected_Year_Of_Graduation;
-        this.National_id=National_id;
-        this.Passport_id =Passport_id;
-        this.Passport_id_im = Passport_id_im;
-        this.Em_contact_relation = Em_contact_relation;
-        this.Faculty = Faculty;
-        this.Mobile =Mobile;
-        this.National_id_front =National_id_front;
-        this.National_id_back = National_id_back;
+        this.profile_pic= pic;
+        this.address=Address;
+        this.college_department=College_Department;
+        this.name=Fullname;
+        this.college_id=College_id;
+        this.birth_date=DOB;
+        this.university=University;
+        this.emergency_mobile=Em_contact_mobile;
+        this.emergency_name =Em_contact_name;
+        this.graduation_year=Expected_Year_Of_Graduation;
+        this.national_id=National_id;
+        this.passport_id =Passport_id;
+        this.passport_img = Passport_id_im;
+        this.emergency_relation = Em_contact_relation;
+        this.faculty = Faculty;
+        this.mobile =Mobile;
+        this.national_front =National_id_front;
+        this.national_back = National_id_back;
     }
 }

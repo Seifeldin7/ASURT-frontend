@@ -24,20 +24,36 @@ input.ng-invalid.ng-touched{
     background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #ac1818;
+  background-color: rgba(231, 228, 228, 0.95);
+ /* background-color: #ac1818; */
     /*overflow-x: hidden;*/
 }
 .con{
+
     -webkit-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
     -moz-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
     box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
-    background-color: rgba(0,0, 0, 0.95);
+    background-color: rgba(212, 209, 209, 0.95);
 
 }
-.wh{
+/* .wh{
     color: white;
-}
+} */
 /* .uploadphoto{
     background:url("https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"); 
     height: 240px; width:240px; background-repeat: no-repeat;
 } */
+/* ----------------------canvas ---------- NOT WORKING THOUGH!  */
+.cropper {
+    border: 30px solid red;
+    background-color: blueviolet;
+    visibility: hidden;
+
+}
+/* canvas after image upload */
+.cropping {
+    border: 30px solid red;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+/*------------------------------------------------------*/
