@@ -35,6 +35,7 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
+import { AlertService } from './Services/Authentication/alert.service';
 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -76,6 +77,7 @@ import { LoadingComponent } from './Components/general/loading/loading.component
     ProfileService,
 
     IsLoggedInGuardService,
+    AlertService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },

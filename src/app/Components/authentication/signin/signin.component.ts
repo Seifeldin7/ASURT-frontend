@@ -10,6 +10,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
+import { AlertService } from 'src/app/Services/Authentication/alert.service';
 
 @Component({
   selector: 'app-signin',
@@ -42,7 +43,7 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    // private alertService: AlertService,
+    private alertService: AlertService,
     private socialAuthService: AuthService
   ) { }
 
@@ -85,7 +86,7 @@ export class SigninComponent implements OnInit {
         error => {
           // TODO: Error Handle
           console.log('login request error');
-          // this.alertService.error(error);
+          this.alertService.error(error);
         });
   }
 
