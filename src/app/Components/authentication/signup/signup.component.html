@@ -81,7 +81,7 @@
 
 
   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
-          [disabled]="registerForm.invalid">
+          [disabled]="registerForm.invalid || submitted">
           Register
         </button>
   <a class="d-block text-center mt-2 small" [routerLink]="['/auth/login']">

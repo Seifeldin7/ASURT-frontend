@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { AuthenticationModule } from './Components/authentication/authentication.module';
+
+
 //Directives
 
 
@@ -20,6 +23,7 @@ import { ProfileRoutesModule } from './Routing/Profile/profile.router';
 
 
 //AuthGuard
+import { IsLoggedInGuardService } from './Routing/Authentication/auth-guard.service';
 
 
 //Pipes
@@ -30,8 +34,6 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
-import { AuthenticationModule } from './Components/authentication/authentication.module';
-//import { ForgetPasswordComponent } from './Components/authentication/forget-password/forget-password.component';
 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -46,13 +48,13 @@ import { AuthenticationModule } from './Components/authentication/authentication
     AuthenticationComponent,
     ProfileComponent,
     GeneralComponent,
-    //  ForgetPasswordComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
     // FontAwesomeModule,
 
     GeneralRoutesModule,
@@ -70,6 +72,8 @@ import { AuthenticationModule } from './Components/authentication/authentication
     AuthenticationService,
     GeneralService,
     ProfileService,
+
+    IsLoggedInGuardService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },

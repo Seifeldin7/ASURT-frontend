@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService } from '../../../Services/Authentication/alert.service';
+// import { AlertService } from '../../../Services/Authentication/alert.service';
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
 import {
   AuthService,
@@ -21,14 +21,16 @@ import {
 
 export class SigninComponent implements OnInit {
 
-  loading = false;
-    submitted = false;
-    returnUrl: string;
+  submitted = false;
+  returnUrl: string;
 
   /**
      * HTML Elements
   **/
   loginForm: FormGroup = this.formBuilder.group({
+    /**
+     * TODO: Validate email is exists
+     */
     email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
     password: ['', [Validators.required,]],
     remember_me: ['',]
@@ -40,17 +42,12 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService,
+    // private alertService: AlertService,
     private socialAuthService: AuthService
   ) { }
 
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
     // reset login status
     this.authenticationService.logout();
 
@@ -66,35 +63,47 @@ export class SigninComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      // TODO: Show Alert
       return;
     }
 
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
+    this.authenticationService.login({
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+      remember_me: this.loginForm.value.remember_me
+    },'email-login')
       .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
+        response => {
+          if(response.token){
+            this.authenticationService.storeToken(response.token);
+            this.router.navigate([this.returnUrl]);
+          }else{
+            // TODO: alert error handle
+            console.log('login no token');
+          }
         },
         error => {
-          this.alertService.error(error);
-          this.loading = false;
+          // TODO: Error Handle
+          console.log('login request error');
+          // this.alertService.error(error);
         });
   }
 
   public socialSignIn(socialPlatform: string) {
-    let socialPlatformProvider;
-    if (socialPlatform == "facebook") {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (socialPlatform == "google") {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-
-
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
-        // Now sign-in with userData    
+    this.authenticationService.login(null,socialPlatform).subscribe(
+      response => {
+        if(response.token){
+          this.authenticationService.storeToken(response.token);
+          this.router.navigate([this.returnUrl]);
+        }else{
+          // TODO: alert error handle
+          console.log('login no token');
+        }
+      },
+      error => {
+        // TODO: Error Handle
+        console.log('login request error');
+        // this.alertService.error(error);
       }
     );
   }

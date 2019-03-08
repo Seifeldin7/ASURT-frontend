@@ -12,10 +12,15 @@ import { AuthenticationService, passwordMatchValidator } from 'src/app/Services/
 })
 export class SignupComponent implements OnInit {
 
+    submitted:boolean = false;
+
     /**
      * HTML Elements
      */
     registerForm:FormGroup = this.formBuilder.group({
+        /**
+         * TODO: Validate if user exists before
+         */
         email: ['', [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
 
         password: this.formBuilder.group({
@@ -32,11 +37,12 @@ export class SignupComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
+        //TODO: If user logged in show logout first alert
         this.authService.isLoggedIn().subscribe(
             status => {
                 if(status){
-                    this.router.navigate(['/']);
+                    // TODO: Navigate to home 
+                    // this.router.navigate(['/']);
                 }else{}
             }
         );
@@ -46,6 +52,7 @@ export class SignupComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
+        this.submitted = true;
         this.authService.signup({
             email: this.registerForm.value.email,
             password: this.registerForm.value.password.password1,
@@ -54,12 +61,13 @@ export class SignupComponent implements OnInit {
                 if(response.token){
                     this.authService.storeToken(response.token);
                     this.router.navigate(['/']);
-                    console.log('signed up');
                 }else{
+                    //TODO: Handle Errors
                     console.log('register form response error');
                 }
             },
             (err)=>{
+                //TODO: Handle Errors
                 console.log('resister form err submit');
             }
         )

@@ -6,7 +6,54 @@ import { Observable, of } from 'rxjs';
 
 
 @Injectable()
+export class IsLoggedInGuardService implements CanActivate {
+
+  /**
+   * Auth Guard to check logged in user
+   * * Verify user token
+   */
+
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) { }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return this.authService.isLoggedIn()
+            .pipe(
+              map(
+                status => {
+                  if(!!status){
+                    return true;
+                  }else{
+                    //TODO: Alert Component
+                    this.router.navigate(['/auth/login']);
+                    return false;
+                  }
+                },
+                err => {
+                  //TODO: Error Handle
+                  this.router.navigate(['/auth/login']);
+                  return false;
+                }
+              )
+            );
+  }
+}
+
+
+
+@Injectable()
 export class ChangePasswordGuardService implements CanActivate {
+
+  /**
+   * Change Password Component Guard
+   * * Verify user token
+   * * GET token from URL for Forget Password
+   * * or GET local storage token to change logged in user password 
+   */
 
   constructor(
     private authService: AuthenticationService,

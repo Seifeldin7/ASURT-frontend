@@ -111,15 +111,14 @@ export class AuthenticationService {
   isLoggedIn() {
     /**
      * Check if user logged in and verify token
-     * API -> path = "/api/token-verify"
+     * 
+     * @returns Subject<boolean> Of loggedin status
      */
-    let request_body = {
-      token: localStorage.getItem('token') ? localStorage.getItem('token') : null,
-    }
+    let token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 
     let verify: Subject<boolean> = new Subject();
 
-    this.http.post<{ token: string }>("api/token-verify/", request_body).
+    this.tokenVerify(token).
       subscribe(
         (Response) => {
           if (Response.token) {
