@@ -104,7 +104,7 @@ export class SigninComponent implements OnInit {
       error => {
         // TODO: Error Handle
         console.log('login request error');
-        // this.alertService.error(error);
+        this.alertService.error(error);
       }
     );
   }
