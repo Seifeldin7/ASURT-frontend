@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forget-password',
@@ -20,7 +21,8 @@ export class ForgetPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class ForgetPasswordComponent implements OnInit {
         },
         (err) => {
           console.log('Reset Password err');
+          this.toastr.error("Reset Password err")
         }
       )
   }

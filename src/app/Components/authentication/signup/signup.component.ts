@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService, passwordMatchValidator } from 'src/app/Services/Authentication/authentication.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-signup',
@@ -33,7 +33,8 @@ export class SignupComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        private authService: AuthenticationService
+        private authService: AuthenticationService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -64,11 +65,13 @@ export class SignupComponent implements OnInit {
                 }else{
                     //TODO: Handle Errors
                     console.log('register form response error');
+                    this.toastr.error("Register form error");
                 }
             },
             (err)=>{
                 //TODO: Handle Errors
                 console.log('resister form err submit');
+                this.toastr.error("Register form error");
             }
         )
     }

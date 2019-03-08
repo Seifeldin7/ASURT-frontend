@@ -8,6 +8,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private socialAuthService: AuthService
+    private socialAuthService: AuthService,
+    private toastr: ToastrService
   ) { }
 
 
@@ -61,6 +63,7 @@ export class SigninComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       // TODO: Show Alert
+      this.toastr.error("Login form is invalid");
       return;
     }
 
@@ -77,11 +80,13 @@ export class SigninComponent implements OnInit {
           } else {
             // TODO: alert error handle
             console.log('login no token');
+            this.toastr.error("Login no token")
           }
         },
         error => {
           // TODO: Error Handle
           console.log('login request error');
+          this.toastr.error("Login request error")
         });
   }
 
@@ -94,11 +99,13 @@ export class SigninComponent implements OnInit {
         } else {
           // TODO: alert error handle
           console.log('login no token');
+          this.toastr.error("Login no token")
         }
       },
       error => {
         // TODO: Error Handle
         console.log('login request error');
+        this.toastr.error("Login request error")
       }
     );
   }
