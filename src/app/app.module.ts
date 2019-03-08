@@ -36,6 +36,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
 import { AlertService } from './Services/Authentication/alert.service';
+import { AlertComponent } from './Components/general/alert/alert.component';
 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -51,6 +52,7 @@ import { AlertService } from './Services/Authentication/alert.service';
     ProfileComponent,
     GeneralComponent,
     LoadingComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
