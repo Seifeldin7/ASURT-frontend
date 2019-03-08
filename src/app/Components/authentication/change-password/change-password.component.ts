@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passwordMatchValidator, AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
 import { User } from 'src/app/Models/user';
@@ -22,6 +22,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private authService: AuthenticationService
   ) { }
 
@@ -45,6 +46,7 @@ export class ChangePasswordComponent implements OnInit {
     }).subscribe(
       response =>{
         //TODO: navigate to login after change password
+        this.router.navigate(['/']);
         console.log('change password response');
       },
       err => {

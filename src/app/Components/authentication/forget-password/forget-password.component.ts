@@ -33,10 +33,11 @@ export class ForgetPasswordComponent implements OnInit {
     this.authService.forgetPassword(this.forgetpasswordForm.value.email)
       .subscribe(
         (response: any) => {
+          this.router.navigate(['/']);
           console.log('password reset email has been sent');
         },
         (err) => {
-          console.log('Password form err submit');
+          console.log('Reset Password err');
         }
       )
   }

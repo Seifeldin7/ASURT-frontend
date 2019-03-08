@@ -10,7 +10,6 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
-import { AlertService } from 'src/app/Services/Authentication/alert.service';
 
 @Component({
   selector: 'app-signin',
@@ -43,7 +42,6 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService,
     private socialAuthService: AuthService
   ) { }
 
@@ -72,13 +70,13 @@ export class SigninComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
       remember_me: this.loginForm.value.remember_me
-    },'email-login')
+    }, 'email-login')
       .subscribe(
         response => {
-          if(response.token){
+          if (response.token) {
             this.authenticationService.storeToken(response.token);
             this.router.navigate([this.returnUrl]);
-          }else{
+          } else {
             // TODO: alert error handle
             console.log('login no token');
           }
@@ -86,17 +84,16 @@ export class SigninComponent implements OnInit {
         error => {
           // TODO: Error Handle
           console.log('login request error');
-          this.alertService.error(error);
         });
   }
 
   public socialSignIn(socialPlatform: string) {
-    this.authenticationService.login(null,socialPlatform).subscribe(
+    this.authenticationService.login(null, socialPlatform).subscribe(
       response => {
-        if(response.token){
+        if (response.token) {
           this.authenticationService.storeToken(response.token);
           this.router.navigate([this.returnUrl]);
-        }else{
+        } else {
           // TODO: alert error handle
           console.log('login no token');
         }
@@ -104,7 +101,6 @@ export class SigninComponent implements OnInit {
       error => {
         // TODO: Error Handle
         console.log('login request error');
-        this.alertService.error(error);
       }
     );
   }
