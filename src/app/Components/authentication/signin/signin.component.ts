@@ -3,12 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
-import {
-  AuthService,
-  FacebookLoginProvider,
-  GoogleLoginProvider
-} from 'angular-6-social-login';
-import { ToastrService } from 'ngx-toastr';
+import{ToastrService} from 'ngx-toastr'
 
 
 @Component({
@@ -41,7 +36,6 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private socialAuthService: AuthService,
     private toastr: ToastrService
   ) { }
 

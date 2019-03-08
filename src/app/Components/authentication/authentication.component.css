@@ -9,9 +9,14 @@ input.ng-invalid.ng-touched {
 /**
 * Default Style
 */
-body {
-  background: #007bff;
-  background: linear-gradient(to right, #0062E6, #33AEFF);
+
+section.auth-body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #fbfbfb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-signin {
