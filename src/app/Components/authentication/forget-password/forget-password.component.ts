@@ -40,7 +40,7 @@ export class ForgetPasswordComponent implements OnInit {
         },
         (err) => {
           console.log('Reset Password err');
-          this.toastr.error("Reset Password err")
+          this.toastr.error("Reset Password error")
         }
       )
   }
