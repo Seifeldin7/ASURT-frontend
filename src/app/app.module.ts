@@ -35,15 +35,11 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
-import { AlertService } from './Services/Authentication/alert.service';
-import { AlertComponent } from './Components/general/alert/alert.component';
 
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+//others
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
-// library.add(faFacebook);
-// library.add(faGoogle);
 
 @NgModule({
   declarations: [
@@ -52,7 +48,6 @@ import { AlertComponent } from './Components/general/alert/alert.component';
     ProfileComponent,
     GeneralComponent,
     LoadingComponent,
-    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +55,13 @@ import { AlertComponent } from './Components/general/alert/alert.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
-    // FontAwesomeModule,
+
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      enableHtml: true,
+      positionClass: 'toast-bottom-right',
+    }),
 
     GeneralRoutesModule,
     ProfileRoutesModule,
@@ -79,7 +80,6 @@ import { AlertComponent } from './Components/general/alert/alert.component';
     ProfileService,
 
     IsLoggedInGuardService,
-    AlertService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },

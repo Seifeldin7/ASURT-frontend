@@ -2,3 +2,7 @@
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "https://use.fontawesome.com/releases/v5.7.2/css/all.css";
+
+#toast-container>div {
+  opacity: 1;
+}
