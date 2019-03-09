@@ -64,9 +64,6 @@ export class ChangePasswordGuardService implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      
-    console.log('guard');
-    // console.log(next.url[1].path);
 
     let token:string = null;
     if(next.url[1]){
@@ -75,26 +72,21 @@ export class ChangePasswordGuardService implements CanActivate {
       token = localStorage.getItem('token');
     }
 
-    console.log(token)
-
     if(token != null){
-      console.log('not null')
       return this.authService.tokenVerify(token)
       .pipe(
         map((response: any)=>{
-          console.log(response);
           
           if(!!response.token){
-            console.log('guard1');
             return true;
           }else{
-            console.log('guard2');
+            console.log('change password guard err');
             this.router.navigate(['/auth/login']);
             return false;
           }
         },
         err=>{
-          console.log(err);
+          console.log("change pass guard error");
           this.router.navigate(['/auth/login']);
           return false
         })
