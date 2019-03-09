@@ -1,22 +1,15 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
-// import { AlertService } from '../../../Services/Authentication/alert.service';
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
-import {
-  AuthService,
-  FacebookLoginProvider,
-  GoogleLoginProvider
-} from 'angular-6-social-login';
 import { AlertService } from 'src/app/Services/Authentication/alert.service';
+
 
 @Component({
   selector: 'app-signin',
   templateUrl: 'signin.component.html',
   styleUrls: ['./signin.component.css']
-
 }
 )
 
@@ -44,7 +37,6 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
-    private socialAuthService: AuthService
   ) { }
 
 
@@ -86,7 +78,7 @@ export class SigninComponent implements OnInit {
         error => {
           // TODO: Error Handle
           console.log('login request error');
-          this.alertService.error(error);
+          this.alertService.error('Some Wrong');
         });
   }
 
