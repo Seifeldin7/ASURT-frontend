@@ -1,4 +1,4 @@
-input.ng-touched.ng-invalid{
+input.ng-touched.ng-invalid {
   border-color: red;
 }
 
@@ -27,10 +27,6 @@ input.ng-touched.ng-invalid{
 .form-label-group input {
   height: auto;
   border-radius: 2rem;
-}
-
-.form-label-group input:hover {
-  cursor: pointer;
 }
 
 .form-label-group>input,

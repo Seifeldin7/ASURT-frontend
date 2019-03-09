@@ -1,8 +1,9 @@
 <h5 class="card-title text-center">Sign In</h5>
-<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
   <div class="form-label-group">
-<input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email" autofocus>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="email"
+      autocomplete="off" autofocus>
     <label for="inputEmail">Email address</label>
   </div>
   <!-- displaying-errors -->
@@ -23,7 +24,8 @@
   </div> <!-- ./displaying-errors -->
 
   <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password"
+      autocomplete="new-password">
     <label for="inputPassword">Password</label>
   </div>
   <!-- displaying-errors -->
@@ -49,11 +51,12 @@
     <label class="form-check-label" for="rememberme">Remember me</label>
   </div>
 
-  <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" [disabled]="loginForm.invalid || submitted">Sign
+  <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit">Sign
     In</button>
 
   <a class="d-inline-block text-center mt-2 small" [routerLink]="['/auth/register']">Register</a>
-  <a class="d-inline-block float-right text-center mt-2 small" [routerLink]="['/auth/forget-password']">Forget your password ?</a>
+  <a class="d-inline-block float-right text-center mt-2 small" [routerLink]="['/auth/forget-password']">Forget your
+    password ?</a>
 
   <hr class="my-4">
   <button class="btn btn-lg btn-google btn-block text-uppercase" (click)="socialSignIn('google')"><i class="fab fa-google mr-2"></i>

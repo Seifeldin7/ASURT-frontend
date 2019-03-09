@@ -27,7 +27,7 @@ export class AuthenticationService {
      * API -> path = "/api/register"
      */
     let request_body = {
-      email: data.email,
+      email: data.email.toLowerCase(),
       password: data.password
     }
     return this.http.post<{ email: string, password: string }>("api/register/", request_body);
@@ -54,17 +54,17 @@ export class AuthenticationService {
         (userData) => {
           if (userData.provider == 'google') {
             request_body = {
-              'id': userData.id,
+              'social_id': userData.id,
               'name': userData.name,
-              'email': userData.email,
+              'email': userData.email.toLowerCase(),
               'provider': userData.provider,
             };
 
           } else if (userData.provider == 'facebook') {
             request_body = {
-              'id': userData.id,
+              'social_id': userData.id,
               'name': userData.name,
-              'email': userData.email,
+              'email': userData.email.toLowerCase(),
               'provider': userData.provider,
             };
           }
@@ -76,7 +76,7 @@ export class AuthenticationService {
 
     } else {
       request_body = {
-        email: data.email,
+        email: data.email.toLowerCase(),
         password: data.password,
         remember_me: data.remember_me
       }
@@ -91,7 +91,7 @@ export class AuthenticationService {
      */
 
     let request_body = {
-      email: email
+      email: email.toLowerCase()
     }
     return this.http.post<any>("api/user-exist/", request_body);
   }
@@ -158,14 +158,14 @@ export class AuthenticationService {
 
   forgetPassword(email: string) {
     let request_body = {
-      "email": email,
+      "email": email.toLowerCase(),
     }
     return this.http.post<any>("api/forget-password/", request_body)
   }
 
-  changePassword(body:any) {
+  changePassword(body: any) {
     let request_body = {
-      email: body.email,
+      email: body.email.toLowerCase(),
       password: body.password
     }
     return this.http.post<any>("api/change-password/", request_body);
