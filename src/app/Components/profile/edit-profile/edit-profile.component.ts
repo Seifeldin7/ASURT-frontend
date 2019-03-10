@@ -146,12 +146,11 @@ export class EditProfileComponent implements OnInit {
         (error) => {
           this.loading =false;
           this.submitBtn =false;
-          if (error["status"] == 400){
           Swal.fire({
             type: 'error',
             title: JSON.stringify( error["error"]["error"]),
             footer: '<a href>Why do I have this issue?</a>'
-          })}
+          })
           
         }
       );
