@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
-import{ToastrService} from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr'
 
 
 @Component({
@@ -56,7 +56,6 @@ export class SigninComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      // TODO: Show Alert
       this.toastr.error("Login form is invalid");
       return;
     }
@@ -71,16 +70,10 @@ export class SigninComponent implements OnInit {
           if (response.token) {
             this.authenticationService.storeToken(response.token);
             this.router.navigate([this.returnUrl]);
-          } else {
-            // TODO: alert error handle
-            console.log('login no token');
-            this.toastr.error("Login no token")
           }
         },
-        error => {
-          // TODO: Error Handle
-          console.log('login request error');
-          this.toastr.error("Login request error")
+        err => {
+          this.toastr.error(err.error.Error)
         });
   }
 
@@ -90,16 +83,10 @@ export class SigninComponent implements OnInit {
         if (response.token) {
           this.authenticationService.storeToken(response.token);
           this.router.navigate([this.returnUrl]);
-        } else {
-          // TODO: alert error handle
-          console.log('login no token');
-          this.toastr.error("Login no token")
         }
       },
-      error => {
-        // TODO: Error Handle
-        console.log('login request error');
-        this.toastr.error("Login request error")
+      err => {
+        this.toastr.error(err.error.Error)
       }
     );
   }
