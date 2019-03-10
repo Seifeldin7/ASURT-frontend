@@ -69,11 +69,17 @@ export class SigninComponent implements OnInit {
         response => {
           if (response.token) {
             this.authenticationService.storeToken(response.token);
+            this.toastr.success("Welcome to ASU Racing Team website, We've been expecting you.", 'Hi!')
             this.router.navigate([this.returnUrl]);
           }
         },
         err => {
-          this.toastr.error(err.error.Error)
+          if ('error' in err.error) {
+            this.toastr.error(err.error.Error, "Error")
+          }
+          else {
+            this.toastr.error("Something went wrong", "Error")
+          }
         });
   }
 
@@ -86,7 +92,12 @@ export class SigninComponent implements OnInit {
         }
       },
       err => {
-        this.toastr.error(err.error.Error)
+        if ('error' in err.error) {
+          this.toastr.error(err.error.Error, "Error")
+        }
+        else {
+          this.toastr.error("Something went wrong", "Error")
+        }
       }
     );
   }

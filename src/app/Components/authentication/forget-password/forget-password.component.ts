@@ -35,15 +35,15 @@ export class ForgetPasswordComponent implements OnInit {
     this.authService.forgetPassword(this.forgetpasswordForm.value.email)
       .subscribe(
         (response: any) => {
-          this.toastr.success("We've sent you an email to change your password")
+          this.toastr.success("We've sent you an email to change your password.", 'Success!')
           this.router.navigate(['/']);
         },
         (err) => {
-          if (err.error.error) {
-            this.toastr.error(err.error.error)
+          if ('error' in err.error) {
+            this.toastr.error(err.error.error, "Error")
           }
           else {
-            this.toastr.error("Something went wrong")
+            this.toastr.error("Something went wrong", "Error")
           }
         }
       )
