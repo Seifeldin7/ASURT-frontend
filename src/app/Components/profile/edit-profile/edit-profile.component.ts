@@ -143,18 +143,19 @@ export class EditProfileComponent implements OnInit {
           })
           this.router.navigate(['../profile/view']);
          },
-        error => {
+        (error) => {
           this.loading =false;
           this.submitBtn =false;
+          if (error["status"] == 400){
           Swal.fire({
             type: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
+            title: JSON.stringify( error["error"]["error"]),
             footer: '<a href>Why do I have this issue?</a>'
-          })
+          })}
           
         }
       );
+
       this.submitBtn= true;
 
     }
