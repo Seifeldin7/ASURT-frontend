@@ -64,7 +64,7 @@
                 National ID:
                 {{pro.National_id}}
               </li>
-              <li class="list-group-item py-4">
+              <li class="list-group-item py-4" *ngIf="pro.passport_id">
                 Passport ID:
                 {{pro.Passport_id}}
               </li>
@@ -83,20 +83,24 @@
               <li class="list-group-item py-4">
                 <div class="row">
                   <div class="col-4">
-                    <button class="btn btn-danger  py-2  " type="button"
+                    <button class="btn btn-danger  py-2  " type="button" *ngIf="pro.national_front"
                       (click)="previewNational_ID_Front()" >National
                       ID Front Cover</button>
                     </div>
                 
                     
                     <div class="col-4">
-                    <button class="btn btn-danger  py-2" type="button"
+                    <button class="btn btn-danger  py-2" type="button" *ngIf="pro.national_back"
                       (click)="previewNational_ID_Back()" >National ID Back Cover</button>
                     </div>
                  
                     
                     <div class="col-4">
-                    <button class="btn btn-danger  py-3 btn-lg " type="button" (click)="previewPassport_ID()">Passport 
+                    <button class="btn btn-danger
+                      py-3 btn-lg "
+                      type="button" 
+                      *ngIf="pro.passport_img"
+                      (click)="previewPassport_ID()">Passport 
                       ID</button>
                     </div>
                   
