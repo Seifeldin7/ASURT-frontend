@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
@@ -9,10 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor(private toastr: ToastrService) { }
+  constructor() { }
 
   ngOnInit() {
 
   }
-
 }
