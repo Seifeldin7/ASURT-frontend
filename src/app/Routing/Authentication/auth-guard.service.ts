@@ -67,7 +67,7 @@ export class ChangePasswordGuardService implements CanActivate {
 
     let token:string = null;
     if(next.url[1]){
-      token = next.url[1].path;
+      token = JSON.stringify(next.url[1].path);
     }else{
       token = localStorage.getItem('token');
     }
@@ -76,7 +76,7 @@ export class ChangePasswordGuardService implements CanActivate {
       return this.authService.tokenVerify(token)
       .pipe(
         map((response: any)=>{
-          
+          console.log(response);
           if(!!response.token){
             return true;
           }else{

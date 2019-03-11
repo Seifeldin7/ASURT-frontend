@@ -29,7 +29,7 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
 
     if(this.activatedRoute.snapshot.url[1]){
-      this.token = this.activatedRoute.snapshot.params.get('token');
+      this.token = JSON.stringify(this.activatedRoute.snapshot.url[1].path);
     }else{
       this.token = localStorage.getItem('token');
     }
@@ -42,6 +42,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit(){
     this.authService.changePassword({
       email: this.userMail,
+      token: this.token,
       password: this.changePasswordForm.value.password1
     }).subscribe(
       response =>{

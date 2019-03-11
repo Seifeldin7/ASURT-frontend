@@ -64,7 +64,7 @@ export class SigninComponent implements OnInit {
     this.authenticationService.login({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
-      remember_me: this.loginForm.value.remember_me
+      remember_me: (this.loginForm.value.remember_me) ? '1' : '0'
     }, 'email-login')
       .subscribe(
         response => {

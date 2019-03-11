@@ -24,20 +24,20 @@ export class AuthenticationService {
   signup(data) {
     /**
      * data -> {email,password}
-     * API -> path = "/api/register"
+     * api/auth/auth -> path = "/api/auth/auth/register"
      */
     let request_body = {
       email: data.email.toLowerCase(),
       password: data.password
     }
-    return this.http.post<{ email: string, password: string }>("api/register/", request_body);
+    return this.http.post<{ email: string, password: string }>("api/auth/register/", request_body);
   }
 
   login(data = null, provider: string = 'email-login') {
     /**
      * provider -> email-login , facebook , google
-     * API -> path = "/api/login"
-     * API -> path = "/api/social"
+     * api/auth/auth -> path = "/api/auth/auth/login"
+     * api/auth/auth -> path = "/api/auth/auth/social"
      * data changes between providers
      */
     let request_body = {};
@@ -70,7 +70,7 @@ export class AuthenticationService {
           }
 
           // Send request to backend
-          return this.http.post<any>('api/social/', request_body);
+          return this.http.post<any>('api/auth/social/', request_body);
         }
       );
 
@@ -80,20 +80,20 @@ export class AuthenticationService {
         password: data.password,
         remember_me: data.remember_me
       }
-      return this.http.post<any>('api/login/', request_body);
+      return this.http.post<any>('api/auth/login/', request_body);
     }
   }
 
   userIsExist(email: string) {
     /**
      * Check if this email exists before
-     * API -> path = "/api/user-exist"
+     * api/auth/auth -> path = "/api/auth/auth/user-exist"
      */
 
     let request_body = {
       email: email.toLowerCase()
     }
-    return this.http.post<any>("api/user-exist/", request_body);
+    return this.http.post<any>("api/auth/user-exist/", request_body);
   }
 
   tokenDecode(token: string): any {
@@ -140,9 +140,9 @@ export class AuthenticationService {
 
   tokenVerify(token: string) {
     let request_body = {
-      token: token
+      token: JSON.parse(token)
     }
-    return this.http.post<any>("api/token-verify/", request_body)
+    return this.http.post<any>("api/auth/token-verify/", request_body)
   }
 
   storeToken(token: string) {
@@ -160,15 +160,16 @@ export class AuthenticationService {
     let request_body = {
       "email": email.toLowerCase(),
     }
-    return this.http.post<any>("api/forget-password/", request_body)
+    return this.http.post<any>("api/auth/forget-password/", request_body)
   }
 
   changePassword(body: any) {
     let request_body = {
       email: body.email.toLowerCase(),
+      token: JSON.parse(body.token),
       password: body.password
     }
-    return this.http.post<any>("api/change-password/", request_body);
+    return this.http.post<any>("api/auth/change-password/", request_body);
   }
 
 
@@ -204,7 +205,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `JWT ${token}`
+          Authorization: `Bearer ${token}`
         }
       });
     }
@@ -215,8 +216,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
-  // baseUrl = 'http://127.0.0.1:8000/';
-  baseUrl = 'http://localhost:3000/';
+  baseUrl = 'http://127.0.0.1:8000/';
+  // baseUrl = 'http://localhost:3000/';
   // baseUrl ='https://domain-name.com/';
   constructor() { }
 
