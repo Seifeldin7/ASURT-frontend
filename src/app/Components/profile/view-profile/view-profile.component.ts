@@ -14,6 +14,7 @@ import { ProfileService } from '../../../Services/Profile/profile.service';
 export class ViewProfileComponent implements OnInit {
   NullImage:boolean =true;
   pro:Profile = new Profile('','','','','','','','','','','','','','','','','','');
+  loaded = false;
 
   constructor(private profileservice:ProfileService, private route: ActivatedRoute, private router:Router) { }
  
@@ -23,6 +24,7 @@ export class ViewProfileComponent implements OnInit {
       (profile) => {
         this.pro = profile;
         this.profileservice.setProfile(this.pro);
+        this.loaded=true;
         
         if(this.pro.profile_pic==null || this.pro.profile_pic ==''){
           this.NullImage=true
@@ -32,11 +34,9 @@ export class ViewProfileComponent implements OnInit {
         }
       },
       error =>{
+         this.router.navigate(["profile/create"]);
         Swal.fire({
-          type: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href>Why do I have this issue?</a>'
+          title: 'Create profile first!',
         })
       }
     )
