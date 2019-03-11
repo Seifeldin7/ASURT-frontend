@@ -23,7 +23,7 @@ export class ProfileService {
     return this.http.put<Profile>('http://127.0.0.1:8000/api/Profile/',data);
   }
   CreateProfile(data:Profile){
-    return this.http.post<Profile>('https://82a7ef7f-568a-4903-8b53-c486645ab164.mock.pstmn.io/api/Profile/',data);
+    return this.http.post<Profile>('http://127.0.0.1:8000/api/Profile/',data);
   }
   setProfile(p:Profile){
     this.profile =p;
