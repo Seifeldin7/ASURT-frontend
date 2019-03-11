@@ -15,8 +15,4 @@ export class AuthenticationComponent implements OnInit {
 
   }
 
-  showToaster() {
-    this.toastr.success("Hello, I'm the toastr message.")
-  }
-
 }
