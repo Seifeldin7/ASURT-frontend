@@ -5,7 +5,7 @@ import { Profile } from '../profile.model';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 @Component({
   selector: 'app-edit-profile',
