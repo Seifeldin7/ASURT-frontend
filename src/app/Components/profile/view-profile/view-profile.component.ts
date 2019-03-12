@@ -22,7 +22,7 @@ export class ViewProfileComponent implements OnInit {
   getProfile(){
     this.profileservice.fetchProfile().subscribe(
       (profile) => {
-        this.pro = profile;
+        this.pro = profile['0'];
         this.profileservice.setProfile(this.pro);
         this.loaded=true;
         

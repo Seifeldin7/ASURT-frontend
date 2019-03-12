@@ -55,7 +55,7 @@ export class EditProfileComponent implements OnInit {
           this.profileservice.fetchProfile().subscribe(
             (response)=> {
               console.log(response)
-              this.profil =response;
+              this.profil =response['0'];
               this.profileform.controls['name'].setValue(this.profil.name);
               this.profileform.controls['mobile'].setValue(this.profil.mobile);
               this.profileform.controls['uni'].setValue(this.profil.university);
