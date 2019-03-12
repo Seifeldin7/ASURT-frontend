@@ -29,6 +29,10 @@
     "jwt-decode": "^2.2.0",
     "ngx-toastr": "^9.1.2",
     "rxjs": "~6.3.3",
+    "core-js": "^2.5.4",
+    "ng2-img-cropper": "^0.9.0",
+    "rxjs-compat": "^6.3.3",
+    "sweetalert2": "^8.2.6",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

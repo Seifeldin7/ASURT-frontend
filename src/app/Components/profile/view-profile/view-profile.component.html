@@ -1,0 +1,110 @@
+<div class=" body " *ngIf="loaded">
+  <app-sidenav></app-sidenav>
+  <nav class="navbar  bg-dark">
+    <button class="btn btn-outline-primary" appSidenavToggler> <i class="fas fa-bars"></i> </button>
+  </nav>
+  <div class="container  cont pt-5 mt-1">
+    <div class="row text-center ">
+      <div class="col-4  ">
+        <div class="row ">
+          <div class="card" style="width: 18rem;">
+            <div class="col text-center">
+              <img *ngIf="NullImage" alt="" src="https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"
+                class="img-responsive  img-responsive img-rounded ">
+              <img *ngIf="!NullImage" alt="" [src]="pro.profilepic" class="img-responsive  rounded-circle " style="width:80%;">
+            </div>
+            <div class="card-body">
+              <div class="col text-center">
+                <button class="btn btn-danger  py-3 px-4 my-4" type="button" (click)="onEdit()">Edit Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-7  ">
+        <div class="row">
+          <div class="col ">
+            <ul class="list-group ">
+              <li class="list-group-item py-4">
+                Fullname:
+                {{pro.name}}
+              </li>
+              <li class="list-group-item py-4">
+                Mobile:
+                {{pro.mobile}}
+              </li>
+              <li class="list-group-item py-4">
+                Date Of Birth:
+                {{pro.birth_date}}
+              </li>
+              <li class="list-group-item py-4">
+                University:
+                {{pro.university}}
+              </li>
+              <li class="list-group-item py-4">
+                Faculty:
+                {{pro.faculty}}
+              </li>
+              <li class="list-group-item py-4">
+                College ID:
+                {{pro.college_id}}
+              </li>
+              <li class="list-group-item py-4">
+                Department:
+                {{pro.college_department}}
+              </li>
+              <li class="list-group-item py-4">
+                Expected Year Of Graduation:
+                {{pro.graduation_year}}
+              </li>
+              <li class="list-group-item py-4">
+                National ID:
+                {{pro.national_id}}
+              </li>
+              <li class="list-group-item py-4" *ngIf="pro.passport_id">
+                Passport ID:
+                {{pro.passport_id}}
+              </li>
+              <li class="list-group-item py-4">
+                Emergency Contact Name:
+                {{pro.emergency_name}}
+              </li>
+              <li class="list-group-item py-4">
+                Emergency Contact Mobile:
+                {{pro.emergency_mobile}}
+              </li>
+              <li class="list-group-item py-4">
+                Emergency Contact Relation:
+                {{pro.emergency_relation}}
+              </li>
+              <li class="list-group-item py-4">
+                <div class="row">
+                  <div class="col-4">
+                    <button class="btn btn-danger  py-2  " type="button" *ngIf="pro.national_front" (click)="previewNational_ID_Front()">National
+                      ID Front Cover</button>
+                  </div>
+
+
+                  <div class="col-4">
+                    <button class="btn btn-danger  py-2" type="button" *ngIf="pro.national_back" (click)="previewNational_ID_Back()">National
+                      ID Back Cover</button>
+                  </div>
+
+
+                  <div class="col-4">
+                    <button class="btn btn-danger
+                      py-3 btn-lg " type="button" *ngIf="pro.passport_img"
+                      (click)="previewPassport_ID()">Passport
+                      ID</button>
+                  </div>
+
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+.bar{
+    color: white;
+    font-style: italic;
+}
+#h{
+    font-weight: 600;
+    height: 80px;
+    font-stretch: expanded;
+    text-align: left;
+    letter-spacing: 1px;
+    
+    
+}
+.body{
+    /*background-color: rgba(127, 133, 136, 0.685);*/
+    font-family: "Lato","Arial",sans-serif;
+    font-size: 20px;
+    font-weight: 150;
+    text-rendering: optimizeLegibility; 
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(231, 228, 228, 0.95);
+ /* background-color: #ac1818; */
+    /*overflow-x: hidden;*/
+}
+.con{
+
+    -webkit-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
+    -moz-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
+    box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
+    background-color: rgba(212, 209, 209, 0.95);
+
+}
+/* .wh{
+    color: white;
+} */
+/* .uploadphoto{
+    background:url("https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg"); 
+    height: 240px; width:240px; background-repeat: no-repeat;
+} */
+/* ----------------------canvas ---------- NOT WORKING THOUGH!  */
+.cropper {
+    border: 30px solid red;
+    background-color: blueviolet;
+    visibility: hidden;
+
+}
+/* canvas after image upload */
+.cropping {
+    border: 30px solid red;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+/*------------------------------------------------------*/

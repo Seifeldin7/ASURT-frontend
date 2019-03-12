@@ -19,7 +19,7 @@ import { ProfileService } from './Services/Profile/profile.service';
 
 // Routers
 import { GeneralRoutesModule } from './Routing/General/general.service';
-import { ProfileRoutesModule } from './Routing/Profile/profile.router';
+
 
 
 //AuthGuard
@@ -35,6 +35,8 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { ViewProfileComponent } from './components/profile/view-profile/view-profile.component';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +47,6 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     AppComponent,
     AuthenticationComponent,
-    ProfileComponent,
     GeneralComponent,
     LoadingComponent,
   ],
@@ -64,13 +65,14 @@ import { ToastrModule } from 'ngx-toastr';
     }),
 
     GeneralRoutesModule,
-    ProfileRoutesModule,
+    // ProfileRoutesModule,
 
     // Modules
     AuthenticationModule,
 
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: '**', redirectTo: 'login' }
     ])
   ],
