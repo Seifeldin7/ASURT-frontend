@@ -35,8 +35,6 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
-import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
-import { ViewProfileComponent } from './components/profile/view-profile/view-profile.component';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
