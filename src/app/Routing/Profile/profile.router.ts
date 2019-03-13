@@ -14,12 +14,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from '../../Components/profile/profile.component';
 import { EditProfileComponent } from '../../Components/profile/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from '../../Components/profile/view-profile/view-profile.component';
+import { IsLoggedInGuardService } from '../Authentication/auth-guard.service';
 
 
 
 const profileRoutes: Routes = [
   { path: '', component: ProfileComponent, 
-  //canActivate: [AuthGuard],
+  canActivate: [IsLoggedInGuardService],
    children: [
     { path: 'create', component: EditProfileComponent },
     { path: 'view', component: ViewProfileComponent  },

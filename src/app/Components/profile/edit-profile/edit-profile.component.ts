@@ -24,6 +24,8 @@ export class EditProfileComponent implements OnInit {
   submitBtn = false;
   loading = false;
   savepic = false;
+  editpic =true;
+  removed =false;
   data: any;
   cropperSettings: CropperSettings;
   @ViewChild('f') profileform: NgForm;
@@ -52,6 +54,8 @@ export class EditProfileComponent implements OnInit {
         this.editMode = edit;
         this.profileservice.seteditMode(edit);
         if (edit == true) {
+          this.editpic =false;
+          this.removed =false;
           this.profileservice.fetchProfile().subscribe(
             (response) => {
               console.log(response)
@@ -96,6 +100,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.submitBtn = false;
     this.loading = true;
+    this.removed=false;
     const pro = new Profile(this.profilepicbase64, form.value.name, form.value.mobile, form.value.uni, form.value.faculty,
       form.value.coll_id, form.value.coll_dep, form.value.grad_year, form.value.address, form.value.dob,
       form.value.n_id, this.nationalfrontbase64, this.nationalbackbase64, form.value.pass_id, this.passcoverbase64,
@@ -193,18 +198,22 @@ export class EditProfileComponent implements OnInit {
   handleReaderLoaded3(e) {
     this.passcoverbase64 = 'data:image/png;base64,' + btoa(e.target.result);
   }
-  /*ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }*/
+  oneditpic(){
+    this.editpic =true;
+  }
   onSave() {
     this.profilepicbase64 = this.data.image;
     this.savepic = true;
-
+    this.removed=false;
     this.cropperSettings.noFileInput = true;
 
   }
   onCancelpic() {
     this.savepic = false;
     this.cropperSettings.noFileInput = false;
+  }
+  onremovepic(){
+    this.profilepicbase64 ='';
+    this.removed =true;
   }
 }
