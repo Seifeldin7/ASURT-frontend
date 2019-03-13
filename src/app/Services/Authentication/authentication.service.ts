@@ -11,6 +11,7 @@ import {
 } from 'angular-6-social-login';
 
 import * as jwt_decode from "jwt-decode";
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -118,22 +119,27 @@ export class AuthenticationService {
 
     let verify: Subject<boolean> = new Subject();
 
-    this.tokenVerify(token).
-      subscribe(
-        (Response) => {
-          if (Response.token) {
-            verify.next(true);
-          }
-          else {
+    if(token == null){
+      ((verify.pipe(
+        delay(1)
+      )) as Subject<boolean>).next(false);
+    }else {
+      this.tokenVerify(token).
+        subscribe(
+          (Response) => {
+            if (!!Response.token) {
+              verify.next(true);
+            }
+            else {
+              verify.next(false);
+            }
+          },
+          (err) => {
             verify.next(false);
+            this.logout();
           }
-        },
-        (err) => {
-          verify.next(false);
-          console.log("isLoggedIn Error ocurred");
-          //TODO: Handle Err
-        }
-      )
+        )
+    }
 
     return verify;
   }

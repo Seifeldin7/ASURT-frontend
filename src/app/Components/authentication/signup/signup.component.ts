@@ -61,6 +61,7 @@ export class SignupComponent implements OnInit {
             (response:any) => {
                 if(response.token){
                     this.authService.storeToken(response.token);
+                    this.toastr.success("Welcome");
                     this.router.navigate(['/']);
                 }else{
                     //TODO: Handle Errors
