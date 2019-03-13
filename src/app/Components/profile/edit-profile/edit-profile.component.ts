@@ -24,6 +24,8 @@ export class EditProfileComponent implements OnInit {
   submitBtn= false;
   loading =false;
   savepic =false;
+  Cwidth=400;
+  Cheight=300;
   data: any;
   cropperSettings: CropperSettings;
   @ViewChild('f') profileform: NgForm;
@@ -33,14 +35,15 @@ export class EditProfileComponent implements OnInit {
         this.cropperSettings.height = 100;
         this.cropperSettings.croppedWidth =100;
         this.cropperSettings.croppedHeight = 100;
-        this.cropperSettings.canvasWidth = 400;
-        this.cropperSettings.canvasHeight = 300;
+        this.cropperSettings.canvasWidth = this.Cwidth;
+        this.cropperSettings.canvasHeight = this.Cheight;
         this.cropperSettings.rounded =true;
         this.cropperSettings.cropperClass="cropper";
         this.cropperSettings.croppingClass="cropping";
 
         this.data = {};
   }
+ 
 
 
  
@@ -99,9 +102,16 @@ export class EditProfileComponent implements OnInit {
     
 
     }
+    
+
   
   
   onSubmit(form: NgForm) {
+    // console.log(form);
+    // console.log(this.profilepicbase64);
+    // if(this.data){
+    //   console.log("yesss");
+    // }
     this.submitBtn= false;
     this.loading =true;
     const pro = new Profile(this.profilepicbase64, form.value.name, form.value.mobile, form.value.uni, form.value.faculty,
@@ -185,6 +195,7 @@ export class EditProfileComponent implements OnInit {
     }
 
   }
+
   onCancel() {
     this.router.navigate(['../profile/view']);
 
@@ -234,3 +245,4 @@ onCancelpic(){
   this.cropperSettings.noFileInput= false;
 }
 }
+

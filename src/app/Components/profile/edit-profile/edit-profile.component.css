@@ -44,10 +44,8 @@ input.ng-invalid.ng-touched{
     height: 240px; width:240px; background-repeat: no-repeat;
 } */
 /* ----------------------canvas ---------- NOT WORKING THOUGH!  */
-.cropper {
-    border: 30px solid red;
-    background-color: blueviolet;
-    visibility: hidden;
+.cropper{
+    visibility: hidden !important;
 
 }
 /* canvas after image upload */
