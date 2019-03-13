@@ -54,8 +54,9 @@ export class EditProfileComponent implements OnInit {
         if(edit == true){
           this.profileservice.fetchProfile().subscribe(
             (response)=> {
-              console.log(response)
+              // console.log(response)
               this.profil =response['0'];
+              this.profilepicbase64 = this.profil.profile_pic;
               this.profileform.controls['name'].setValue(this.profil.name);
               this.profileform.controls['mobile'].setValue(this.profil.mobile);
               this.profileform.controls['uni'].setValue(this.profil.university);
@@ -66,21 +67,28 @@ export class EditProfileComponent implements OnInit {
               this.profileform.controls['address'].setValue(this.profil.address);
               this.profileform.controls['dob'].setValue(this.profil.birth_date);
               this.profileform.controls['n_id'].setValue(this.profil.national_id);
-              this.profileform.controls['n_id_f_c'].setValue('');
-              this.profileform.controls['n_id_b_c'].setValue('');
+              this.nationalfrontbase64 = this.profil.national_front;
+              this.nationalbackbase64 = this.profil.national_back;
               this.profileform.controls['pass_id'].setValue(this.profil.passport_id);
-              this.profileform.controls['pass_id_img'].setValue('');
+              this.passcoverbase64 =this.profil.passport_img;
               this.profileform.controls['em_name'].setValue(this.profil.emergency_name);
               this.profileform.controls['em_mobile'].setValue(this.profil.emergency_mobile);
               this.profileform.controls['em_relation'].setValue(this.profil.emergency_relation);       
           },
             error => {
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: '<a href>Why do I have this issue?</a>'
-            })
+              if (error["status"] == 401) {
+                this.router.navigate(["/login"])
+                Swal.fire({
+                  type: 'error',
+                  title:error["error"]
+                })
+              }
+              else{
+              Swal.fire({
+                type: 'error',
+                title:error["error"]
+              })
+            }
           
           }
           );
@@ -104,7 +112,7 @@ export class EditProfileComponent implements OnInit {
     if(this.profileservice.geteditMode()){
       this.profileservice.EditProfile(pro).subscribe(
         (response: Profile) => { 
-          console.log(response);
+          // console.log(response);
           this.loading =false;
           Swal.fire({
             position: 'center',
@@ -119,10 +127,19 @@ export class EditProfileComponent implements OnInit {
           var keys = Object.keys(error["error"]);
           this.loading =false;
           this.submitBtn =false;
+          if (error["status"] == 401) {
+            this.router.navigate(["/login"])
+            Swal.fire({
+              type: 'error',
+              title:error["error"]
+            })
+          }
+          else{
           Swal.fire({
             type: 'error',
             title:error["error"][keys[0]][0]
           })
+        }
           
         }
       );
@@ -146,10 +163,19 @@ export class EditProfileComponent implements OnInit {
           var keys = Object.keys(error["error"]);
           this.loading =false;
           this.submitBtn =false;
+          if (error["status"] == 401) {
+            this.router.navigate(["/login"])
+            Swal.fire({
+              type: 'error',
+              title:error["error"]
+            })
+          }
+          else{
           Swal.fire({
             type: 'error',
             title:error["error"][keys[0]][0]
           })
+        }
           
         }
       );

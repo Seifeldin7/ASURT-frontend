@@ -34,10 +34,20 @@ export class ViewProfileComponent implements OnInit {
         }
       },
       error =>{
-         this.router.navigate(["profile/create"]);
+         if (error["status"] == 401) {
+          this.router.navigate(["/login"])
+          Swal.fire({
+            type: 'error',
+            title:error["error"]
+          })
+        }
+        else{
         Swal.fire({
-          title: 'Create profile first!',
+          type: 'error',
+          title:error["error"]
         })
+        this.router.navigate(["profile/create"]);
+      }
       }
     )
   }

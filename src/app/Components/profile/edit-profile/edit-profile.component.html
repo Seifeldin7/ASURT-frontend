@@ -17,6 +17,7 @@
               <div class="form-group ">
                 <label for="image" class="mr-4">Profile Pic</label>
                 <div class="row">
+                  <img [src]="profilepicbase64" *ngIf="editMode" height="100px" width="100px">
                   <img-cropper  [image]="data" [settings]="cropperSettings"  accept=".png, .jpg, .jpeg, .pdf" ></img-cropper>
                   <img *ngIf="savepic" [src]="data.image" [width]="cropperSettings.croppedWidth"
                     [height]="cropperSettings.croppedHeight" class="ml-3" />
@@ -154,8 +155,9 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="n_id_f_c">National ID Front Cover</label>
+              <img [src]="nationalfrontbase64" *ngIf="editMode" height="100px" width="100px">
               <input (change)="onUploadChange($event,1)" name="n_id_f_c" accept=".png, .jpg, .jpeg, .pdf" type="file"
-                id="n_id_f_c" class="form-control" ngModel required #n_id_f_c="ngModel" ngf-max-size="500KB">
+                id="n_id_f_c" class="form-control" ngModel [required]="!editMode" #n_id_f_c="ngModel" ngf-max-size="500KB">
               <span class="help-block text-danger" *ngIf="!n_id_f_c.valid && n_id_f_c.touched && !n_id_f_c.dirty">this
                 field is
                 required</span>
@@ -166,8 +168,9 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="n_id_b_c">National ID Back Cover</label>
+              <img [src]="nationalbackbase64" *ngIf="editMode" height="100px" width="100px">
               <input (change)="onUploadChange($event,2)" name="n_id_b_c" accept=".png, .jpg, .jpeg, .pdf" type="file"
-                id="n_id_b_c" class="form-control" ngModel required #n_id_b_c="ngModel" ngf-max-size="500KB">
+                id="n_id_b_c" class="form-control" ngModel [required]="!editMode" #n_id_b_c="ngModel" ngf-max-size="500KB">
               <span class="help-block text-danger" *ngIf="!n_id_b_c.valid && n_id_b_c.touched && !n_id_b_c.dirty">this
                 field is
                 required</span>
@@ -179,7 +182,7 @@
             <div class="form-group">
               <label for="pass_id">Passport ID</label>
               <input type="text" id="pass_id" name="pass_id" class="form-control" placeholder="passport id" ngModel
-                required #pass_id="ngModel">
+                 #pass_id="ngModel">
               <span class="help-block text-danger" *ngIf="!pass_id.valid && pass_id.touched && !pass_id.dirty">this
                 field is
                 required</span>
@@ -190,8 +193,9 @@
           <div class="col-md-10 offset-md-1">
             <div class="form-group">
               <label for="pass_id_img">Passport ID First Page Image</label>
+              <img [src]="passcoverbase64" *ngIf="editMode && passcoverbase64 " height="100px" width="100px">
               <input (change)="onUploadChange($event,3)" name="pass_id_img" accept=".png, .jpg, .jpeg, .pdf" type="file"
-                id="pass_id_img" class="form-control" ngModel required #pass_id_img="ngModel" ngf-max-size="500KB">
+                id="pass_id_img" class="form-control" ngModel  #pass_id_img="ngModel" ngf-max-size="500KB">
               <span class="help-block text-danger"
                 *ngIf="!pass_id_img.valid && pass_id_img.touched && !pass_id_img.dirty">this field is
                 required</span>
