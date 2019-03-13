@@ -5,6 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../Services/Authentication/authentication.service';
 import { ToastrService } from 'ngx-toastr'
 
+import {
+  AuthService as SocialAuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular-6-social-login';
 
 @Component({
   selector: 'app-signin',
@@ -36,6 +41,7 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private socialAuthService: SocialAuthService,
     private toastr: ToastrService
   ) { }
 
@@ -84,22 +90,56 @@ export class SigninComponent implements OnInit {
   }
 
   public socialSignIn(socialPlatform: string) {
-    this.authenticationService.login(null, socialPlatform).subscribe(
-      response => {
-        if (response.token) {
-          this.authenticationService.storeToken(response.token);
-          this.router.navigate([this.returnUrl]);
-        }
-      },
-      err => {
-        if ('error' in err.error) {
-          this.toastr.error(err.error.Error, "Error")
-        }
-        else {
-          this.toastr.error("Something went wrong", "Error")
-        }
-      }
-    );
-  }
 
+    let request_body = {}
+
+    if (socialPlatform == 'google' || socialPlatform == 'facebook') {
+      let socialPlatformProvider;
+      if (socialPlatform == 'google') {
+        socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+      } else if (socialPlatform == 'facebook') {
+        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+      }
+
+      this.socialAuthService.signIn(socialPlatformProvider).then(
+        (userData) => {
+          if (userData.provider == 'google') {
+            request_body = {
+              'social_id': userData.id,
+              'name': userData.name,
+              'email': userData.email.toLowerCase(),
+              'provider': userData.provider,
+            };
+
+          } else if (userData.provider == 'facebook') {
+            request_body = {
+              'social_id': userData.id,
+              'name': userData.name,
+              'email': userData.email.toLowerCase(),
+              'provider': userData.provider,
+            };
+          }
+        
+          this.authenticationService.login(request_body, socialPlatform).subscribe(
+            response => {
+              if (response.token) {
+                this.authenticationService.storeToken(response.token);
+                this.toastr.success('Logged in successfuly');
+                this.router.navigate([this.returnUrl]);
+              }
+            },
+            err => {
+              if ('error' in err.error) {
+                this.toastr.error(err.error.Error, "Error")
+              }
+              else {
+                this.toastr.error("Something went wrong", "Error")
+              }
+            }
+          );
+
+        }
+        );
+    }
+  }
 }

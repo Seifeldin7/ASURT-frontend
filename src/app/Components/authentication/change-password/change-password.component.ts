@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passwordMatchValidator, AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
 import { User } from 'src/app/Models/user';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -23,7 +25,8 @@ export class ChangePasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -46,13 +49,19 @@ export class ChangePasswordComponent implements OnInit {
       password: this.changePasswordForm.value.password1
     }).subscribe(
       response =>{
-        //TODO: navigate to login after change password
+        if( 'done' in response ){
+          this.toastr.success('Your password changed successfully');
+        }else {
+          this.toastr.error('Something wrong. Please try again.');
+        }
         this.router.navigate(['/']);
-        console.log('change password response');
       },
       err => {
-        //TODO: Handle All kined of errors
-        console.log('change password err');
+        if( 'error' in err.error ){
+          this.toastr.error(err.error.error);
+        }else{
+          this.toastr.error('Something wrong. Please try again.');
+        }
       }
     );
   }

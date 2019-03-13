@@ -35,16 +35,18 @@ export class SignupComponent implements OnInit {
         private router: Router,
         private authService: AuthenticationService,
         private toastr: ToastrService
-    ) { }
-
-    ngOnInit() {
-        //TODO: If user logged in show logout first alert
-        this.authService.isLoggedIn().subscribe(
-            status => {
-                if(status){
-                    // TODO: Navigate to home 
-                    // this.router.navigate(['/']);
-                }else{}
+        ) { }
+        
+        ngOnInit() {
+            this.authService.isLoggedIn().subscribe(
+                status => {
+                if(status){ 
+                    this.toastr.info("You need to logout first.");
+                    this.router.navigate(['/']);
+                }
+            },
+            err => {
+                this.toastr.error("Somethins goes wrong. Please try again.");
             }
         );
     }
@@ -61,18 +63,21 @@ export class SignupComponent implements OnInit {
             (response:any) => {
                 if(response.token){
                     this.authService.storeToken(response.token);
+<<<<<<< HEAD
                     this.toastr.success("Welcome");
+=======
+                    this.toastr.success("Pleased to meet u. have a nice day.");
+>>>>>>> AuthSystem
                     this.router.navigate(['/']);
                 }else{
-                    //TODO: Handle Errors
-                    console.log('register form response error');
-                    this.toastr.error("Register form error");
+                    this.toastr.error("Somethins goes wrong. Please try again.");
                 }
             },
             (err)=>{
-                //TODO: Handle Errors
-                console.log('resister form err submit');
-                this.toastr.error("Register form error");
+                this.submitted = false;
+                if( 'error' in err.error ){
+                    this.toastr.error(err.error.error);
+                }
             }
         )
     }

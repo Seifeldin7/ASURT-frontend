@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
-import { map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-
+import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class IsLoggedInGuardService implements CanActivate {
@@ -15,7 +15,8 @@ export class IsLoggedInGuardService implements CanActivate {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   canActivate(
@@ -28,13 +29,13 @@ export class IsLoggedInGuardService implements CanActivate {
                   if(!!status){
                     return true;
                   }else{
-                    //TODO: Alert Component
+                    this.toastr.info('You need to login fisrt.');
                     this.router.navigate(['/auth/login']);
                     return false;
                   }
                 },
                 err => {
-                  //TODO: Error Handle
+                  this.toastr.info('Something wrong. Please try again.');
                   this.router.navigate(['/auth/login']);
                   return false;
                 }
@@ -58,6 +59,7 @@ export class ChangePasswordGuardService implements CanActivate {
   constructor(
     private authService: AuthenticationService,
     private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -66,8 +68,11 @@ export class ChangePasswordGuardService implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     let token:string = null;
+    let from_password_reset_link:boolean = false;
+
     if(next.url[1]){
       token = JSON.stringify(next.url[1].path);
+      from_password_reset_link = true;
     }else{
       token = localStorage.getItem('token');
     }
@@ -75,23 +80,38 @@ export class ChangePasswordGuardService implements CanActivate {
     if(token != null){
       return this.authService.tokenVerify(token)
       .pipe(
-        map((response: any)=>{
-          console.log(response);
-          if(!!response.token){
-            return true;
-          }else{
-            console.log('change password guard err');
-            this.router.navigate(['/auth/login']);
-            return false;
+        map(
+          (response: any)=>{
+            console.log(2);
+            if(!!response.token){
+              console.log(3);
+              return true;
+            }else{
+              console.log(4);
+              if(from_password_reset_link){
+                this.toastr.info('Error in password reset link. Please try again.');
+              }else{
+                this.toastr.info('You need to signin first to change your password');
+              }
+              this.router.navigate(['/auth/login']);
+              return false;
+            }
           }
-        },
-        err=>{
-          console.log("change pass guard error");
-          this.router.navigate(['/auth/login']);
-          return false
-        })
-      );
+          ),
+          catchError(
+            (err: any) => {
+            this.toastr.error('Something wrong. Please try again.');
+            this.router.navigate(['/auth/login']);
+            return throwError(err);
+          }
+        )
+      )
     }else{
+      if(from_password_reset_link){
+        this.toastr.info('Error in password reset link. Please try again.');
+      }else{
+        this.toastr.info('You need to signin first to change your password');
+      }
       this.router.navigate(['/auth/login']);
       return false;
     }

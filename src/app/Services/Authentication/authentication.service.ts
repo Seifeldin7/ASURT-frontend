@@ -4,12 +4,6 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClient } from
 
 import { Observable, Subject } from 'rxjs';
 
-import {
-  AuthService as SocialAuthService,
-  FacebookLoginProvider,
-  GoogleLoginProvider
-} from 'angular-6-social-login';
-
 import * as jwt_decode from "jwt-decode";
 import { delay } from 'rxjs/operators';
 
@@ -18,8 +12,7 @@ import { delay } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient,
-    private socialAuthService: SocialAuthService
+  constructor(private http: HttpClient
   ) { }
 
   signup(data) {
@@ -44,37 +37,13 @@ export class AuthenticationService {
     let request_body = {};
 
     if (provider == 'google' || provider == 'facebook') {
-      let socialPlatformProvider;
-      if (provider == 'google') {
-        socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-      } else if (provider == 'facebook') {
-        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-      }
-
-      this.socialAuthService.signIn(socialPlatformProvider).then(
-        (userData) => {
-          if (userData.provider == 'google') {
-            request_body = {
-              'social_id': userData.id,
-              'name': userData.name,
-              'email': userData.email.toLowerCase(),
-              'provider': userData.provider,
-            };
-
-          } else if (userData.provider == 'facebook') {
-            request_body = {
-              'social_id': userData.id,
-              'name': userData.name,
-              'email': userData.email.toLowerCase(),
-              'provider': userData.provider,
-            };
-          }
-
-          // Send request to backend
-          return this.http.post<any>('api/auth/social/', request_body);
-        }
-      );
-
+      request_body = {
+        'social_id': data.social_id,
+        'name': data.name,
+        'email': data.email.toLowerCase(),
+        'provider': data.provider,
+      };
+      return this.http.post<any>('api/auth/social/', request_body);
     } else {
       request_body = {
         email: data.email.toLowerCase(),
