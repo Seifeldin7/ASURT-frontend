@@ -63,7 +63,7 @@
             <strong >National ID: </strong> 
             {{pro.national_id}}
             </div>
-            <div class="row mb-4">
+            <div *ngIf="pro.passport_id" class="row mb-4">
             <strong>Passport ID: </strong> 
             {{pro.passport_id}}
             </div>

@@ -60,6 +60,10 @@ export class EditProfileComponent implements OnInit {
             (response) => {
               console.log(response)
               this.profil = response['0'];
+              this.profilepicbase64=this.profil.profile_pic;
+              this.nationalfrontbase64=this.profil.national_front;
+              this.nationalbackbase64=this.profil.national_back;
+              this.passcoverbase64=this.profil.passport_img; 
               this.profileform.controls['name'].setValue(this.profil.name);
               this.profileform.controls['mobile'].setValue(this.profil.mobile);
               this.profileform.controls['uni'].setValue(this.profil.university);
