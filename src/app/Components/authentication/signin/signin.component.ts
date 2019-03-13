@@ -47,8 +47,18 @@ export class SigninComponent implements OnInit {
 
 
   ngOnInit() {
-    // reset login status
-    this.authenticationService.logout();
+    
+    this.authenticationService.isLoggedIn().subscribe(
+      status => {
+          if(status){ 
+              this.toastr.info("You need to logout first.");
+              this.router.navigate(['/']);
+          }
+      },
+      err => {
+          this.toastr.error("Somethins goes wrong. Please try again.");
+      }
+    );
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

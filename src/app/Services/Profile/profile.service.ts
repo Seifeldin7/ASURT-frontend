@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Profile } from '../../Components/profile/profile.model';
+import { Profile } from '../../Models/profile.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,13 +17,13 @@ export class ProfileService {
    
   constructor(private http:HttpClient){}
   fetchProfile(){
-  return this.http.get<Profile>('api/Profile/');
+  return this.http.get<Profile>('api/profile/');
   }
   EditProfile(data:Profile){
-    return this.http.put<Profile>('api/Profile/',data);
+    return this.http.put<Profile>('api/profile/',data);
   }
   CreateProfile(data:Profile){
-    return this.http.post<Profile>('api/Profile/',data);
+    return this.http.post<Profile>('api/profile/',data);
   }
   setProfile(p:Profile){
     this.profile =p;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../profile.model';
+import { Profile } from '../../../Models/profile.model';
 import Swal from 'sweetalert2';
 import 'rxjs/Rx';
 import { ActivatedRoute, Router } from '@angular/router';

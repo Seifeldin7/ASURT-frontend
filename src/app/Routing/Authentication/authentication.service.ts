@@ -11,8 +11,9 @@ import { ChangePasswordGuardService } from './auth-guard.service';
 export const router = [
   {
     path: 'auth', component: AuthenticationComponent, children: [
-      { path: 'register', component: SignupComponent },
+      { path: '', redirectTo: 'login', pathMatch:'full' },
       { path: 'login', component: SigninComponent },
+      { path: 'register', component: SignupComponent },
       { path: 'forget-password', component: ForgetPasswordComponent },
       { path: 'change-password/:token', component: ChangePasswordComponent, canActivate: [ChangePasswordGuardService] },
       { path: 'change-password', component: ChangePasswordComponent, canActivate: [ChangePasswordGuardService] },

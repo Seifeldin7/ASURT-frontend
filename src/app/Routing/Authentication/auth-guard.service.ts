@@ -82,12 +82,9 @@ export class ChangePasswordGuardService implements CanActivate {
       .pipe(
         map(
           (response: any)=>{
-            console.log(2);
             if(!!response.token){
-              console.log(3);
               return true;
             }else{
-              console.log(4);
               if(from_password_reset_link){
                 this.toastr.info('Error in password reset link. Please try again.');
               }else{

@@ -38,8 +38,8 @@ export class SignupComponent implements OnInit {
         ) { }
         
         ngOnInit() {
-            this.authService.isLoggedIn().subscribe(
-                status => {
+        this.authService.isLoggedIn().subscribe(
+            status => {
                 if(status){ 
                     this.toastr.info("You need to logout first.");
                     this.router.navigate(['/']);
@@ -63,11 +63,7 @@ export class SignupComponent implements OnInit {
             (response:any) => {
                 if(response.token){
                     this.authService.storeToken(response.token);
-<<<<<<< HEAD
-                    this.toastr.success("Welcome");
-=======
                     this.toastr.success("Pleased to meet u. have a nice day.");
->>>>>>> AuthSystem
                     this.router.navigate(['/']);
                 }else{
                     this.toastr.error("Somethins goes wrong. Please try again.");

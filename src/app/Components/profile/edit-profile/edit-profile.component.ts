@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ProfileService } from '../../../Services/Profile/profile.service';
-import { Profile } from '../profile.model';
+import { Profile } from '../../../Models/profile.model';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
