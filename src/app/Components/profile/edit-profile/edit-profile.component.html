@@ -3,7 +3,7 @@
     <nav class="navbar  bg-dark">
         <button class="btn btn-outline-primary" appSidenavToggler> <i class="fas fa-bars"></i> </button>
     </nav>
-    <div class="container con my-3 p-2">
+    <div class="container con my-4 pb-4">
         <div class="container bar ">
             <div class=" row">
                 <div class="col-md-10 offset-md-1 mt-5">
@@ -25,40 +25,22 @@
                                         <i class="fa fa-address-card "></i>
                                     </div>
                                 </div>
-                                <input class="form-control" type="file" (change)="fileChangeEvent($event, content)" />
+                                <input class="form-control" type="file" accept=".png, .jpg, .jpeg" (change)="fileChangeEvent($event, ProfileContent)" />
                             </div>
-                            <ng-template #content let-c="close" let-d="dismiss">
-                                <div class="modal-body container">
-                                    <div class="row">
-                                        <div class="col-12 mt-5">
-                                            <img *ngIf="imageLoadedFlag" class="mx-auto d-block" src="../../../../assets/loader-100px.gif" />
-                                        </div>
-                                        <div class="col-6">
-                                            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [cropperMinWidth]="300" [resizeToWidth]="300" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
-                                        </div>
-                                        <div class="col-6">
-                                            <img class="img-fluid" [src]="croppedImage" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); onSave()">Save</button>
-                                </div>
-                            </ng-template>
                         </div>
                         <div *ngIf="editMode && !editpic && !savepic" class="my-2">
                             <div class="  col-12 text-center">
-                                <img *ngIf="profil.profile_pic " [src]="profil.profile_pic" class="img-responsive  rounded-circle">
+                                <img *ngIf="profilepicbase64" [src]="profilepicbase64" class="img-responsive  rounded-circle">
                                 <br>
-                                <button type="button" class="btn btn-danger mt-3 mx-2" (click)="oneditpic()">Edit profile pic</button>
-                                <button type="button" [disabled]="removed" class="btn btn-danger mt-1 mx-2" (click)="onremovepic()">Remove profile pic</button>
+                                <!-- <button type="button" class="btn btn-danger mt-3 mx-2" (click)="oneditpic()">Edit profile pic</button> -->
+                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3 mx-2" (click)="onremovepic()">Remove Profile Pic</button>
                             </div>
                         </div>
                         <div *ngIf="savepic" class="my-2">
                             <div class="col-12 text-center">
                                 <img class="img-responsive  rounded-circle" [src]="croppedImage" />
                                 <br>
-                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3" (click)="onremovepic()">Remove profile pic</button>
+                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3" (click)="onremovepic()">Remove Profile Pic</button>
                                 <button *ngIf="editMode" type="button" class="btn btn-danger ml-3 mt-3" (click)="onCancelpic()">Cancel Edit</button>
                             </div>
                         </div>
@@ -261,7 +243,7 @@
                                         <i class="fa fa-address-card "></i>
                                     </div>
                                 </div>
-                                <input (change)="onUploadChange($event,1)" name="n_id_f_c" accept=".png, .jpg, .jpeg, .pdf" type="file" id="n_id_f_c" class="form-control" ngModel [required]="!editMode" #n_id_f_c="ngModel" ngf-max-size="500KB">
+                                <input (change)="onUploadChange($event,1)" name="n_id_f_c" accept=".png, .jpg, .jpeg" type="file" id="n_id_f_c" class="form-control" ngModel [required]="!editMode" #n_id_f_c="ngModel" ngf-max-size="500KB">
                             </div>
                             <span class="help-block text-danger" *ngIf="!n_id_f_c.valid && n_id_f_c.touched && !n_id_f_c.dirty">this
                 field is
@@ -280,7 +262,7 @@
                                         <i class="fa fa-address-card "></i>
                                     </div>
                                 </div>
-                                <input (change)="onUploadChange($event,2)" name="n_id_b_c" accept=".png, .jpg, .jpeg, .pdf" type="file" id="n_id_b_c" class="form-control" ngModel [required]="!editMode" #n_id_b_c="ngModel" ngf-max-size="500KB">
+                                <input (change)="onUploadChange($event,2)" name="n_id_b_c" accept=".png, .jpg, .jpeg" type="file" id="n_id_b_c" class="form-control" ngModel [required]="!editMode" #n_id_b_c="ngModel" ngf-max-size="500KB">
                             </div>
                             <span class="help-block text-danger" *ngIf="!n_id_b_c.valid && n_id_b_c.touched && !n_id_b_c.dirty">this
                 field is
@@ -316,10 +298,8 @@
                                         <i class="fa fa-address-card "></i>
                                     </div>
                                 </div>
-                                <input (change)="onUploadChange($event,3)" name="pass_id_img" accept=".png, .jpg, .jpeg, .pdf" type="file" id="pass_id_img" class="form-control" ngModel #pass_id_img="ngModel" ngf-max-size="500KB">
+                                <input (change)="onUploadChange($event,3)" name="pass_id_img" accept=".png, .jpg, .jpeg" type="file" id="pass_id_img" class="form-control" ngModel #pass_id_img="ngModel" ngf-max-size="500KB">
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -393,3 +373,22 @@
         </div>
     </div>
 </div>
+
+<ng-template #ProfileContent let-c="close" let-d="dismiss">
+    <div class="modal-body container">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <img *ngIf="imageLoadedFlag" class="mx-auto d-block" src="../../../../assets/loader-100px.gif" />
+            </div>
+            <div class="col-6">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [cropperMinWidth]="300" [resizeToWidth]="300" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+            </div>
+            <div class="col-6">
+                <img class="img-fluid" [src]="croppedImage" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); onSave()">Save</button>
+    </div>
+</ng-template>

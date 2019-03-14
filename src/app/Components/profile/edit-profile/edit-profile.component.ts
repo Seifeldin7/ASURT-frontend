@@ -18,7 +18,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class EditProfileComponent implements OnInit {
   editMode = false;
-  profil: Profile = new Profile('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+  profile: Profile = new Profile('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
   profilepicbase64 = '';
   nationalfrontbase64 = '';
   nationalbackbase64 = '';
@@ -50,46 +50,49 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileservice.profileExist();
-    this.profileservice.editMode.subscribe(
+    this.profileservice.editMode.take(1).subscribe(
       edit => {
+        console.log("ngOnint")
         this.editMode = edit;
         this.profileservice.seteditMode(edit);
         if (edit == true) {
-          this.editpic =false;
-          this.removed =false;
+          this.editpic = false;
+          this.removed = false;
           this.profileservice.fetchProfile().subscribe(
             (response) => {
               console.log(response)
-              this.profil = response['0'];   
-              this.profilepicbase64=this.profil.profile_pic;
+              this.profile = response['0'];
+              // console.log(this.profile.profile_pic)
+              let baseUrlBackTest = "http://localhost:8000";
+              this.profilepicbase64 = baseUrlBackTest + this.profile.profile_pic;
               this.temp = this.profilepicbase64;
-              this.nationalfrontbase64=this.profil.national_front;
-              this.nationalbackbase64=this.profil.national_back;
-              this.passcoverbase64=this.profil.passport_img; 
-              this.profileform.controls['name'].setValue(this.profil.name);
-              this.profileform.controls['mobile'].setValue(this.profil.mobile);
-              this.profileform.controls['uni'].setValue(this.profil.university);
-              this.profileform.controls['faculty'].setValue(this.profil.faculty);
-              this.profileform.controls['coll_id'].setValue(this.profil.college_id);
-              this.profileform.controls['coll_dep'].setValue(this.profil.college_department);
-              this.profileform.controls['grad_year'].setValue(this.profil.graduation_year);
-              this.profileform.controls['address'].setValue(this.profil.address);
-              this.profileform.controls['dob'].setValue(this.profil.birth_date);
-              this.profileform.controls['n_id'].setValue(this.profil.national_id);
+              this.nationalfrontbase64 = '';
+              this.nationalbackbase64 = '';
+              this.passcoverbase64 = '';
+              this.profileform.controls['name'].setValue(this.profile.name);
+              this.profileform.controls['mobile'].setValue(this.profile.mobile);
+              this.profileform.controls['uni'].setValue(this.profile.university);
+              this.profileform.controls['faculty'].setValue(this.profile.faculty);
+              this.profileform.controls['coll_id'].setValue(this.profile.college_id);
+              this.profileform.controls['coll_dep'].setValue(this.profile.college_department);
+              this.profileform.controls['grad_year'].setValue(this.profile.graduation_year);
+              this.profileform.controls['address'].setValue(this.profile.address);
+              this.profileform.controls['dob'].setValue(this.profile.birth_date);
+              this.profileform.controls['n_id'].setValue(this.profile.national_id);
               this.profileform.controls['n_id_f_c'].setValue('');
               this.profileform.controls['n_id_b_c'].setValue('');
-              this.profileform.controls['pass_id'].setValue(this.profil.passport_id);
+              this.profileform.controls['pass_id'].setValue(this.profile.passport_id);
               this.profileform.controls['pass_id_img'].setValue('');
-              this.profileform.controls['em_name'].setValue(this.profil.emergency_name);
-              this.profileform.controls['em_mobile'].setValue(this.profil.emergency_mobile);
-              this.profileform.controls['em_relation'].setValue(this.profil.emergency_relation);
+              this.profileform.controls['em_name'].setValue(this.profile.emergency_name);
+              this.profileform.controls['em_mobile'].setValue(this.profile.emergency_mobile);
+              this.profileform.controls['em_relation'].setValue(this.profile.emergency_relation);
             },
             error => {
               Swal.fire({
                 type: 'error',
                 title: 'Oops...',
                 text: 'Something went wrong!',
-                footer: '<a href>Why do I have this issue?</a>'
+                // footer: '<a href>Why do I have this issue?</a>'
               })
 
             }
@@ -203,13 +206,13 @@ export class EditProfileComponent implements OnInit {
   handleReaderLoaded3(e) {
     this.passcoverbase64 = 'data:image/png;base64,' + btoa(e.target.result);
   }
-  oneditpic(){
-    this.editpic =true;
-  }
+  
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
   imageLoadedFlag = true;
+
+  
 
   open(content) {
     this.modalService.open(content, {size: 'lg'});
@@ -231,8 +234,12 @@ export class EditProfileComponent implements OnInit {
     // show message
     console.log("loadImageFailed");
   }
+
+
+
   onSave() {
     this.profilepicbase64 = this.croppedImage;
+    this.imageLoadedFlag = true;
     this.savepic = true;
     this.removed = false;
     this.editpic = false;
@@ -240,16 +247,19 @@ export class EditProfileComponent implements OnInit {
   onCancelpic() {
     this.savepic = false;
     this.profilepicbase64 = this.temp;
-    this.imageLoadedFlag = true;
     this.imageChangedEvent = ''
     this.croppedImage = ''
   }
   onremovepic(){
-    this.profilepicbase64 ='';
-    this.imageLoadedFlag = true;
+    this.savepic = false;
+    this.profilepicbase64 = '';
     this.imageChangedEvent = ''
     this.croppedImage = ''
     this.removed =true;
-    this.savepic = false;
+    this.editpic = true;
+
+  }
+  oneditpic() {
+    this.editpic = true;
   }
 }
