@@ -54,7 +54,7 @@ export class EditProfileComponent implements OnInit {
               this.profile = response['0'];
               // console.log(this.profile.profile_pic)
               let baseUrlBackTest = "http://localhost:8000";
-              this.temp = baseUrlBackTest + this.profilepicbase64;
+              this.temp = baseUrlBackTest + this.profile.profile_pic;
               this.profilepicbase64 = '';
               this.nationalfrontbase64 = '';
               this.nationalbackbase64 = '';
