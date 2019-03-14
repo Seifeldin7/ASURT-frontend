@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CropperSettings } from 'ng2-img-cropper';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -26,8 +27,12 @@ export class EditProfileComponent implements OnInit {
   editpic =true;
   removed =false;
   temp ='';
-  data: any;
+  //data: any;
   cropperSettings: CropperSettings;
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  data ='';
+  year =new Date().getFullYear();
   @ViewChild('f') profileform: NgForm;
   constructor(private profileservice: ProfileService, private http: HttpClient, private router: Router) {
     this.cropperSettings = new CropperSettings();
@@ -41,13 +46,14 @@ export class EditProfileComponent implements OnInit {
     this.cropperSettings.cropperClass = "cropper";
     this.cropperSettings.croppingClass = "cropping";
 
-    this.data = {};
+    //this.data = {};
   }
 
 
 
 
   ngOnInit() {
+    
     this.profileservice.profileExist();
     this.profileservice.editMode.subscribe(
       edit => {
@@ -101,7 +107,12 @@ export class EditProfileComponent implements OnInit {
 
   }
 
-
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+}
+imageCropped(event: ImageCroppedEvent) {
+    this.data = event.base64;
+}
   onSubmit(form: NgForm) {
     this.submitBtn = false;
     this.loading = true;
@@ -175,7 +186,7 @@ export class EditProfileComponent implements OnInit {
   onUploadChange(evt: any, index: number) {
     const file = evt.target.files[0];
     if (index == 0) {
-      this.profilepicbase64 = this.data.image;
+      this.profilepicbase64 = this.data;
 
     }
     if (file) {
@@ -207,7 +218,7 @@ export class EditProfileComponent implements OnInit {
   }
   onSave() {
     
-    this.profilepicbase64 = this.data.image;
+    this.profilepicbase64 = this.data;
     this.savepic = true;
     this.removed=false;
     this.cropperSettings.noFileInput = true;
