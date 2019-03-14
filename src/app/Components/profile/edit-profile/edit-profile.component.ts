@@ -6,11 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CropperSettings } from 'ng2-img-cropper';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
+  providers: [NgbModalConfig, NgbModal],
 })
 
 export class EditProfileComponent implements OnInit {
@@ -27,24 +30,22 @@ export class EditProfileComponent implements OnInit {
   removed =false;
   temp ='';
   data: any;
-  cropperSettings: CropperSettings;
+  // cropperSettings: CropperSettings;
   @ViewChild('f') profileform: NgForm;
-  constructor(private profileservice: ProfileService, private http: HttpClient, private router: Router) {
-    this.cropperSettings = new CropperSettings();
-    this.cropperSettings.width = 100;
-    this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 300;
-    this.cropperSettings.croppedHeight = 300;
-    this.cropperSettings.canvasWidth = 400;
-    this.cropperSettings.canvasHeight = 300;
-    this.cropperSettings.rounded = true;
-    this.cropperSettings.cropperClass = "cropper";
-    this.cropperSettings.croppingClass = "cropping";
-
-    this.data = {};
+  constructor(config: NgbModalConfig, private modalService: NgbModal, private profileservice: ProfileService, private http: HttpClient, private router: Router) {
+    // this.cropperSettings = new CropperSettings();
+    // this.cropperSettings.width = 100;
+    // this.cropperSettings.height = 100;
+    // this.cropperSettings.croppedWidth = 300;
+    // this.cropperSettings.croppedHeight = 300;
+    // this.cropperSettings.canvasWidth = 400;
+    // this.cropperSettings.canvasHeight = 300;
+    // this.cropperSettings.rounded = true;
+    // this.cropperSettings.cropperClass = "cropper";
+    // this.cropperSettings.croppingClass = "cropping";
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
-
-
 
 
   ngOnInit() {
@@ -175,7 +176,7 @@ export class EditProfileComponent implements OnInit {
   onUploadChange(evt: any, index: number) {
     const file = evt.target.files[0];
     if (index == 0) {
-      this.profilepicbase64 = this.data.image;
+      this.profilepicbase64 = this.croppedImage;
 
     }
     if (file) {
@@ -205,23 +206,49 @@ export class EditProfileComponent implements OnInit {
   oneditpic(){
     this.editpic =true;
   }
-  onSave() {
-    
-    this.profilepicbase64 = this.data.image;
-    this.savepic = true;
-    this.removed=false;
-    this.cropperSettings.noFileInput = true;
-    this.editpic =false;
-    
 
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  imageLoadedFlag = true;
+
+  open(content) {
+    this.modalService.open(content, {size: 'lg'});
+  }
+
+  fileChangeEvent(event: any, content): void {
+    this.open(content);
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    // show cropper
+    this.imageLoadedFlag = false;
+    console.log("imageLoaded");
+  }
+  loadImageFailed() {
+    // show message
+    console.log("loadImageFailed");
+  }
+  onSave() {
+    this.profilepicbase64 = this.croppedImage;
+    this.savepic = true;
+    this.removed = false;
+    this.editpic = false;
   }
   onCancelpic() {
     this.savepic = false;
-    this.profilepicbase64 =this.temp;
-    this.cropperSettings.noFileInput = false;
+    this.profilepicbase64 = this.temp;
+    this.imageLoadedFlag = true;
+    this.imageChangedEvent = ''
+    this.croppedImage = ''
   }
   onremovepic(){
     this.profilepicbase64 ='';
+    this.imageLoadedFlag = true;
+    this.imageChangedEvent = ''
+    this.croppedImage = ''
     this.removed =true;
     this.savepic = false;
   }

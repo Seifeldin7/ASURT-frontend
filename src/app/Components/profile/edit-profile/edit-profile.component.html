@@ -15,37 +15,51 @@
         <div class="container wh">
 
             <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-                <div class="container ">
-                    <div class="row">
-                        <div class="  col-md-10 offset-md-1">
-                            <div *ngIf="(!editMode || (editpic && editMode)) && !savepic" class=" form-group ">
-                                <label for="image" class="mr-4">Profile Pic</label>
-                                <div class="row">
-                                    <img-cropper [image]="data" [settings]="cropperSettings" accept=".png, .jpg, .jpeg, .pdf">
-                                    </img-cropper>
-                                    <img *ngIf="savepic" [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight" class="ml-3" />
+                <div class="row">
+                    <div class=" col-md-10 offset-md-1">
+                        <div *ngIf="(!editMode || (editpic && editMode)) && !savepic" class=" form-group ">
+                            <label for="image" class="mr-4">Profile Pic</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text red">
+                                        <i class="fa fa-address-card "></i>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <button type="button" class="btn btn-danger mt-1" [disabled]="savepic" (click)="onSave()">Save</button>
-                                    <button type="button" class="btn btn-danger ml-3 mt-1" (click)="onCancelpic()">Cancel</button>
-                                </div>
-
+                                <input class="form-control" type="file" (change)="fileChangeEvent($event, content)" />
                             </div>
-                            <div *ngIf="editMode && !editpic &&!savepic" class="my-2">
-                                <div class="  col-12 text-center">
-
-                                    <img *ngIf="profil.profile_pic " [src]="profil.profile_pic" class="img-responsive  rounded-circle">
-                                    <br>
-                                    <button type="button" class="btn btn-danger mt-1" (click)="oneditpic()">Edit profile pic</button>
-                                    <button type="button" [disabled]="removed" class="btn btn-danger mt-1 mx-2" (click)="onremovepic()">Remove profile pic</button>
+                            <ng-template #content let-c="close" let-d="dismiss">
+                                <div class="modal-body container">
+                                    <div class="row">
+                                        <div class="col-12 mt-5">
+                                            <img *ngIf="imageLoadedFlag" class="mx-auto d-block" src="../../../../assets/loader-100px.gif" />
+                                        </div>
+                                        <div class="col-6">
+                                            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" [cropperMinWidth]="300" [resizeToWidth]="300" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+                                        </div>
+                                        <div class="col-6">
+                                            <img class="img-fluid" [src]="croppedImage" />
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" (click)="c('Save click'); onSave()">Save</button>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <div *ngIf="editMode && !editpic && !savepic" class="my-2">
+                            <div class="  col-12 text-center">
+                                <img *ngIf="profil.profile_pic " [src]="profil.profile_pic" class="img-responsive  rounded-circle">
+                                <br>
+                                <button type="button" class="btn btn-danger mt-3 mx-2" (click)="oneditpic()">Edit profile pic</button>
+                                <button type="button" [disabled]="removed" class="btn btn-danger mt-1 mx-2" (click)="onremovepic()">Remove profile pic</button>
                             </div>
-                            <div *ngIf="savepic" class="my-2">
-                                <div class="  col-12 text-center">
-                                    <img [src]="data.image" class="img-responsive  rounded-circle">
-                                    <br>
-                                    <button type="button" class="btn btn-danger ml-3 mt-1" (click)="onCancelpic()">Cancel</button>
-                                </div>
+                        </div>
+                        <div *ngIf="savepic" class="my-2">
+                            <div class="col-12 text-center">
+                                <img class="img-responsive  rounded-circle" [src]="croppedImage" />
+                                <br>
+                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3" (click)="onremovepic()">Remove profile pic</button>
+                                <button *ngIf="editMode" type="button" class="btn btn-danger ml-3 mt-3" (click)="onCancelpic()">Cancel Edit</button>
                             </div>
                         </div>
                     </div>
