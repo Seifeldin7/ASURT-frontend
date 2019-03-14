@@ -16,7 +16,6 @@ import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 export class EditProfileComponent implements OnInit {
   editMode = false;
   profil: Profile = new Profile('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-  //subscription: Subscription;
   profilepicbase64 = '';
   nationalfrontbase64 = '';
   nationalbackbase64 = '';
@@ -34,8 +33,8 @@ export class EditProfileComponent implements OnInit {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 100;
     this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 100;
-    this.cropperSettings.croppedHeight = 100;
+    this.cropperSettings.croppedWidth = 400;
+    this.cropperSettings.croppedHeight = 400;
     this.cropperSettings.canvasWidth = 400;
     this.cropperSettings.canvasHeight = 300;
     this.cropperSettings.rounded = true;
@@ -142,7 +141,6 @@ export class EditProfileComponent implements OnInit {
     else {
       this.profileservice.CreateProfile(pro).subscribe(
         (response: Profile) => {
-          //console.log(response);
           this.loading = false;
           Swal.fire({
             position: 'center',
@@ -213,6 +211,7 @@ export class EditProfileComponent implements OnInit {
     this.savepic = true;
     this.removed=false;
     this.cropperSettings.noFileInput = true;
+    this.editpic =false;
     
 
   }
@@ -224,5 +223,6 @@ export class EditProfileComponent implements OnInit {
   onremovepic(){
     this.profilepicbase64 ='';
     this.removed =true;
+    this.savepic = false;
   }
 }
