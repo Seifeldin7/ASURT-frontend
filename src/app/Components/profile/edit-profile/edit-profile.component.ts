@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
+import { CropperSettings } from 'ng2-img-cropper';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -33,8 +33,8 @@ export class EditProfileComponent implements OnInit {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 100;
     this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 400;
-    this.cropperSettings.croppedHeight = 400;
+    this.cropperSettings.croppedWidth = 300;
+    this.cropperSettings.croppedHeight = 300;
     this.cropperSettings.canvasWidth = 400;
     this.cropperSettings.canvasHeight = 300;
     this.cropperSettings.rounded = true;
