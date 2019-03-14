@@ -19,12 +19,13 @@ import { IsLoggedInGuardService } from '../Authentication/auth-guard.service';
 
 
 const profileRoutes: Routes = [
-  { path: '', component: ProfileComponent, 
-  canActivate: [IsLoggedInGuardService],
-   children: [
-    { path: 'create', component: EditProfileComponent },
-    { path: 'view', component: ViewProfileComponent  },
-  ] },
+  {
+    path: '', component: ProfileComponent, canActivate: [IsLoggedInGuardService], children: [
+      { path: '', redirectTo: 'create', pathMatch: 'full' },
+      { path: 'create', component: EditProfileComponent },
+      { path: 'view', component: ViewProfileComponent },
+    ]
+  },
 ];
 
 @NgModule({
@@ -32,6 +33,6 @@ const profileRoutes: Routes = [
     RouterModule.forChild(profileRoutes)
   ],
   exports: [RouterModule],
-  
+
 })
-export class ProfileRoutingModule {}
+export class ProfileRoutingModule { }

@@ -13,7 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
-import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authentication.service';
+import { AuthenticationRoutesModule } from 'src/app/Routing/Authentication/authentication.router';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ChangePasswordGuardService } from 'src/app/Routing/Authentication/auth-guard.service';
 
