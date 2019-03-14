@@ -120,12 +120,12 @@ export class EditProfileComponent implements OnInit {
           this.router.navigate(['../profile/view']);
         },
         error => {
-          //var keys = Object.keys(error["error"]);
+          var keys = Object.keys(error["error"]);
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
             type: 'error',
-            title: error.error//error["error"][keys[0]][0]]
+            title: error["error"][keys[0]][0]
           })
 
         }
@@ -146,12 +146,12 @@ export class EditProfileComponent implements OnInit {
           this.router.navigate(['../profile/view']);
         },
         (error) => {
-          //var keys = Object.keys(error["error"]);
+          var keys = Object.keys(error["error"]);
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
             type: 'error',
-            title: error.error//error["error"][keys[0]][0]
+            title: error["error"][keys[0]][0]
           })
 
         }

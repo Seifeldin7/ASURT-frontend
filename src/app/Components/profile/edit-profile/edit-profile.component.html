@@ -33,14 +33,14 @@
                                 <img *ngIf="temp" [src]="temp" class="img-responsive  rounded-circle">
                                 <br>
                                 <!-- <button type="button" class="btn btn-danger mt-3 mx-2" (click)="oneditpic()">Edit profile pic</button> -->
-                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3 mx-2" (click)="onremovepic()">Remove Profile Pic</button>
+                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3 mx-2" (click)="onremovepic()">Edit Profile Pic</button>
                             </div>
                         </div>
                         <div *ngIf="savepic" class="my-2">
                             <div class="col-12 text-center">
                                 <img class="img-responsive  rounded-circle" [src]="croppedImage" />
                                 <br>
-                                <button type="button" [disabled]="removed" class="btn btn-danger mt-3" (click)="onremovepic()">Remove Profile Pic</button>
+                                
                                 <button *ngIf="editMode" type="button" class="btn btn-danger ml-3 mt-3" (click)="onCancelpic()">Cancel Edit</button>
                             </div>
                         </div>
@@ -360,10 +360,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
-                        <button type="submit" class="btn btn-danger" [disabled]="!f.valid || submitBtn" style="margin-right:5px;">{{editMode ? 'Edit' : 'Create'}}</button>
+                        <button type="submit" class="btn btn-danger" [disabled]="!f.valid || submitBtn" style="margin-right:5px;">{{editMode ? 'Update' : 'Create'}}</button>
                         <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                         />
-                        <button type="button" class="btn btn-link" (click)="onCancel()">Cancel</button>
+                        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
                     </div>
                 </div>
 
