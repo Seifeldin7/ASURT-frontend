@@ -78,6 +78,8 @@ export class AuthenticationService {
     }
   }
 
+  verifyLoggedIn: Subject<boolean> = new Subject();
+
   isLoggedIn() {
     /**
      * Check if user logged in and verify token
@@ -86,31 +88,31 @@ export class AuthenticationService {
      */
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 
-    let verify: Subject<boolean> = new Subject();
 
     if(token == null){
-      ((verify.pipe(
-        delay(1)
-      )) as Subject<boolean>).next(false);
+      setTimeout(() => {
+        this.verifyLoggedIn.next(false);        
+      });
     }else {
       this.tokenVerify(token).
         subscribe(
           (Response) => {
             if (!!Response.token) {
-              verify.next(true);
+              this.verifyLoggedIn.next(true);
             }
             else {
-              verify.next(false);
+              this.verifyLoggedIn.next(false);
+              this.logout();
             }
           },
           (err) => {
-            verify.next(false);
+            this.verifyLoggedIn.next(false);
             this.logout();
           }
         )
     }
 
-    return verify;
+    return this.verifyLoggedIn;
   }
 
   tokenVerify(token: string) {

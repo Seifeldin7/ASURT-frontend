@@ -6,7 +6,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from '../../Routing/Profile/profile.router';
 import { ProfileComponent } from './profile.component';
 import { SidenavModule } from '../../sidenav/sidenav.module';
-import { ImageCropperComponent } from 'ng2-img-cropper';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ProfileComponent,
     ViewProfileComponent,
     EditProfileComponent,
-    ImageCropperComponent,
   ],
   imports: [
     CommonModule,

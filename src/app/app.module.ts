@@ -4,8 +4,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
+// Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
+import { ProfileModule } from './Components/profile/profile.module';
 
 
 //Directives
@@ -54,6 +57,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     RouterModule,
+    NgbModalModule,
 
     BrowserAnimationsModule,
     ToastrModule.forRoot({
@@ -67,11 +71,12 @@ import { ToastrModule } from 'ngx-toastr';
 
     // Modules
     AuthenticationModule,
+    // ProfileModule,
 
     RouterModule.forRoot([
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
-      { path: '**', redirectTo: 'login' }
+      // { path: '**', redirectTo: 'auth/login' }
     ])
   ],
   providers: [

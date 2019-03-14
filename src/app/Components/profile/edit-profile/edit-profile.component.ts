@@ -3,20 +3,21 @@ import { NgForm } from '@angular/forms';
 import { ProfileService } from '../../../Services/Profile/profile.service';
 import { Profile } from '../../../Models/profile.model';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CropperSettings } from 'ng2-img-cropper';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  styleUrls: ['./edit-profile.component.css'],
+  providers: [NgbModalConfig, NgbModal],
 })
 
 export class EditProfileComponent implements OnInit {
   editMode = false;
-  profil: Profile = new Profile('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+  profile: Profile = new Profile('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
   profilepicbase64 = '';
   nationalfrontbase64 = '';
   nationalbackbase64 = '';
@@ -27,74 +28,61 @@ export class EditProfileComponent implements OnInit {
   editpic =true;
   removed =false;
   temp ='';
-  //data: any;
-  cropperSettings: CropperSettings;
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-  data ='';
-  year =new Date().getFullYear();
+  data: any;
+ 
   @ViewChild('f') profileform: NgForm;
-  constructor(private profileservice: ProfileService, private http: HttpClient, private router: Router) {
-    this.cropperSettings = new CropperSettings();
-    this.cropperSettings.width = 100;
-    this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 300;
-    this.cropperSettings.croppedHeight = 300;
-    this.cropperSettings.canvasWidth = 400;
-    this.cropperSettings.canvasHeight = 300;
-    this.cropperSettings.rounded = true;
-    this.cropperSettings.cropperClass = "cropper";
-    this.cropperSettings.croppingClass = "cropping";
-
-    //this.data = {};
+  constructor(config: NgbModalConfig, private modalService: NgbModal, private profileservice: ProfileService, private http: HttpClient, private router: Router) {
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
-
-
 
 
   ngOnInit() {
     
     this.profileservice.profileExist();
-    this.profileservice.editMode.subscribe(
+    this.profileservice.editMode.take(1).subscribe(
       edit => {
+        console.log("ngOnint")
         this.editMode = edit;
         this.profileservice.seteditMode(edit);
         if (edit == true) {
-          this.editpic =false;
-          this.removed =false;
+          this.editpic = false;
+          this.removed = false;
           this.profileservice.fetchProfile().subscribe(
             (response) => {
               console.log(response)
-              this.profil = response['0'];   
-              this.profilepicbase64=this.profil.profile_pic;
-              this.temp = this.profilepicbase64;
-              this.nationalfrontbase64=this.profil.national_front;
-              this.nationalbackbase64=this.profil.national_back;
-              this.passcoverbase64=this.profil.passport_img; 
-              this.profileform.controls['name'].setValue(this.profil.name);
-              this.profileform.controls['mobile'].setValue(this.profil.mobile);
-              this.profileform.controls['uni'].setValue(this.profil.university);
-              this.profileform.controls['faculty'].setValue(this.profil.faculty);
-              this.profileform.controls['coll_id'].setValue(this.profil.college_id);
-              this.profileform.controls['coll_dep'].setValue(this.profil.college_department);
-              this.profileform.controls['grad_year'].setValue(this.profil.graduation_year);
-              this.profileform.controls['address'].setValue(this.profil.address);
-              this.profileform.controls['dob'].setValue(this.profil.birth_date);
-              this.profileform.controls['n_id'].setValue(this.profil.national_id);
+              this.profile = response['0'];
+              // console.log(this.profile.profile_pic)
+              let baseUrlBackTest = "http://localhost:8000";
+              this.temp = baseUrlBackTest + this.profilepicbase64;
+              this.profilepicbase64 = '';
+              this.nationalfrontbase64 = '';
+              this.nationalbackbase64 = '';
+              this.passcoverbase64 = '';
+              this.profileform.controls['name'].setValue(this.profile.name);
+              this.profileform.controls['mobile'].setValue(this.profile.mobile);
+              this.profileform.controls['uni'].setValue(this.profile.university);
+              this.profileform.controls['faculty'].setValue(this.profile.faculty);
+              this.profileform.controls['coll_id'].setValue(this.profile.college_id);
+              this.profileform.controls['coll_dep'].setValue(this.profile.college_department);
+              this.profileform.controls['grad_year'].setValue(this.profile.graduation_year);
+              this.profileform.controls['address'].setValue(this.profile.address);
+              this.profileform.controls['dob'].setValue(this.profile.birth_date);
+              this.profileform.controls['n_id'].setValue(this.profile.national_id);
               this.profileform.controls['n_id_f_c'].setValue('');
               this.profileform.controls['n_id_b_c'].setValue('');
-              this.profileform.controls['pass_id'].setValue(this.profil.passport_id);
+              this.profileform.controls['pass_id'].setValue(this.profile.passport_id);
               this.profileform.controls['pass_id_img'].setValue('');
-              this.profileform.controls['em_name'].setValue(this.profil.emergency_name);
-              this.profileform.controls['em_mobile'].setValue(this.profil.emergency_mobile);
-              this.profileform.controls['em_relation'].setValue(this.profil.emergency_relation);
+              this.profileform.controls['em_name'].setValue(this.profile.emergency_name);
+              this.profileform.controls['em_mobile'].setValue(this.profile.emergency_mobile);
+              this.profileform.controls['em_relation'].setValue(this.profile.emergency_relation);
             },
             error => {
               Swal.fire({
                 type: 'error',
                 title: 'Oops...',
                 text: 'Something went wrong!',
-                footer: '<a href>Why do I have this issue?</a>'
+                // footer: '<a href>Why do I have this issue?</a>'
               })
 
             }
@@ -107,12 +95,7 @@ export class EditProfileComponent implements OnInit {
 
   }
 
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-}
-imageCropped(event: ImageCroppedEvent) {
-    this.data = event.base64;
-}
+
   onSubmit(form: NgForm) {
     this.submitBtn = false;
     this.loading = true;
@@ -137,12 +120,12 @@ imageCropped(event: ImageCroppedEvent) {
           this.router.navigate(['../profile/view']);
         },
         error => {
-          var keys = Object.keys(error["error"]);
+          //var keys = Object.keys(error["error"]);
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
             type: 'error',
-            title: error["error"][keys[0]][0]
+            title: error.error//error["error"][keys[0]][0]]
           })
 
         }
@@ -163,12 +146,12 @@ imageCropped(event: ImageCroppedEvent) {
           this.router.navigate(['../profile/view']);
         },
         (error) => {
-          var keys = Object.keys(error["error"]);
+          //var keys = Object.keys(error["error"]);
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
             type: 'error',
-            title: error["error"][keys[0]][0]
+            title: error.error//error["error"][keys[0]][0]
           })
 
         }
@@ -186,7 +169,7 @@ imageCropped(event: ImageCroppedEvent) {
   onUploadChange(evt: any, index: number) {
     const file = evt.target.files[0];
     if (index == 0) {
-      this.profilepicbase64 = this.data;
+      this.profilepicbase64 = this.croppedImage;
 
     }
     if (file) {
@@ -213,27 +196,60 @@ imageCropped(event: ImageCroppedEvent) {
   handleReaderLoaded3(e) {
     this.passcoverbase64 = 'data:image/png;base64,' + btoa(e.target.result);
   }
-  oneditpic(){
-    this.editpic =true;
-  }
-  onSave() {
-    
-    this.profilepicbase64 = this.data;
-    this.savepic = true;
-    this.removed=false;
-    this.cropperSettings.noFileInput = true;
-    this.editpic =false;
-    
+  
 
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  imageLoadedFlag = true;
+
+  
+
+  open(content) {
+    this.modalService.open(content, {size: 'lg'});
+  }
+
+  fileChangeEvent(event: any, content): void {
+    this.open(content);
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    // show cropper
+    this.imageLoadedFlag = false;
+    console.log("imageLoaded");
+  }
+  loadImageFailed() {
+    // show message
+    console.log("loadImageFailed");
+  }
+
+
+
+  onSave() {
+    this.profilepicbase64 = this.croppedImage;
+    this.imageLoadedFlag = true;
+    this.savepic = true;
+    this.removed = false;
+    this.editpic = false;
   }
   onCancelpic() {
     this.savepic = false;
-    this.profilepicbase64 =this.temp;
-    this.cropperSettings.noFileInput = false;
+    this.profilepicbase64 = this.temp;
+    this.imageChangedEvent = ''
+    this.croppedImage = ''
   }
   onremovepic(){
-    this.profilepicbase64 ='';
-    this.removed =true;
     this.savepic = false;
+    this.profilepicbase64 = '';
+    this.imageChangedEvent = ''
+    this.croppedImage = ''
+    this.removed =true;
+    this.editpic = true;
+
+  }
+  oneditpic() {
+    this.editpic = true;
   }
 }
