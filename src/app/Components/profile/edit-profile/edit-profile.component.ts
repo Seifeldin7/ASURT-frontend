@@ -26,6 +26,7 @@ export class EditProfileComponent implements OnInit {
   savepic = false;
   editpic =true;
   removed =false;
+  temp ='';
   data: any;
   cropperSettings: CropperSettings;
   @ViewChild('f') profileform: NgForm;
@@ -59,8 +60,9 @@ export class EditProfileComponent implements OnInit {
           this.profileservice.fetchProfile().subscribe(
             (response) => {
               console.log(response)
-              this.profil = response['0'];
+              this.profil = response['0'];   
               this.profilepicbase64=this.profil.profile_pic;
+              this.temp = this.profilepicbase64;
               this.nationalfrontbase64=this.profil.national_front;
               this.nationalbackbase64=this.profil.national_back;
               this.passcoverbase64=this.profil.passport_img; 
@@ -206,14 +208,17 @@ export class EditProfileComponent implements OnInit {
     this.editpic =true;
   }
   onSave() {
+    
     this.profilepicbase64 = this.data.image;
     this.savepic = true;
     this.removed=false;
     this.cropperSettings.noFileInput = true;
+    
 
   }
   onCancelpic() {
     this.savepic = false;
+    this.profilepicbase64 =this.temp;
     this.cropperSettings.noFileInput = false;
   }
   onremovepic(){
