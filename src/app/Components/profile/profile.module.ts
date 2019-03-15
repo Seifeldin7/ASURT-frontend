@@ -5,8 +5,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from '../../Routing/Profile/profile.router';
 import { ProfileComponent } from './profile.component';
-import { SidenavModule } from '../../sidenav/sidenav.module';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { SidenavModule } from '../general/sidenav/sidenav.module';
 
 @NgModule({
   declarations: [
