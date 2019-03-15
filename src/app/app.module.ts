@@ -8,8 +8,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
-import { ProfileModule } from './Components/profile/profile.module';
-
 
 //Directives
 
@@ -35,7 +33,6 @@ import { IsLoggedInGuardService } from './Routing/Authentication/auth-guard.serv
 // Components
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
-import { ProfileComponent } from './Components/profile/profile.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
 
@@ -83,7 +80,6 @@ import { ToastrModule } from 'ngx-toastr';
     AuthenticationService,
     GeneralService,
     ProfileService,
-
     IsLoggedInGuardService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

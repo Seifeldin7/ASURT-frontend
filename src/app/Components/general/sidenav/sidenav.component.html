@@ -1,0 +1,8 @@
+<div id="dark-overlay" *ngIf="sidenavStatus" (click)="toggle_sidenav()"></div>
+
+<aside [class.show]="sidenavStatus">
+  <!-- <header class="p-2 text-right" appSidenavToggler>
+    <i class="fas fa-times"></i> Close
+  </header> -->
+  <ng-content></ng-content>
+</aside>
