@@ -55,6 +55,7 @@ export class SignupComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
+        // console.log(this.registerForm);
         this.submitted = true;
         this.authService.signup({
             email: this.registerForm.value.email,

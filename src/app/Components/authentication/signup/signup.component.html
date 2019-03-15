@@ -69,11 +69,16 @@
                         f.password.controls.password2.touched">
                       Your password must be 8-16 long
                     </p>
-
-            <p *ngIf="f.password.controls.password2.errors.passwordMatch && 
-                      f.password.controls.password2.touched">
-                      Password does not match
-                    </p>
+            
+            
+        </small>
+      </div>
+      <div class="text-center" *ngIf="f.password.errors != null && f.password.touched">
+        <small class="form-text text-muted">
+          <p *ngIf="f.password.errors.passwordMatch && 
+                    f.password.touched">
+                    Password does not match
+                  </p>
         </small>
       </div>
     </div> <!-- ./displaying-errors -->

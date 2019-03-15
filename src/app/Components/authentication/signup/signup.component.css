@@ -1,7 +1,14 @@
 input.ng-touched.ng-invalid {
-  border-color: red;
+  border-color: #c0392b;
 }
 
+div[formGroupName=password].ng-invalid.ng-touched input[formControlName=password2]{
+  border-color: #c0392b;
+}
+
+div[formGroupName=password].ng-invalid.ng-touched input[formControlName=password1]{
+  border-color: #e74c3c;
+}
 
 /**
 * Default Style

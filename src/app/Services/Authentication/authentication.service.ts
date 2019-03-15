@@ -157,17 +157,10 @@ export class AuthenticationService {
  */
 
 export function passwordMatchValidator(ac: AbstractControl) {
-  /**
-   * Confirmation password validator
-   * required to name fields password1 | password2
-   */
-  const flag = ac.get('password1').value === ac.get('password2').value;
-  if (!flag) {
-    ac.get('password2').setErrors({ passwordMatch: true });
-    return null;
-  } else {
-    return null;
-  }
+    let isValid = ac.get('password1').value === ac.get('password2').value;
+    return isValid ? null : {
+      passwordMatch: true
+    }
 }
 
 
