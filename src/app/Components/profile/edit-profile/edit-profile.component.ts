@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { isError } from 'util';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,11 +26,13 @@ export class EditProfileComponent implements OnInit {
   submitBtn = false;
   loading = false;
   savepic = false;
-  editpic =true;
-  removed =false;
-  temp ='';
+  editpic = true;
+  removed = false;
+  temp = '';
   data: any;
- 
+  errors: any;
+  year;
+  msgs= [];
   @ViewChild('f') profileform: NgForm;
   constructor(config: NgbModalConfig, private modalService: NgbModal, private profileservice: ProfileService, private http: HttpClient, private router: Router) {
     config.backdrop = 'static';
@@ -39,11 +42,13 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     
+    this.year = new Date().getFullYear();
     this.profileservice.profileExist();
     this.profileservice.editMode.take(1).subscribe(
       edit => {
-        console.log("ngOnint")
+        //console.log("ngOnint")
         this.editMode = edit;
+
         this.profileservice.seteditMode(edit);
         if (edit == true) {
           this.editpic = false;
@@ -99,7 +104,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.submitBtn = false;
     this.loading = true;
-    this.removed=false;
+    this.removed = false;
     const pro = new Profile(this.profilepicbase64, form.value.name, form.value.mobile, form.value.uni, form.value.faculty,
       form.value.coll_id, form.value.coll_dep, form.value.grad_year, form.value.address, form.value.dob,
       form.value.n_id, this.nationalfrontbase64, this.nationalbackbase64, form.value.pass_id, this.passcoverbase64,
@@ -121,11 +126,13 @@ export class EditProfileComponent implements OnInit {
         },
         error => {
           var keys = Object.keys(error["error"]);
+          this.errors = error["error"];
+          console.log(error["error"]);
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
             type: 'error',
-            title: keys[0]+"\n"+ error["error"][keys[0]][0]
+            title: keys[0] + "\n" + error["error"][keys[0]][0]
           })
 
         }
@@ -196,16 +203,16 @@ export class EditProfileComponent implements OnInit {
   handleReaderLoaded3(e) {
     this.passcoverbase64 = 'data:image/png;base64,' + btoa(e.target.result);
   }
-  
+
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
   imageLoadedFlag = true;
 
-  
+
 
   open(content) {
-    this.modalService.open(content, {size: 'lg'});
+    this.modalService.open(content, { size: 'lg' });
   }
 
   fileChangeEvent(event: any, content): void {
@@ -240,16 +247,95 @@ export class EditProfileComponent implements OnInit {
     this.imageChangedEvent = ''
     this.croppedImage = ''
   }
-  onremovepic(){
+  onremovepic() {
     this.savepic = false;
     this.profilepicbase64 = '';
     this.imageChangedEvent = ''
     this.croppedImage = ''
-    this.removed =true;
+    this.removed = true;
     this.editpic = true;
 
   }
   oneditpic() {
     this.editpic = true;
   }
+  isErr(s: String) {
+
+    if (this.errors != null) {
+
+      var keys = Object.keys(this.errors);
+      for (var key in keys) {
+        if (keys[key] == s) {
+          if (s == "profile_pic") {
+            this.msgs[0] = this.errors[keys[key]][0];
+          }
+          else if (s == "name") {
+            this.msgs[1] = this.errors[keys[key]][0];
+          }
+
+          else if (s == "birth_date") {
+            this.msgs[2] = this.errors[keys[key]][0];
+          }
+          else if (s == "address") {
+            this.msgs[3] = this.errors[keys[key]][0];
+          }
+          else if (s == "university") {
+            this.msgs[4] = this.errors[keys[key]][0];
+          }
+          else if (s == "faculty") {
+            this.msgs[5] = this.errors[keys[key]][0];
+          }
+          else if (s == "college_department") {
+            this.msgs[6] = this.errors[keys[key]][0];
+          }
+          else if (s == "graduation_year") {
+            this.msgs[7] = this.errors[keys[key]][0];
+          }
+          else if (s == "college_id") {
+            this.msgs[8] = this.errors[keys[key]][0];
+          }
+          else if (s == "emergency_name") {
+            this.msgs[9] = this.errors[keys[key]][0];
+          }
+          else if (s == "emergency_mobile") {
+            this.msgs[10] = this.errors[keys[key]][0];
+          }
+          else if (s == "emergency_relation") {
+            this.msgs[11] = this.errors[keys[key]][0];
+          }
+          else if (s == "national_id") {
+            this.msgs[12] = this.errors[keys[key]][0];
+          }
+          else if (s == "national_front") {
+            this.msgs[13] = this.errors[keys[key]][0];
+          }
+          else if (s == "national_back") {
+            this.msgs[14] = this.errors[keys[key]][0];
+          }
+          else if (s == "passport_id") {
+            this.msgs[15] = this.errors[keys[key]][0];
+          }
+          else if (s == "passport_img") {
+            this.msgs[16] = this.errors[keys[key]][0];
+          }
+          else if (s == "mobile") {
+            this.msgs[17] = this.errors[keys[key]][0];
+          }
+          return true;
+
+        }
+      }
+      return false;
+
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
