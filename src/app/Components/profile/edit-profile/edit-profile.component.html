@@ -28,7 +28,7 @@
                 <input class="form-control" type="file" accept=".png, .jpg, .jpeg"
                   (change)="fileChangeEvent($event, ProfileContent)" />
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('profile_pic')">{{ msgs[0] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('profile_pic') ">{{ msgs[0] }}</span>
             </div>
             <div *ngIf="editMode && !editpic && !savepic" class="my-2">
               <div class="  col-12 text-center">
@@ -85,7 +85,7 @@
                 <input type="text" id="mobile" pattern="^(0)(\d{10})" name="mobile" class="form-control" ngModel
                   placeholder="01xxxxxxxxx" #mobile="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('mobile')">{{ msgs[17] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('mobile') && !mobile.touched">{{ msgs[17] }}</span>
               <span class="help-block text-danger" *ngIf="!mobile.valid && mobile.touched && mobile.dirty">this mobile
                 number is not valid</span>
               <span class="help-block text-danger" *ngIf="!mobile.valid && mobile.touched && !mobile.dirty">this field
@@ -145,7 +145,7 @@
                 <input type="text" id="coll_id" name="coll_id" class="form-control" placeholder="College ID" ngModel
                   required #coll_id="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('college_id')">{{ msgs[8] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('college_id') && !coll_id.touched">{{ msgs[8] }}</span>
               <span class="help-block text-danger" *ngIf="!coll_id.valid && coll_id.touched">this is a required
                 field</span>
 
@@ -165,7 +165,7 @@
                 <input type="text" id="coll_dep" name="coll_dep" placeholder="department" class="form-control" ngModel
                   required #coll_dep="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('college_department')">{{ msgs[6] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('college_department') && !coll_dep.touched">{{ msgs[6] }}</span>
               <span class="help-block text-danger" *ngIf="!coll_dep.valid && coll_dep.touched">this is a required
                 field</span>
 
@@ -191,7 +191,7 @@
                   <option value='2021'>{{year+4}}</option>
                 </select>
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('graduation_year')">{{ msgs[7] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('graduation_year') && !grad_year.touched">{{ msgs[7] }}</span>
               <span class="help-block text-danger"
                 *ngIf="!grad_year.valid && grad_year.touched && !grad_year.dirty">this field is required</span>
 
@@ -211,7 +211,7 @@
                 <input type="text" id="address" name="address" class="form-control" ngModel required
                   placeholder="address" #address="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('address')">{{ msgs[3] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('address') && !address.touched">{{ msgs[3] }}</span>
               <span class="help-block text-danger" *ngIf="!address.valid && address.touched">this is a required
                 field</span>
 
@@ -230,7 +230,7 @@
                 </div>
                 <input type="date" id="dob" name="dob" class="form-control" ngModel required #dob="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('birth_date')">{{ msgs[2] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('birth_date') && !dob.touched">{{ msgs[2] }}</span>
               <span class="help-block text-danger" *ngIf="!dob.valid && dob.touched">this is a required field</span>
 
             </div>
@@ -249,7 +249,7 @@
                 <input type="text" name="n_id" id="n_id" placeholder="national id" pattern="^(\d{14})"
                   class="form-control" ngModel required #n_id="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('national_id')">{{ msgs[12] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('national_id') && !n_id.touched">{{ msgs[12] }}</span>
               <span class="help-block text-danger" *ngIf="!n_id.valid && n_id.touched && n_id.dirty">this id is not
                 correct</span>
               <span class="help-block text-danger" *ngIf="!n_id.valid && n_id.touched && !n_id.dirty">this field is
@@ -272,7 +272,7 @@
                   id="n_id_f_c" class="form-control" ngModel [required]="!editMode" #n_id_f_c="ngModel"
                   ngf-max-size="500KB">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('national_front')">{{ msgs[13] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('national_front') &&!n_id_f_c.touched">{{ msgs[13] }}</span>
               <span class="help-block text-danger" *ngIf="!n_id_f_c.valid && n_id_f_c.touched && !n_id_f_c.dirty">this
                 field is
                 required</span>
@@ -294,7 +294,7 @@
                   id="n_id_b_c" class="form-control" ngModel [required]="!editMode" #n_id_b_c="ngModel"
                   ngf-max-size="500KB">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('national_back')">{{ msgs[14] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('national_back') && !n_id_b_c.touched">{{ msgs[14] }}</span>
               <span class="help-block text-danger" *ngIf="!n_id_b_c.valid && n_id_b_c.touched && !n_id_b_c.dirty">this
                 field is
                 required</span>
@@ -315,7 +315,7 @@
                 <input type="text" id="pass_id" name="pass_id" class="form-control" placeholder="passport id" ngModel
                   #pass_id="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('passport_id')">{{ msgs[15] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('passport_id') && !pass_id.touched" #pass>{{ msgs[15] }}</span>
 
 
             </div>
@@ -334,7 +334,7 @@
                 <input (change)="onUploadChange($event,3)" name="pass_id_img" accept=".png, .jpg, .jpeg" type="file"
                   id="pass_id_img" class="form-control" ngModel #pass_id_img="ngModel" ngf-max-size="500KB">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('passport_img')">{{ msgs[16] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('passport_img') && !pass_id_img.touched">{{ msgs[16] }}</span>
             </div>
           </div>
         </div>
@@ -374,7 +374,7 @@
                 <input type="text" id="em_mobile" name="em_mobile" class="form-control" pattern="^(0)(\d{10})"
                   placeholder="ex: 01xxxxxxxx" ngModel required #em_mobile="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('emergency_mobile')">{{ msgs[10] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('emergency_mobile') && !em_mobile.touched">{{ msgs[10] }}</span>
               <span class="help-block text-danger" *ngIf="!em_mobile.valid && em_mobile.touched && em_mobile.dirty">this
                 number is not valid</span>
               <span class="help-block text-danger"
@@ -395,7 +395,7 @@
                 <input type="text" id="em_relation" name="em_relation" class="form-control" placeholder="ex: cousin"
                   ngModel required #em_relation="ngModel">
               </div>
-              <span class="help-block text-danger" *ngIf="isErr('emergency_relation')">{{ msgs[11] }}</span>
+              <span class="help-block text-danger" *ngIf="isErr('emergency_relation') && !em_relation.touched">{{ msgs[11] }}</span>
               <span class="help-block text-danger"
                 *ngIf="!em_relation.valid && em_relation.touched && !em_relation.dirty">this field is
                 required</span>
