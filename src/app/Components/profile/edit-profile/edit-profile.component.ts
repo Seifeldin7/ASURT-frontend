@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, AbstractControl } from '@angular/forms';
 import { ProfileService } from '../../../Services/Profile/profile.service';
 import { Profile } from '../../../Models/profile.model';
 import { HttpClient } from '@angular/common/http';
@@ -34,6 +34,7 @@ export class EditProfileComponent implements OnInit {
   year;
   msgs= [];
   @ViewChild('f') profileform: NgForm;
+  @ViewChild('pass') pass:AbstractControl;
   constructor(config: NgbModalConfig, private modalService: NgbModal, private profileservice: ProfileService, private http: HttpClient, private router: Router) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -105,6 +106,9 @@ export class EditProfileComponent implements OnInit {
     this.submitBtn = false;
     this.loading = true;
     this.removed = false;
+    for(let i in this.profileform.controls){
+      this.profileform.controls[i].markAsUntouched();
+  }
     const pro = new Profile(this.profilepicbase64, form.value.name, form.value.mobile, form.value.uni, form.value.faculty,
       form.value.coll_id, form.value.coll_dep, form.value.grad_year, form.value.address, form.value.dob,
       form.value.n_id, this.nationalfrontbase64, this.nationalbackbase64, form.value.pass_id, this.passcoverbase64,
@@ -127,7 +131,8 @@ export class EditProfileComponent implements OnInit {
         error => {
           var keys = Object.keys(error["error"]);
           this.errors = error["error"];
-          console.log(error["error"]);
+          //this.pass.markAsUntouched();
+          
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
@@ -156,6 +161,7 @@ export class EditProfileComponent implements OnInit {
           var keys = Object.keys(error["error"]);
           this.loading = false;
           this.submitBtn = false;
+          
           Swal.fire({
             type: 'error',
             title: error["error"][keys[0]][0]
@@ -165,7 +171,7 @@ export class EditProfileComponent implements OnInit {
       );
 
       this.submitBtn = true;
-
+      this.msgs =[];   
     }
 
   }
