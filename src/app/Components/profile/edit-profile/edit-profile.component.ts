@@ -159,6 +159,7 @@ export class EditProfileComponent implements OnInit {
         },
         (error) => {
           var keys = Object.keys(error["error"]);
+          this.errors = error["error"];
           this.loading = false;
           this.submitBtn = false;
           
