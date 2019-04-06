@@ -39,6 +39,7 @@ import { LoadingComponent } from './Components/general/loading/loading.component
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { WebsiteComponent } from './app/components/website/website.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
     AuthenticationComponent,
     GeneralComponent,
     LoadingComponent,
+    WebsiteComponent,
   ],
   imports: [
     BrowserModule,
