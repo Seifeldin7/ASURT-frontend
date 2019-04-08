@@ -3,7 +3,6 @@ import { Profile } from '../../../Models/profile.model';
 import Swal from 'sweetalert2';
 import 'rxjs/Rx';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { ProfileService } from '../../../Services/Profile/profile.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class ViewProfileComponent implements OnInit {
   loaded = false;
 
   constructor(private profileservice: ProfileService, private route: ActivatedRoute, private router: Router) { }
-
 
   getProfile() {
     this.profileservice.fetchProfile().subscribe(
