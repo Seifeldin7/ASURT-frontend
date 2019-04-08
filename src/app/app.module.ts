@@ -35,11 +35,11 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
+import { WebsiteComponent } from './Components/website/website.component';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { WebsiteComponent } from './app/components/website/website.component';
 
 
 @NgModule({
@@ -75,6 +75,7 @@ import { WebsiteComponent } from './app/components/website/website.component';
     RouterModule.forRoot([
       // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
+      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
       // { path: '**', redirectTo: 'auth/login' }
     ])
   ],

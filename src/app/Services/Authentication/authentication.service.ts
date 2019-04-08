@@ -186,8 +186,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
-  baseUrl = 'http://127.0.0.1:8000/';
-  // baseUrl = 'http://localhost:3000/';
+  // baseUrl = 'http://127.0.0.1:8000/';
+  baseUrl = 'http://localhost:3000/';
   // baseUrl ='https://domain-name.com/';
   constructor() { }
 
