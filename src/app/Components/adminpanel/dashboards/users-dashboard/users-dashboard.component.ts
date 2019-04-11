@@ -40,12 +40,13 @@ export class UsersDashboardComponent implements OnInit {
     })
 
     this.search_field.valueChanges.subscribe(val=>{
+      console.log(val)
       this.users_table = this.usersService.get_users().filter((user)=>{
-        return  user.name.includes(val)   || 
-                user.email.includes(val)  ||
-                user.phone.includes(val)  ||
-                user.college_id.includes(val)  ||
-                user.group.includes(val);
+        return (''+user.name+' '
+                  +user.email+' '
+                  +user.phone+' '
+                  +user.college_id+' '
+                  +user.group).toLowerCase().includes(val.toLowerCase());
       })
     })
   }
