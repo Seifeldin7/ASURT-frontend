@@ -39,7 +39,12 @@ import { LoadingComponent } from './Components/general/loading/loading.component
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { WebsiteComponent } from './app/components/website/website.component';
+
+import { EventsComponent } from './components/events/events.component';
+//import { EventListComponent } from './components/events/event-list/event-list.component';
+//import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
+import { EventService } from './Services/events/events.service';
+import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
 
 
 @NgModule({
@@ -48,7 +53,9 @@ import { WebsiteComponent } from './app/components/website/website.component';
     AuthenticationComponent,
     GeneralComponent,
     LoadingComponent,
-    WebsiteComponent,
+    EventsComponent,
+
+    EventDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +89,7 @@ import { WebsiteComponent } from './app/components/website/website.component';
     AuthenticationService,
     GeneralService,
     ProfileService,
+    EventService,
     IsLoggedInGuardService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
