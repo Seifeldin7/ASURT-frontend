@@ -5,12 +5,18 @@ import { AdminpanelComponent } from 'src/app/Components/adminpanel/adminpanel.co
 import { MainDashboardComponent } from 'src/app/Components/adminpanel/dashboards/main-dashboard/main-dashboard.component';
 import { UsersDashboardComponent } from 'src/app/Components/adminpanel/dashboards/users-dashboard/users-dashboard.component';
 import { HighlightsDashboardComponent } from 'src/app/Components/adminpanel/dashboards/highlights-dashboard/highlights-dashboard.component';
+import { HighlightEditComponent } from 'src/app/Components/adminpanel/dashboards/highlights-dashboard/highlight-edit/highlight-edit.component';
+import { HighlightsListComponent } from 'src/app/Components/adminpanel/dashboards/highlights-dashboard/highlights-list/highlights-list.component';
 
 export const router = [
     { path: '', component: AdminpanelComponent, children: [
         { path: '', component: MainDashboardComponent},
         { path: 'users', component: UsersDashboardComponent},
-        { path: 'highlights', component: HighlightsDashboardComponent},
+        { path: 'highlights', component: HighlightsDashboardComponent, children:[
+            { path: '', component: HighlightsListComponent},
+            { path: 'create', component: HighlightEditComponent},
+            { path: 'edit/:id', component: HighlightEditComponent},
+        ]},
     ]},
     //{ path: '**', redirectTo: '/' },
     //{ path: '', redirectTo: '/', pathMatch: 'full' }

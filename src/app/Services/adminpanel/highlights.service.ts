@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Highlight } from 'src/app/Models/highlight.interface';
 import { Subject } from 'rxjs';
-import { ToastrService } from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class HighlightsService {
 
   private highlights:Highlight[] = [];
   private onChangeHighlights = new Subject<Highlight[]>();
+  private onReceiveOneHighlight = new Subject<Highlight>();
 
   constructor(private http:HttpClient,
               private toastr:ToastrService) { }
@@ -47,6 +48,27 @@ export class HighlightsService {
 
   get_active(){
     return this.highlights.filter(el=> el.active);
+  }
+
+  get_highlights_by_id(id:Number){
+    if(this.highlights.length > 0){
+      let index = this.highlights.findIndex(x=>x.id == id);
+      setTimeout(() => {
+        this.onReceiveOneHighlight.next(this.highlights[index]); 
+      });
+    }else{
+      this.http.get<Highlight>('api/highlights/'+id+'/').subscribe(resp=>{
+        this.onReceiveOneHighlight.next(resp);
+      },err=>{
+        if ('msg' in err.error) {
+          this.toastr.error(err.error.msg, "Error")
+        }
+        else {
+          this.toastr.error("Something went wrong", "Error")
+        }
+      })
+    }
+    return this.onReceiveOneHighlight;
   }
 
   delete_highlight(id:Number){

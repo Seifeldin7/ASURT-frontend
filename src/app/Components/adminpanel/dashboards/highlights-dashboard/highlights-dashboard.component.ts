@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Highlight } from 'src/app/Models/highlight.interface';
-import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,36 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HighlightsDashboardComponent implements OnInit {
 
-  highlights_list:Highlight[] = [
-    {
-      id:0,
-      title:'--',
-      description:'--',
-      image:'--',
-      url:'--',
-      active:false
-    }
-  ]
-
-  filter:string = 'all';
-
-  constructor(private highlightsService:HighlightsService,
-              private activatedRoute: ActivatedRoute) { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-    this.highlightsService.fetch_highlights().subscribe(highlights=>{
-      this.highlights_list = highlights;
-      this.activatedRoute.queryParams.subscribe(params=>{
-        if(params.filter == 'active'){
-          this.filter = 'active';
-          this.highlights_list = this.highlightsService.get_active();
-        }else{
-          this.filter = 'all';
-          this.highlights_list = highlights;
-        }
-      });
-    });
-
+    // this.router.navigate(['./',{filter:'all'}])
   }
 
 }
