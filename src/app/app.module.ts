@@ -39,7 +39,10 @@ import { LoadingComponent } from './Components/general/loading/loading.component
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { WebsiteComponent } from './app/components/website/website.component';
+import { NewsFeedComponent } from './Components/news-feed/news-feed.component';
+import { PostComponent } from './Components/news-feed/post/post.component';
+import { WebsiteComponent } from './Components/website/website.component';
+import { NewsFeedService } from './Services/NewsFeed/news-feed.service';
 
 
 @NgModule({
@@ -49,6 +52,8 @@ import { WebsiteComponent } from './app/components/website/website.component';
     GeneralComponent,
     LoadingComponent,
     WebsiteComponent,
+    NewsFeedComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +88,7 @@ import { WebsiteComponent } from './app/components/website/website.component';
     GeneralService,
     ProfileService,
     IsLoggedInGuardService,
+    NewsFeedService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },
