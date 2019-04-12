@@ -16,6 +16,8 @@ import { UsersDashboardComponent } from './dashboards/users-dashboard/users-dash
 import { HighlightsDashboardComponent } from './dashboards/highlights-dashboard/highlights-dashboard.component';
 import { HighlightCardComponent } from './dashboards/highlights-dashboard/highlight-card/highlight-card.component';
 import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service';
+import { EventsDashboardComponent } from './dashboards/events-dashboard/events-dashboard.component';
+import { EventCardComponent } from './dashboards/events-dashboard/event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HighlightsService } from 'src/app/Services/adminpanel/highlights.servic
     AdminSidebarComponent,
     UsersDashboardComponent,
     HighlightsDashboardComponent,
-    HighlightCardComponent
+    HighlightCardComponent,
+    EventsDashboardComponent,
+    EventCardComponent
   ],
   imports: [
     CommonModule,
