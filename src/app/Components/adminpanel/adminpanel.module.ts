@@ -13,13 +13,18 @@ import { AdminpanelComponent } from './adminpanel.component';
 import { MainDashboardComponent } from './dashboards/main-dashboard/main-dashboard.component';
 import { AdminSidebarComponent } from './partials/admin-sidebar/admin-sidebar.component';
 import { UsersDashboardComponent } from './dashboards/users-dashboard/users-dashboard.component';
+import { HighlightsDashboardComponent } from './dashboards/highlights-dashboard/highlights-dashboard.component';
+import { HighlightCardComponent } from './dashboards/highlights-dashboard/highlight-card/highlight-card.component';
+import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service';
 
 @NgModule({
   declarations: [
     AdminpanelComponent,
     MainDashboardComponent,
     AdminSidebarComponent,
-    UsersDashboardComponent
+    UsersDashboardComponent,
+    HighlightsDashboardComponent,
+    HighlightCardComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +33,8 @@ import { UsersDashboardComponent } from './dashboards/users-dashboard/users-dash
   ],
   providers:[
     AdminpanelService,
-    UsersService
+    UsersService,
+    HighlightsService
   ]
 })
 export class AdminpanelModule { }
