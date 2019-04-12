@@ -8,6 +8,7 @@ import { HighlightsDashboardComponent } from 'src/app/Components/adminpanel/dash
 import { HighlightEditComponent } from 'src/app/Components/adminpanel/dashboards/highlights-dashboard/highlight-edit/highlight-edit.component';
 import { HighlightsListComponent } from 'src/app/Components/adminpanel/dashboards/highlights-dashboard/highlights-list/highlights-list.component';
 
+import { EventsDashboardComponent } from 'src/app/Components/adminpanel/dashboards/events-dashboard/events-dashboard.component';
 export const router = [
     { path: '', component: AdminpanelComponent, children: [
         { path: '', component: MainDashboardComponent},
@@ -17,6 +18,7 @@ export const router = [
             { path: 'create', component: HighlightEditComponent},
             { path: 'edit/:id', component: HighlightEditComponent},
         ]},
+        { path: 'events', component: EventsDashboardComponent},
     ]},
     //{ path: '**', redirectTo: '/' },
     //{ path: '', redirectTo: '/', pathMatch: 'full' }

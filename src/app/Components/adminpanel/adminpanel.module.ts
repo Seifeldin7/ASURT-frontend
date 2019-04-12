@@ -18,6 +18,8 @@ import { HighlightCardComponent } from './dashboards/highlights-dashboard/highli
 import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service';
 import { HighlightEditComponent } from './dashboards/highlights-dashboard/highlight-edit/highlight-edit.component';
 import { HighlightsListComponent } from './dashboards/highlights-dashboard/highlights-list/highlights-list.component';
+import { EventsDashboardComponent } from './dashboards/events-dashboard/events-dashboard.component';
+import { EventCardComponent } from './dashboards/events-dashboard/event-card/event-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { HighlightsListComponent } from './dashboards/highlights-dashboard/highl
     HighlightsDashboardComponent,
     HighlightCardComponent,
     HighlightEditComponent,
-    HighlightsListComponent
+    HighlightsListComponent,
+    EventsDashboardComponent,
+    EventCardComponent
   ],
   imports: [
     CommonModule,
