@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="split left">
+  <div class="centered">
+    <img src="https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg" >
+    <br>
+    <br>
+    <h3>Management Teams</h3>
+    <p>Description</p>
+    <div *ngFor="let team of teams ; index as i">
+      <button  (click) = "onclick(i)" *ngIf="team.type=='manag'"> <span>{{ team.name }}</span> </button>
+      <div class="card" *ngIf="team.visiable && team.type=='manag'">
+          <img class="team_pic" src ="{{team.pic}}">
+          <h3>{{team.description}}</h3>
+        </div>
+      <br>
+      <br>
+      </div>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    <img src="https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg" >
+    <br>
+    <br>
+    <h3>Technical Teams</h3>
+    <p>Description</p>
+    <div *ngFor="let team of teams ; index as i">
+      <button  (click) = "onclick(i)" *ngIf="team.type=='tech'"> <span>{{ team.name }}</span> </button>
+      <div class="card" *ngIf="team.visiable && team.type=='tech'">
+          <img class="team_pic" src ="{{team.pic}}">
+          <h3>{{team.description}}</h3>
+        </div>
+      <br>
+      <br>
+      </div>
+    </div>
+  </div>
