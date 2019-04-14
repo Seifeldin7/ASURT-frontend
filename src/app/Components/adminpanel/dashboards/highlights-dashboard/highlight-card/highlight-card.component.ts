@@ -9,7 +9,7 @@ import { HighlightsService } from 'src/app/Services/adminpanel/highlights.servic
 })
 export class HighlightCardComponent implements OnInit {
 
-  @Input() card:Highlight;
+  @Input() card:Highlight = null;
   constructor(private highlightService:HighlightsService) { }
 
   ngOnInit() {

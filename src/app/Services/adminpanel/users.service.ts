@@ -84,7 +84,7 @@ export class UsersService {
           return user.id == user_id
         })
         this.users[user_index].group = updated_group;
-        console.log(this.users)
+        // console.log(this.users)
       }else{
         this.toastr.error(response.msg,"Success");
       }

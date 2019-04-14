@@ -71,12 +71,34 @@ export class HighlightsService {
     return this.onReceiveOneHighlight;
   }
 
+  post_highlight(data){
+    this.highlights = [];
+    return this.http.post('api/highlights/',{
+      title:data.title,
+      description:data.description,
+      image:data.image,
+      url:data.url,
+      active:data.active
+    });
+  }
+  
+  update_highlight(id:Number,data){
+    this.highlights = [];
+    return this.http.put('api/highlights/'+id+'/',{
+      title:data.title,
+      description:data.description,
+      image:data.image,
+      url:data.url,
+      active:data.active
+    });
+  }
+
   delete_highlight(id:Number){
     this.http.delete('/api/highlights/'+ id +'/').subscribe((res:any)=>{
       if(res.status == true){
         this.toastr.success(res.msg,"Success");
       }else{
-        this.toastr.error(res.msg,"Success");
+        this.toastr.error(res.msg,"Error");
       }
     },(err)=>{
       if ('msg' in err.error) {
