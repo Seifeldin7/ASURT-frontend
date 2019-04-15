@@ -32,11 +32,20 @@
           <p>Highlights</p>
         </a>
       </li>
+      
       <li class="nav-item"  [routerLink]="['events']"
                             routerLinkActive="active">
         <a class="nav-link cursor-ptr">
           <i class="material-icons">slideshow</i>
           <p>Events</p>
+        </a>
+      </li>
+
+      <li class="nav-item"  [routerLink]="['news-feed/','all']"
+                            routerLinkActive="active">
+        <a class="nav-link cursor-ptr">
+          <i class="material-icons">view_agenda</i>
+          <p>NewsFeed</p>
         </a>
       </li>
 

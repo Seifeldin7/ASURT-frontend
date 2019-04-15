@@ -21,6 +21,10 @@ import { HighlightEditComponent } from './dashboards/highlights-dashboard/highli
 import { HighlightsListComponent } from './dashboards/highlights-dashboard/highlights-list/highlights-list.component';
 import { EventsDashboardComponent } from './dashboards/events-dashboard/events-dashboard.component';
 import { EventCardComponent } from './dashboards/events-dashboard/event-card/event-card.component';
+import { NewsfeedDashboardComponent } from './dashboards/newsfeed-dashboard/newsfeed-dashboard.component';
+import { ArticlesListComponent } from './dashboards/newsfeed-dashboard/articles-list/articles-list.component';
+import { ArticleEditComponent } from './dashboards/newsfeed-dashboard/article-edit/article-edit.component';
+import { ArticleComponent } from './dashboards/newsfeed-dashboard/article/article.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { EventCardComponent } from './dashboards/events-dashboard/event-card/eve
     HighlightEditComponent,
     HighlightsListComponent,
     EventsDashboardComponent,
-    EventCardComponent
+    EventCardComponent,
+    NewsfeedDashboardComponent,
+    ArticlesListComponent,
+    ArticleEditComponent,
+    ArticleComponent
   ],
   imports: [
     CommonModule,

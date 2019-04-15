@@ -97,6 +97,9 @@ export class HighlightsService {
     this.http.delete('/api/highlights/'+ id +'/').subscribe((res:any)=>{
       if(res.status == true){
         this.toastr.success(res.msg,"Success");
+        /** 
+         * TODO: delete this highlight from array
+         */
       }else{
         this.toastr.error(res.msg,"Error");
       }
