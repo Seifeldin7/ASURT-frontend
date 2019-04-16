@@ -1,0 +1,18 @@
+<div class=" blog-card" *ngFor="let event of events; let i = index" [ngClass]="{'alt': i%2!=0}">
+  <div class="meta">
+    <div class="photo"></div>
+    <img src="{{event.image}}" alt="">
+  </div>
+  <div class="description">
+    <div class="inner-description">
+      <h1>{{event.name | uppercase}}</h1>
+      <p> {{event.description}}</p>
+      <p class="read-more">
+        <a href="#" routerLinkActive="active">Read More</a>
+      </p>
+      <div class="counter">
+        <span>{{event.date}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 // Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
@@ -39,7 +41,13 @@ import { LoadingComponent } from './Components/general/loading/loading.component
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { WebsiteComponent } from './app/components/website/website.component';
+import { WebsiteComponent } from './Components/website/website.component';
+import { FooterComponent } from './Components/website/footer/footer.component';
+import { HomepageComponent } from './Components/website/homepage/homepage.component';
+import { NavbarComponent } from './Components/website/navbar/navbar.component';
+import { LatestnewsComponent } from './Components/website/homepage/latestnews/latestnews.component';
+import { EventsComponent } from './Components/website/homepage/events/events.component';
+import { SponsorsComponent } from './Components/website/sponsors/sponsors.component';
 
 
 @NgModule({
@@ -49,6 +57,12 @@ import { WebsiteComponent } from './app/components/website/website.component';
     GeneralComponent,
     LoadingComponent,
     WebsiteComponent,
+    FooterComponent,
+    HomepageComponent,
+    NavbarComponent,
+    LatestnewsComponent,
+    EventsComponent,
+    SponsorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +71,8 @@ import { WebsiteComponent } from './app/components/website/website.component';
     HttpClientModule,
     RouterModule,
     NgbModalModule,
+    NgbModule.forRoot(),
+
 
     BrowserAnimationsModule,
     ToastrModule.forRoot({
