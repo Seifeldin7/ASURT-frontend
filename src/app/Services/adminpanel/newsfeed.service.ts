@@ -93,6 +93,8 @@ export class NewsfeedService {
 
   post_article(data){
     this.articles = [];
+    this.current_page_number = 0;
+    this.onReachMaxPages.next(false);
     return this.http.post('api/news-feed/',{
       title: data.title,
       description:  data.description,
@@ -106,6 +108,8 @@ export class NewsfeedService {
 
   update_article(id:Number, data){
     this.articles = [];
+    this.current_page_number = 0;
+    this.onReachMaxPages.next(false);
     return this.http.put('api/article/'+id+'/',{
       title: data.title,
       description:  data.description,
