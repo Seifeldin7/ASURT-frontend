@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Team,Achivement } from '../../../Models/team.model';
+import { Injectable } from '@angular/core';
+import { Team, Achivement } from '../../Models/team.model';
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TeamsService } from '../../../Services/teams/teams.service';
-import { ActivatedRoute,Params,Router } from '@angular/router';
 
-@Component({
-  selector: 'app-teams',
-  templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.css']
+
+@Injectable({
+  providedIn: 'root'
 })
-export class TeamsComponent implements OnInit {
+
+export class TeamsService {
+
+  teams_got = new Subject<Team[]>();
 
   achiv:Achivement = new Achivement("achiv1","pos1","descrip1","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
   achiv2:Achivement = new Achivement("achiv2","pos2","descrip2","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
@@ -28,29 +29,23 @@ export class TeamsComponent implements OnInit {
     ,this.team2,
     this.team3
   ];
-  management_teams  = [
-    // this.team3,this.team4
-  ];
-  teams_type:string='';
-  out:string='';
 
-  constructor(private http:HttpClient,private ts: TeamsService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private http:HttpClient){ }
 
-  ngOnInit() {
-    //this.teams = this.ts.get_all_teams();
-    this.route.params.subscribe(
-      (params:Params) => {
-        this.teams_type = params['type']
-      });
-    if(this.teams_type == "technical") this.out='Technical Teams';
-    else this.out='Management Teams';
-    console.log(this.out);
-    console.log(this.teams_type);
-    console.log(this.teams);
+  get_all_teams(){
+    // this.http.get<Team[]>('api/teams/').subscribe(
+    //   (response:any)=>{
+    //     this.teams = response;
+    //   }
+    // );
+    //this.teams_got.next(this.teams.slice());
+    return this.teams.slice();
+  }
+
+  get_team(id:number){
+    // console.log(this.teams.filter(el=> el.id == id ));
+    return this.teams.filter(el=> el.id == id );
 
   }
-  // onclick(index:number){
-  //   this.teams[index].visiable = ! this.teams[index].visiable;
-  //   console.log(this.teams);
-  // }
+
 }
