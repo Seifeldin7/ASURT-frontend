@@ -2,7 +2,7 @@
   <div class="col-12">
 
     <!-- card -->
-    <div class="card">
+    <div class="card card-transparent">
       <!-- header -->
       <div class="card-header card-header-tabs card-header-primary">
         <div class="nav-tabs-navigation">
@@ -13,8 +13,27 @@
                 <a class="nav-link show" data-toggle="tab"
                     [routerLink]="['./']"
                     [queryParams]="{ filter: 'all' }"
-                    [ngClass]="{active: filter=='all'}">
+                    routerLinkActive="active">
                   <i class="material-icons">list</i> All
+                  <div class="ripple-container"></div>
+                  <div class="ripple-container"></div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab"
+                    [routerLink]="['./']"
+                    [queryParams]="{ filter: 'active' }"
+                    routerLinkActive="active">
+                  <i class="material-icons">bookmark</i> Active
+                  <div class="ripple-container"></div>
+                  <div class="ripple-container"></div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab"
+                    [routerLink]="['./create']"
+                    routerLinkActive="active">
+                  <i class="material-icons">create</i> New
                   <div class="ripple-container"></div>
                   <div class="ripple-container"></div>
                 </a>
@@ -28,12 +47,7 @@
       <div class="card-body">
         <!-- tab-content -->
         <div class="tab-content">
-          <div class="row">
-            <div class="col-12 col-md-6" *ngFor="let card of events_list" >
-              <app-event-card [card]="card"></app-event-card>
-            </div>
-          </div>
-
+          <router-outlet></router-outlet>
         </div>
         <!-- ./tab-content -->
       </div>

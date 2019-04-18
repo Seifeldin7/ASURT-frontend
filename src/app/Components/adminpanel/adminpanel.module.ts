@@ -25,6 +25,8 @@ import { NewsfeedDashboardComponent } from './dashboards/newsfeed-dashboard/news
 import { ArticlesListComponent } from './dashboards/newsfeed-dashboard/articles-list/articles-list.component';
 import { ArticleEditComponent } from './dashboards/newsfeed-dashboard/article-edit/article-edit.component';
 import { ArticleComponent } from './dashboards/newsfeed-dashboard/article/article.component';
+import { EventEditComponent } from './dashboards/events-dashboard/event-edit/event-edit.component';
+import { EventListComponent } from './dashboards/events-dashboard/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ArticleComponent } from './dashboards/newsfeed-dashboard/article/articl
     NewsfeedDashboardComponent,
     ArticlesListComponent,
     ArticleEditComponent,
-    ArticleComponent
+    ArticleComponent,
+    EventEditComponent,
+    EventListComponent
   ],
   imports: [
     CommonModule,

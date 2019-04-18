@@ -11,6 +11,7 @@ export class EventsService {
 
   private events:Event[] = [];
   private onChangeEvents = new Subject<Event[]>();
+  private onReceive = new Subject<Event>();
 
   constructor(private http:HttpClient,
               private toastr:ToastrService) { }
@@ -49,12 +50,70 @@ export class EventsService {
     return this.events.filter(el=> el.status);
   }
 
+
+
+  get_events_by_id(id:Number){
+    if(this.events.length > 0){
+      let index = this.events.findIndex(x=>x.id == id);
+      setTimeout(() => {
+        this.onReceive.next(this.events[index]);
+      });
+    }else{
+      this.http.get<Event>('api/events/'+id+'/').subscribe(resp=>{
+        this.onReceive.next(resp);
+      },err=>{
+        if ('msg' in err.error) {
+          this.toastr.error(err.error.msg, "Error")
+        }
+        else {
+          this.toastr.error("Something went wrong", "Error")
+        }
+      })
+    }
+    return this.onReceive;
+  }
+
+  post_event(data){
+    this.events = [];
+    return this.http.post('api/events/',{
+      name:data.name,
+      description:data.description,
+      image:data.image,
+      status:data.status,
+      type:data.type,
+      date:data.date
+    });
+  }
+
+  // id:Number,
+  // name:string,
+  // date:Date,
+  // description:string,
+  // status:boolean,
+  // image:string,
+  // type:string
+
+  update_event(id:Number,data){
+    this.events = [];
+    return this.http.put('api/events/'+id+'/',{
+      name:data.name,
+      description:data.description,
+      image:data.image,
+      status:data.status,
+      type:data.type,
+      date:data.date
+    });
+  }
+
   delete_event(id:Number){
     this.http.delete('/api/events/'+ id +'/').subscribe((res:any)=>{
       if(res.status == true){
         this.toastr.success(res.msg,"Success");
+        /**
+         * TODO: delete this highlight from array
+         */
       }else{
-        this.toastr.error(res.msg,"Success");
+        this.toastr.error(res.msg,"Error");
       }
     },(err)=>{
       if ('msg' in err.error) {
@@ -65,5 +124,4 @@ export class EventsService {
       }
     })
   }
-
 }
