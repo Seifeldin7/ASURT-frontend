@@ -19,7 +19,6 @@ export class ArticlesListComponent implements OnInit {
     this.newsfeedService.fetch_articles_page().subscribe(
       (articles:Article[]) => {
         this.articles_list = articles;
-        console.log(this.articles_list)
       }
     );
     

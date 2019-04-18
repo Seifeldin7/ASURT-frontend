@@ -11,6 +11,9 @@ import { EventsDashboardComponent } from 'src/app/Components/adminpanel/dashboar
 import { NewsfeedDashboardComponent } from 'src/app/Components/adminpanel/dashboards/newsfeed-dashboard/newsfeed-dashboard.component';
 import { ArticlesListComponent } from 'src/app/Components/adminpanel/dashboards/newsfeed-dashboard/articles-list/articles-list.component';
 import { ArticleEditComponent } from 'src/app/Components/adminpanel/dashboards/newsfeed-dashboard/article-edit/article-edit.component';
+import { TeamsDashboardComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/teams-dashboard.component';
+import { TeamsListComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/teams-list/teams-list.component';
+import { TeamEditComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/team-edit/team-edit.component';
 
 export const router = [
     { path: '', component: AdminpanelComponent, children: [
@@ -22,10 +25,16 @@ export const router = [
             { path: 'edit/:id', component: HighlightEditComponent},
         ]},
         { path: 'news-feed', component: NewsfeedDashboardComponent, children:[
-            { path: '', redirectTo:'./all', pathMatch:'full'},
+            { path: '', redirectTo:'all', pathMatch:'full'},
             { path: 'all', component: ArticlesListComponent},
             { path: 'create', component: ArticleEditComponent},
             { path: 'edit/:id', component: ArticleEditComponent},
+        ]},
+        { path: 'teams', component: TeamsDashboardComponent, children:[
+            { path: '', redirectTo:'all', pathMatch:'full'},
+            { path: 'all', component: TeamsListComponent},
+            { path: 'create', component: TeamEditComponent},
+            { path: 'edit/:id', component: TeamEditComponent},
         ]},
         { path: 'events', component: EventsDashboardComponent},
     ]},
