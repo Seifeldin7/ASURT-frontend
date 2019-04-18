@@ -25,8 +25,17 @@ import { NewsfeedDashboardComponent } from './dashboards/newsfeed-dashboard/news
 import { ArticlesListComponent } from './dashboards/newsfeed-dashboard/articles-list/articles-list.component';
 import { ArticleEditComponent } from './dashboards/newsfeed-dashboard/article-edit/article-edit.component';
 import { ArticleComponent } from './dashboards/newsfeed-dashboard/article/article.component';
+import { TeamsDashboardComponent } from './dashboards/teams-dashboard/teams-dashboard.component';
+import { TeamsListComponent } from './dashboards/teams-dashboard/teams-list/teams-list.component';
+import { TeamEditComponent } from './dashboards/teams-dashboard/team-edit/team-edit.component';
+import { TeamComponent } from './dashboards/teams-dashboard/team/team.component';
+import { NewsfeedService } from 'src/app/Services/adminpanel/newsfeed.service';
+import { TeamsService } from 'src/app/Services/adminpanel/teams.service';
+import { EventsService } from 'src/app/Services/adminpanel/events.service';
 import { EventEditComponent } from './dashboards/events-dashboard/event-edit/event-edit.component';
 import { EventListComponent } from './dashboards/events-dashboard/event-list/event-list.component';
+
+
 
 @NgModule({
   declarations: [
@@ -40,6 +49,11 @@ import { EventListComponent } from './dashboards/events-dashboard/event-list/eve
     HighlightsListComponent,
     EventsDashboardComponent,
     EventCardComponent,
+    ArticleComponent,
+    TeamsDashboardComponent,
+    TeamsListComponent,
+    TeamEditComponent,
+    TeamComponent
     NewsfeedDashboardComponent,
     ArticlesListComponent,
     ArticleEditComponent,
@@ -49,6 +63,10 @@ import { EventListComponent } from './dashboards/events-dashboard/event-list/eve
   ],
   imports: [
     CommonModule,
+    HighlightsService,
+    NewsfeedService,
+    TeamsService,
+    EventsService
     ReactiveFormsModule,
     AdminpanelRoutesModule,
     ImageCropperModule
@@ -56,7 +74,10 @@ import { EventListComponent } from './dashboards/events-dashboard/event-list/eve
   providers:[
     AdminpanelService,
     UsersService,
-    HighlightsService
+    HighlightsService,
+    NewsfeedService,
+    TeamsService,
+    EventsService
   ]
 })
 export class AdminpanelModule { }

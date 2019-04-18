@@ -71,8 +71,8 @@ export class NewsfeedService {
         setTimeout(() => {
           this.onReceiveOneArticle.next(article);
         });
+        return this.onReceiveOneArticle;
       }
-      return this.onReceiveOneArticle;
     }
     /** else no articles before or required id does not exist */
     this.http.get<Article>('api/article/'+id+'/').subscribe(
