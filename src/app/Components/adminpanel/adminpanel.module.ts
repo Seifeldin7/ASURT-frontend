@@ -32,6 +32,7 @@ import { TeamComponent } from './dashboards/teams-dashboard/team/team.component'
 import { NewsfeedService } from 'src/app/Services/adminpanel/newsfeed.service';
 import { TeamsService } from 'src/app/Services/adminpanel/teams.service';
 import { EventsService } from 'src/app/Services/adminpanel/events.service';
+import { SponsorsDashboardComponent } from './dashboards/sponsors-dashboard/sponsors-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EventsService } from 'src/app/Services/adminpanel/events.service';
     TeamsDashboardComponent,
     TeamsListComponent,
     TeamEditComponent,
-    TeamComponent
+    TeamComponent,
+    SponsorsDashboardComponent
   ],
   imports: [
     CommonModule,

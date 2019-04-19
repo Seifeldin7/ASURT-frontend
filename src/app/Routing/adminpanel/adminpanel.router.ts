@@ -14,6 +14,7 @@ import { ArticleEditComponent } from 'src/app/Components/adminpanel/dashboards/n
 import { TeamsDashboardComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/teams-dashboard.component';
 import { TeamsListComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/teams-list/teams-list.component';
 import { TeamEditComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/team-edit/team-edit.component';
+import { SponsorsDashboardComponent } from 'src/app/Components/adminpanel/dashboards/sponsors-dashboard/sponsors-dashboard.component';
 
 export const router = [
     { path: '', component: AdminpanelComponent, children: [
@@ -37,6 +38,7 @@ export const router = [
             { path: 'edit/:id', component: TeamEditComponent},
         ]},
         { path: 'events', component: EventsDashboardComponent},
+        { path: 'sponsors', component: SponsorsDashboardComponent},
     ]},
     //{ path: '**', redirectTo: '/' },
     //{ path: '', redirectTo: '/', pathMatch: 'full' }
