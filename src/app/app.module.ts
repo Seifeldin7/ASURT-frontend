@@ -80,7 +80,7 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
     RouterModule.forRoot([
       // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
-      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
+      //{ path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
       // { path: '**', redirectTo: 'auth/login' }
     ])
   ],
