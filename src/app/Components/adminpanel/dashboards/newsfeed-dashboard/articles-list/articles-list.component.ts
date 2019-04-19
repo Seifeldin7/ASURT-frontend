@@ -16,20 +16,20 @@ export class ArticlesListComponent implements OnInit {
   constructor(private newsfeedService: NewsfeedService) { }
 
   ngOnInit() {
+    this.newsfeedService.reach_max().subscribe(isMax => this.reach_max_pages = isMax);
+    
     this.newsfeedService.fetch_articles_page().subscribe(
       (articles:Article[]) => {
         this.articles_list = articles;
       }
     );
     
-    this.newsfeedService.reach_max().subscribe(isMax => this.reach_max_pages = isMax);
   }
 
   load_more(){
     this.newsfeedService.fetch_articles_page( this.newsfeedService.get_page_prop().current_page +1 ).subscribe(
       (articles:Article[]) => {
         this.articles_list = articles;
-        console.log(this.articles_list)
       }
     );
   }

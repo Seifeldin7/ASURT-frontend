@@ -28,6 +28,8 @@ export class NewsfeedService {
   }
 
   fetch_articles_page(page_number:Number = 1){
+    console.log('bla');
+    this.onReachMaxPages.next(this.current_page_number == this.pages_number);
     if(page_number <= this.current_page_number){
       /** if requested page same current page next articles without send new request */
       setTimeout(() => {
