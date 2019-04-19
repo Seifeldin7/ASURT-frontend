@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/Models/post.model';
 import { NewsFeedService } from 'src/app/Services/NewsFeed/news-feed.service';
 import { ActivatedRoute,Params, Router } from '@angular/router';
+import { img } from 'src/app/Models/img.model';
 
 @Component({
   selector: 'app-news-feed',
@@ -10,6 +11,7 @@ import { ActivatedRoute,Params, Router } from '@angular/router';
 })
 export class NewsFeedComponent implements OnInit {
   posts :Post[];
+  img:img;
   pageID:number;
   prev:number;
   next:number;
@@ -21,8 +23,8 @@ export class NewsFeedComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params)=>{
-        this.pageID=params['id']
-        this.newsService.setPageId(params['id']);
+        this.pageID=+params['id']
+        this.newsService.setPageId(+params['id']);
       }
     );
     this.newsService.getPosts().subscribe(
