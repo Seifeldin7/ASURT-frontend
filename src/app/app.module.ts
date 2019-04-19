@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 // Components
 import { AppComponent } from './app.component';
 import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { FAQComponent } from './Components/faq/faq.component';
 
 
 
@@ -18,6 +19,8 @@ import { AboutUsComponent } from './Components/about-us/about-us.component';
     AppComponent,
     
     AboutUsComponent,
+    
+    FAQComponent,
   ],
   imports: [
     BrowserModule,
