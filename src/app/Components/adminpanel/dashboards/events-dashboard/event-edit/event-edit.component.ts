@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Highlight } from 'src/app/Models/event.interface';
-import { HighlightsService } from 'src/app/Services/adminpanel/events.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
+import { EventsService } from 'src/app/Services/adminpanel/events.service';
 
 @Component({
   selector: 'app-event-edit',

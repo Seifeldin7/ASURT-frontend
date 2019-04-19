@@ -35,6 +35,8 @@ import { EventsService } from 'src/app/Services/adminpanel/events.service';
 import { SponsorsDashboardComponent } from './dashboards/sponsors-dashboard/sponsors-dashboard.component';
 import { EventEditComponent } from './dashboards/events-dashboard/event-edit/event-edit.component';
 import { EventListComponent } from './dashboards/events-dashboard/event-list/event-list.component';
+import { SponsorsListComponent } from './dashboards/sponsors-dashboard/sponsors-list/sponsors-list.component';
+import { SponsorsCreateComponent } from './dashboards/sponsors-dashboard/sponsors-create/sponsors-create.component';
 
 
 
@@ -61,14 +63,12 @@ import { EventListComponent } from './dashboards/events-dashboard/event-list/eve
     ArticleEditComponent,
     ArticleComponent,
     EventEditComponent,
-    EventListComponent
+    EventListComponent,
+    SponsorsListComponent,
+    SponsorsCreateComponent
   ],
   imports: [
     CommonModule,
-    HighlightsService,
-    NewsfeedService,
-    TeamsService,
-    EventsService,
     ReactiveFormsModule,
     AdminpanelRoutesModule,
     ImageCropperModule
