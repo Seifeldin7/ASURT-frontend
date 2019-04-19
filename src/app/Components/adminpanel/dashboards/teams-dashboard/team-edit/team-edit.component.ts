@@ -123,13 +123,13 @@ export class TeamEditComponent implements OnInit {
     /**
      * Read Achievement image field anf bind value to form
      */
-    let image = event.target.files[0];
+    let image = $event.target.files[0];
     let reader = new FileReader();
     if (!image.type.match(/image-*/)) {
       alert('Select valid Image');
       return;
     }
-    reader.onload = ((e)=>{
+    reader.onload = ((e:any)=>{
       let base64 = 'data:image/png;base64,' + btoa(e.target.result);
       if(this.editmode){
         this.updated_images.achievement[index] = base64;
@@ -141,11 +141,11 @@ export class TeamEditComponent implements OnInit {
     reader.readAsBinaryString(image);
   }
 
-  team_images_change($event){
+  team_images_change($event:any){
     /**
      * Read all files and push to team image array
      */
-    let images = event.target.files;
+    let images:any = $event.target.files;
 
     if(images){
       for(let img of images){
@@ -156,7 +156,7 @@ export class TeamEditComponent implements OnInit {
       }
       for(let img of images){
         let reader = new FileReader();
-        reader.onload = e => {
+        reader.onload = (e:any) => {
           let base64 = 'data:image/png;base64,' + btoa(e.target.result);
           if(this.editmode){
             this.updated_images.team.push({image:base64})
