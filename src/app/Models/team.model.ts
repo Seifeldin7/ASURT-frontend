@@ -13,19 +13,19 @@ export class Achivement{
   }
 }
 export class Team {
+  id:number;
   name:string;
   description:string;
   images:string[];
   achivements :Achivement[];
   type:string;
-  visiable:boolean;
 
-  constructor(name:string,description:string,images:string[],achivements :Achivement[],type:string){
+  constructor(id:number,name:string,description:string,images:string[],achivements :Achivement[],type:string){
+    this.id=id;
     this.name=name;
     this.description=description;
     this.images=images;
     this.achivements=achivements;
     this.type=type;
-    this.visiable=false;
   }
 }

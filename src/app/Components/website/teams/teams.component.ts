@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Team,Achivement } from '../../../Models/team.model';
+import { Team,Achivement } from '../../../Models/team.interface';
 import { HttpClient } from '@angular/common/http';
+import { TeamsService } from '../../../Services/adminpanel/teams.service';
+import { ActivatedRoute,Params,Router } from '@angular/router';
 
 @Component({
   selector: 'app-teams',
@@ -9,30 +11,32 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TeamsComponent implements OnInit {
 
-  achiv:Achivement = new Achivement("achiv1","pos1","descrip1","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
-  team1:Team =  new Team("Team1","description1",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv],'tech');
-  // team2:Team =  new Team("Team2","description2",false,"https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg");
-  // team3:Team =  new Team("Team3","description3",false,"https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg");
-  // team4:Team =  new Team("Team4","description4",false,"https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",);
-  teams = [
-    this.team1
-    // ,this.team2
-  ];
-  management_teams  = [
-    // this.team3,this.team4
-  ];
 
-  constructor(private http:HttpClient) { }
+  teams:Team[] = [];
+  teams_type:string='';
+  out:string='';
+
+  constructor(private http:HttpClient,private ts: TeamsService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
-    this.http.get<Team[]>('api/teams/').subscribe(
-      (response:any)=>{
-        this.teams = response;
+    this.ts.fetch_teams().subscribe(
+      teams => {
+        this.teams = teams;
       }
     );
-  }
-  onclick(index:number){
-    this.teams[index].visiable = ! this.teams[index].visiable;
+    this.route.params.subscribe(
+      (params:Params) => {
+        this.teams_type = params['type']
+      });
+    if(this.teams_type == "technical") this.out='Technical Teams';
+    else this.out='Management Teams';
+    console.log(this.out);
+    console.log(this.teams_type);
     console.log(this.teams);
+
   }
+  // onclick(index:number){
+  //   this.teams[index].visiable = ! this.teams[index].visiable;
+  //   console.log(this.teams);
+  // }
 }

@@ -1,7 +1,8 @@
-export interface User {
-  id: number,
-  email: string,
-  first_Name: string,
-  last_Name: string,
-  groups: Array<String>
+export interface User{
+    id:number,
+		email:string,
+		name: string,
+		phone:string,
+		college_id:string,
+		group:string
 }

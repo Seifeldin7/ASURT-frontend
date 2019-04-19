@@ -16,6 +16,7 @@ import { AuthenticationModule } from './Components/authentication/authentication
 import { AuthenticationService, JwtInterceptor, APIInterceptor } from './Services/Authentication/authentication.service';
 import { GeneralService, LoadingHttpInterseptorService } from './Services/General/general.service';
 import { ProfileService } from './Services/Profile/profile.service';
+import { EventsService } from './Services/adminpanel/events.service';
 
 
 // Routers
@@ -79,6 +80,7 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
     RouterModule.forRoot([
       // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
+      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
       // { path: '**', redirectTo: 'auth/login' }
     ])
   ],
