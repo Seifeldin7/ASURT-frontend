@@ -40,11 +40,8 @@ import { LoadingComponent } from './Components/general/loading/loading.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-import { EventsComponent } from './components/events/events.component';
-//import { EventListComponent } from './components/events/event-list/event-list.component';
-//import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
 import { EventService } from './Services/events/events.service';
-import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
+
 
 
 @NgModule({
@@ -53,9 +50,6 @@ import { EventDetailComponent } from './components/events/event-detail/event-det
     AuthenticationComponent,
     GeneralComponent,
     LoadingComponent,
-    EventsComponent,
-
-    EventDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +76,7 @@ import { EventDetailComponent } from './components/events/event-detail/event-det
     RouterModule.forRoot([
       // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
+      { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
       // { path: '**', redirectTo: 'auth/login' }
     ])
   ],
