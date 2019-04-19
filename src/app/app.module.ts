@@ -16,6 +16,7 @@ import { AuthenticationModule } from './Components/authentication/authentication
 import { AuthenticationService, JwtInterceptor, APIInterceptor } from './Services/Authentication/authentication.service';
 import { GeneralService, LoadingHttpInterseptorService } from './Services/General/general.service';
 import { ProfileService } from './Services/Profile/profile.service';
+import { EventsService } from './Services/adminpanel/events.service';
 
 
 // Routers

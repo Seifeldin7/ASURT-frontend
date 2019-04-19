@@ -33,6 +33,10 @@ import { NewsfeedService } from 'src/app/Services/adminpanel/newsfeed.service';
 import { TeamsService } from 'src/app/Services/adminpanel/teams.service';
 import { EventsService } from 'src/app/Services/adminpanel/events.service';
 import { SponsorsDashboardComponent } from './dashboards/sponsors-dashboard/sponsors-dashboard.component';
+import { EventEditComponent } from './dashboards/events-dashboard/event-edit/event-edit.component';
+import { EventListComponent } from './dashboards/events-dashboard/event-list/event-list.component';
+
+
 
 @NgModule({
   declarations: [
@@ -46,18 +50,25 @@ import { SponsorsDashboardComponent } from './dashboards/sponsors-dashboard/spon
     HighlightsListComponent,
     EventsDashboardComponent,
     EventCardComponent,
-    NewsfeedDashboardComponent,
-    ArticlesListComponent,
-    ArticleEditComponent,
     ArticleComponent,
     TeamsDashboardComponent,
     TeamsListComponent,
     TeamEditComponent,
     TeamComponent,
-    SponsorsDashboardComponent
+    SponsorsDashboardComponent,
+    NewsfeedDashboardComponent,
+    ArticlesListComponent,
+    ArticleEditComponent,
+    ArticleComponent,
+    EventEditComponent,
+    EventListComponent
   ],
   imports: [
     CommonModule,
+    HighlightsService,
+    NewsfeedService,
+    TeamsService,
+    EventsService,
     ReactiveFormsModule,
     AdminpanelRoutesModule,
     ImageCropperModule
