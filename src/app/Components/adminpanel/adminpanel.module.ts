@@ -37,6 +37,10 @@ import { EventEditComponent } from './dashboards/events-dashboard/event-edit/eve
 import { EventListComponent } from './dashboards/events-dashboard/event-list/event-list.component';
 import { SponsorsListComponent } from './dashboards/sponsors-dashboard/sponsors-list/sponsors-list.component';
 import { SponsorsCreateComponent } from './dashboards/sponsors-dashboard/sponsors-create/sponsors-create.component';
+import { FAQDashboardComponent } from './dashboards/faq-dashboard/faq-dashboard.component';
+import { FAQCreateComponent } from './dashboards/faq-dashboard/faq-create/faq-create.component';
+import { FAQListComponent } from './dashboards/faq-dashboard/faq-list/faq-list.component';
+import { FAQService } from 'src/app/Services/adminpanel/faq.service';
 
 
 
@@ -65,7 +69,10 @@ import { SponsorsCreateComponent } from './dashboards/sponsors-dashboard/sponsor
     EventEditComponent,
     EventListComponent,
     SponsorsListComponent,
-    SponsorsCreateComponent
+    SponsorsCreateComponent,
+    FAQDashboardComponent,
+    FAQListComponent,
+    FAQCreateComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +86,8 @@ import { SponsorsCreateComponent } from './dashboards/sponsors-dashboard/sponsor
     HighlightsService,
     NewsfeedService,
     TeamsService,
-    EventsService
+    EventsService,
+    FAQService
   ]
 })
 export class AdminpanelModule { }

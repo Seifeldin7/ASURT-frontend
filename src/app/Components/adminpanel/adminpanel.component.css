@@ -17,3 +17,8 @@
     right:0;
     z-index: 1020;
 }
+
+.delete-btn{
+    right: 0.4em;
+    bottom: -0.8em;
+}
