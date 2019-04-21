@@ -41,6 +41,9 @@ import { WebsiteComponent } from './Components/website/website.component';
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { WebsiteComponent } from './Components/website/website.component';
+import { TeamsComponent } from './Components/website/teams/teams.component';
+import { TeamPageComponent } from './Components/website/teams/team-page/team-page.component';
 
 
 @NgModule({
@@ -50,6 +53,8 @@ import { ToastrModule } from 'ngx-toastr';
     GeneralComponent,
     LoadingComponent,
     WebsiteComponent,
+    TeamsComponent,
+    TeamPageComponent,
   ],
   imports: [
     BrowserModule,
