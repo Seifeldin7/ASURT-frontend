@@ -43,6 +43,10 @@ export class TeamsService {
     return this.onChangeTeams;
   }
 
+  update_fetched_data(){
+    this.teams = [];
+    this.fetch_teams();
+  }
 
   get_team_by_id(id:Number){
     if(this.teams.length > 0){

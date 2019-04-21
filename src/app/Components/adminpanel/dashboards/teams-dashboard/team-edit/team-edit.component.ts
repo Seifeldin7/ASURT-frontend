@@ -216,6 +216,7 @@ export class TeamEditComponent implements OnInit {
         (res:any) => {
           if(res.status == true){
             this.toastr.success(res.msg,"Success");
+            this.teamService.update_fetched_data();
           }else{
             this.toastr.error(res.msg,"Error");
             // TODO redirect
@@ -246,6 +247,7 @@ export class TeamEditComponent implements OnInit {
         (res:any) => {
           if(res.status == true){
             this.toastr.success(res.msg,"Success");
+            this.teamService.update_fetched_data();
           }else{
             this.toastr.error(res.msg,"Error");
             // TODO redirect
