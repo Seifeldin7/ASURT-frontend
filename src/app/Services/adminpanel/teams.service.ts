@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Team } from 'src/app/Models/team.interface';
+import { Team, Achivement } from 'src/app/Models/team.interface';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,23 @@ import { Router } from '@angular/router';
 })
 export class TeamsService {
 
-  private teams: Team[] = [];
+  // achiv:Achivement = new Achivement("achiv1","pos1","descrip1","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
+  // achiv2:Achivement = new Achivement("achiv2","pos2","descrip2","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
+  // achiv3:Achivement = new Achivement("achiv3","pos3","descrip3","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
+  //
+  //
+  //
+  // team1:Team =  new Team(1,"Team1","description1",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv,this.achiv2,this.achiv3],"managemant");
+  //
+  // team2:Team =  new Team(2,"Team2","description2",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv,this.achiv2,this.achiv3],"technical");
+  // team3:Team =  new Team(3,"Team3","description3",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv,this.achiv2,this.achiv3],"managemant");
+
+
+  private teams = [
+    // this.team1
+    // ,this.team2,
+    // this.team3
+  ];
   private onChangeTeams = new Subject<Team[]>();
   private onReceiveOneTeam = new Subject<Team>();
 
@@ -22,7 +38,7 @@ export class TeamsService {
     if(this.teams.length > 0){
       /** If teams fetched before next without sending request */
       setTimeout(() => {
-        this.onChangeTeams.next(this.teams); 
+        this.onChangeTeams.next(this.teams);
       });
     }else{
       this.http.get<Team[]>('api/teams/').subscribe(
@@ -63,7 +79,7 @@ export class TeamsService {
     this.http.get<Team>('api/teams/'+id+'/').subscribe(
       (team: Team) => {
         this.onReceiveOneTeam.next(team);
-      },  
+      },
       (err:any) => {
         if ('msg' in err.error) {
           this.toastr.error(err.error.msg, "Error")
