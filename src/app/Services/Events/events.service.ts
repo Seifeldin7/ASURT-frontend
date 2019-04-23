@@ -15,7 +15,7 @@ constructor (private http:HttpClient){}
 getEvents (){
     return this.http.get<Evnt>('api/events/all/');
 }
-setEvents (events:Event[]){
+setEvents (events:Evnt[]){
      this.events =events;
 }
 getEvent(id:number){
