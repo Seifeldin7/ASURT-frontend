@@ -43,7 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TeamsComponent } from './Components/website/teams/teams.component';
 import { TeamPageComponent } from './Components/website/teams/team-page/team-page.component';
-
+import { EventService } from './Services/events/events.service';
 
 @NgModule({
   declarations: [
@@ -81,6 +81,7 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
       // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
+      { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
       // { path: '**', redirectTo: 'auth/login' }
     ])
   ],
@@ -88,6 +89,7 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
     AuthenticationService,
     GeneralService,
     ProfileService,
+    EventService,
     IsLoggedInGuardService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

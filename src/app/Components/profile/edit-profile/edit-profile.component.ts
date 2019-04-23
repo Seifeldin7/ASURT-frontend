@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, AbstractControl } from '@angular/forms';
 import { ProfileService } from '../../../Services/Profile/profile.service';
 import { Profile } from '../../../Models/profile.model';
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { isError } from 'util';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -47,9 +47,8 @@ export class EditProfileComponent implements OnInit {
     this.profileservice.profileExist();
     this.profileservice.editMode.take(1).subscribe(
       edit => {
-        //console.log("ngOnint")
+       
         this.editMode = edit;
-
         this.profileservice.seteditMode(edit);
         if (edit == true) {
           this.editpic = false;
@@ -58,7 +57,6 @@ export class EditProfileComponent implements OnInit {
             (response) => {
               console.log(response)
               this.profile = response['0'];
-              // console.log(this.profile.profile_pic)
               let baseUrlBackTest = "http://localhost:8000";
               this.temp = baseUrlBackTest + this.profile.profile_pic;
               this.profilepicbase64 = '';
@@ -88,7 +86,6 @@ export class EditProfileComponent implements OnInit {
                 type: 'error',
                 title: 'Oops...',
                 text: 'Something went wrong!',
-                // footer: '<a href>Why do I have this issue?</a>'
               })
 
             }
@@ -131,7 +128,6 @@ export class EditProfileComponent implements OnInit {
         error => {
           var keys = Object.keys(error["error"]);
           this.errors = error["error"];
-          //this.pass.markAsUntouched();
           
           this.loading = false;
           this.submitBtn = false;
