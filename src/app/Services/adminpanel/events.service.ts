@@ -18,8 +18,8 @@ export class EventsService {
 
   fetch_Events(){
     /**
-     * Fetch highlights from database
-     * if highlights fetched before next without send another request
+     * Fetch events from database
+     * if events fetched before next without send another request
      */
     if(this.events.length > 0){
       setTimeout(() => {
@@ -80,7 +80,7 @@ export class EventsService {
       description:data.description,
       image:data.image,
       status:data.status,
-      type:data.type,
+      event_type:data.event_type,
       date:data.date
     });
   }
@@ -91,7 +91,7 @@ export class EventsService {
   // description:string,
   // status:boolean,
   // image:string,
-  // type:string
+  // event_type:string
 
   update_event(id:Number,data){
     this.events = [];
@@ -100,7 +100,7 @@ export class EventsService {
       description:data.description,
       image:data.image,
       status:data.status,
-      type:data.type,
+      event_type:data.event_type,
       date:data.date
     });
   }

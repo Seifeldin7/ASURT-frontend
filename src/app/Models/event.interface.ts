@@ -5,5 +5,5 @@ export interface Event{
   description:string,
   status:boolean,
   image:string,
-  type:string
+  event_type:string
 }

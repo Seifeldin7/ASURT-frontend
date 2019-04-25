@@ -18,7 +18,4 @@ export class EventCardComponent implements OnInit {
       this.eventss.delete_event(this.card.id);
     }
   }
-  edit_event(){
-
-  }
 }

@@ -8,33 +8,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  events_list:Event[] = [
-    {
-      id:0,
-      name:'thegreatevent',
-      description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ',
-      image:'https://dummyimage.com/300x400/c263c2/0011ff.jpg',
-      date:null,
-      status:true,
-      type:'competition'
-    },
-    {
-      id:1,
-      name:'thegreatevent',
-      description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et',
-      image:'https://dummyimage.com/300x400/c263c2/0011ff.jpg',
-      date:null,
-      status:true,
-      type:'competition'
-    }
-  ]
+  events_list:Event[] = [ ]
+  filter:string = 'all';
+
   constructor(private eventsService:EventsService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.eventsService.fetch_Events().subscribe(events=>{
-    //   this.events_list = events;
-    // });
+
+    this.eventsService.fetch_Events().subscribe(events=>{
+      this.events_list = events;
+
+      this.activatedRoute.queryParams.subscribe(params=>{
+        if(params.filter == 'active'){
+          this.filter = 'active';
+          this.events_list = this.eventsService.get_active();
+        }else{
+          this.filter = 'all';
+          this.events_list = events;
+        }
+      });
+    });
+
   }
 
 }
