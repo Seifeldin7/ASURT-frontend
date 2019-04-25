@@ -37,10 +37,6 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
-
-//others
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { WebsiteComponent } from './Components/website/website.component';
 import { FooterComponent } from './Components/website/footer/footer.component';
 import { HomepageComponent } from './Components/website/homepage/homepage.component';
@@ -48,6 +44,13 @@ import { NavbarComponent } from './Components/website/navbar/navbar.component';
 import { LatestnewsComponent } from './Components/website/homepage/latestnews/latestnews.component';
 import { EventsComponent } from './Components/website/homepage/events/events.component';
 import { SponsorsComponent } from './Components/website/sponsors/sponsors.component';
+
+//others
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+// Import ng-circle-progress-day-countdown
+import { NgCircleProgressModule } from 'ng-circle-progress-day-countdown';
 
 
 @NgModule({
@@ -80,7 +83,16 @@ import { SponsorsComponent } from './Components/website/sponsors/sponsors.compon
       enableHtml: true,
       positionClass: 'toast-bottom-right',
     }),
-
+    // Specify ng-circle-progress as an import
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
     GeneralRoutesModule,
     // ProfileRoutesModule,
 
