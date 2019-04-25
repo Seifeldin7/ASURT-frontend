@@ -214,13 +214,9 @@ export class TeamEditComponent implements OnInit {
       };
       this.teamService.update_team(this.updating_team_id,team_data).subscribe(
         (res:any) => {
-          if(res.status == true){
-            this.toastr.success(res.msg,"Success");
-            this.teamService.update_fetched_data();
-          }else{
-            this.toastr.error(res.msg,"Error");
-            // TODO redirect
-          }
+          this.toastr.success(res.msg,"Success");
+          this.teamService.update_fetched_data();
+          // TODO: Resirect
           this.submitted = false;
         },
         (err:any) => {
@@ -245,13 +241,9 @@ export class TeamEditComponent implements OnInit {
       /** Post new team */
       this.teamService.post_team(team_data).subscribe(
         (res:any) => {
-          if(res.status == true){
-            this.toastr.success(res.msg,"Success");
-            this.teamService.update_fetched_data();
-          }else{
-            this.toastr.error(res.msg,"Error");
-            // TODO redirect
-          }
+          this.toastr.success(res.msg,"Success");
+          this.teamService.update_fetched_data();
+          // TODO redirect
           this.submitted = false;
         },
         (err:any) => {

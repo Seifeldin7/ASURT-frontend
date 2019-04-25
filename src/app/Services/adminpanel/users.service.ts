@@ -78,16 +78,10 @@ export class UsersService {
     this.http.put('api/user/'+user_id+'/',{
       group:updated_group
     }).subscribe((response:any)=>{
-      if(response.status == true){
-        this.toastr.success(response.msg,"Success");
-        let user_index = this.users.findIndex(user=>{
-          return user.id == user_id
-        })
-        this.users[user_index].group = updated_group;
-        // console.log(this.users)
-      }else{
-        this.toastr.error(response.msg,"Success");
-      }
+      this.toastr.success(response.msg,"Success");
+      let user_index = this.users.findIndex(user=>{
+        return user.id == user_id
+      })
     },err=>{
       if ('msg' in err.error) {
         this.toastr.error(err.error.msg, "Error")

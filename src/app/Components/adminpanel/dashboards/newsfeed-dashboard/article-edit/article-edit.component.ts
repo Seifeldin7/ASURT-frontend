@@ -130,14 +130,10 @@ export class ArticleEditComponent implements OnInit {
       }
       this.newsfeedService.update_article(this.updating_article_id,article_data).subscribe(
         (res:any) => {
-          if(res.status == true){
-            this.toastr.success(res.msg,"Success");
-            /**
-             * TODO: navigate
-             */
-          }else{
-            this.toastr.error(res.msg,"Error");
-          }
+          this.toastr.success(res.msg,"Success");
+          /**
+           * TODO: navigate
+           */
           this.submitted = false;
         },
         (err:any) => {
@@ -166,14 +162,10 @@ export class ArticleEditComponent implements OnInit {
       }
       this.newsfeedService.post_article(article_data).subscribe(
         (res:any) => {
-          if(res.status == true){
-            this.toastr.success(res.msg,"Success");
-            /**
-             * TODO: navigate
-             */
-          }else{
-            this.toastr.error(res.msg,"Error");
-          }
+          this.toastr.success(res.msg,"Success");
+          /**
+           * TODO: navigate
+           */
           this.submitted = false;
         },
         (err:any) => {

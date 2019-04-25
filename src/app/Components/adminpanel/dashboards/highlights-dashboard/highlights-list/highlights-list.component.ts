@@ -10,16 +10,7 @@ import { Highlight } from 'src/app/Models/highlight.interface';
 })
 export class HighlightsListComponent implements OnInit {
 
-  highlights_list:Highlight[] = [
-    {
-      id:0,
-      title:'--',
-      description:'--',
-      image:'--',
-      url:'--',
-      active:false
-    }
-  ]
+  highlights_list:Highlight[] = [ ]
 
   filter:string = 'all';
 

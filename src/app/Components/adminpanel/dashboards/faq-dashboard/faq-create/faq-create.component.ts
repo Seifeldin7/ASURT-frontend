@@ -28,12 +28,8 @@ export class FAQCreateComponent implements OnInit {
       answer: this.FAQ_form.value.answer
     }).subscribe(
       (res:any) => {
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
-          this.FAQService.update();
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        this.toastr.success(res.msg,"Success");
+        this.FAQService.update();
       }, err =>{
         if ('msg' in err.error) {
           this.toastr.error(err.error.msg, "Error")

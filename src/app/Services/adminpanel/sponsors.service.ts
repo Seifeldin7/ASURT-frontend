@@ -41,15 +41,11 @@ export class SponsorsService {
   delete_sponsor(id:Number){
     this.http.delete('api/sponsors/'+id+'/').subscribe(
       (res:any)=>{
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
+        this.toastr.success(res.msg,"Success");
 
-          /** delete from local array */
-          let index = this.sponsors.findIndex(el => el.id == id);
-          this.sponsors.splice(index,1);
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        /** delete from local array */
+        let index = this.sponsors.findIndex(el => el.id == id);
+        this.sponsors.splice(index,1);
       },(err)=>{
         if ('msg' in err.error) {
           this.toastr.error(err.error.msg, "Error")

@@ -55,15 +55,11 @@ export class FAQService {
   delete_FAQ(id:Number){
     this.http.delete('api/FAQ/'+id+'/').subscribe(
       (res:any)=>{
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
+        this.toastr.success(res.msg,"Success");
 
-          /** delete from local array */
-          let index = this.FAQ.findIndex(el => el.id == id);
-          this.FAQ.splice(index,1);
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        /** delete from local array */
+        let index = this.FAQ.findIndex(el => el.id == id);
+        this.FAQ.splice(index,1);
       },(err)=>{
         if ('msg' in err.error) {
           this.toastr.error(err.error.msg, "Error")

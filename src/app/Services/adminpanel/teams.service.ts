@@ -103,12 +103,8 @@ export class TeamsService {
   delete_team(id:Number){
     this.http.delete('api/teams/'+id+'/').subscribe(
       (res:any) => {
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
-          this.router.navigate(['adminpanel/teams'])
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        this.toastr.success(res.msg,"Success");
+        this.router.navigate(['adminpanel/teams']);
       },
       (err:any) => {
         if ('msg' in err.error) {

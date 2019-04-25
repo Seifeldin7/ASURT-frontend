@@ -126,14 +126,10 @@ export class NewsfeedService {
   delete_article(id:Number){
     this.http.delete('api/news-feed/'+ id +'/').subscribe(
       (res:any)=>{
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
-          
-          let article_index = this.articles.findIndex(x=> x.id == id);
-          this.articles.splice(article_index,1);
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        this.toastr.success(res.msg,"Success");
+        
+        let article_index = this.articles.findIndex(x=> x.id == id);
+        this.articles.splice(article_index,1);
       },
       (err)=>{
         if ('msg' in err.error) {

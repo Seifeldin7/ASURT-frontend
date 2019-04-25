@@ -95,14 +95,12 @@ export class HighlightsService {
 
   delete_highlight(id:Number){
     this.http.delete('/api/highlights/'+ id +'/').subscribe((res:any)=>{
-      if(res.status == true){
-        this.toastr.success(res.msg,"Success");
-        /** 
-         * TODO: delete this highlight from array
-         */
-      }else{
-        this.toastr.error(res.msg,"Error");
-      }
+      this.toastr.success(res.msg,"Success");
+      /** 
+       * delete from local array
+       */
+      let index = this.highlights.findIndex(el => el.id == id);
+      this.highlights.splice(index,1);
     },(err)=>{
       if ('msg' in err.error) {
         this.toastr.error(err.error.msg, "Error")

@@ -9,28 +9,7 @@ import { FAQService } from 'src/app/Services/adminpanel/faq.service';
 })
 export class FAQListComponent implements OnInit {
 
-  FAQ_list:FAQ[] = [
-    {
-      id:0,
-      question:'q1',
-      answer:'a1'
-    },
-    {
-      id:1,
-      question:'q2',
-      answer:'a2'
-    },
-    {
-      id:2,
-      question:'q3',
-      answer:'a3'
-    },
-    {
-      id:3,
-      question:'q4',
-      answer:'a4'
-    },
-  ];
+  FAQ_list:FAQ[] = [ ];
 
   constructor(private FAQService: FAQService) { }
 

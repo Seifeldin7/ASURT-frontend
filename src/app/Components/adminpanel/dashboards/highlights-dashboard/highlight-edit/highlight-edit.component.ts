@@ -84,11 +84,7 @@ export class HighlightEditComponent implements OnInit {
         active:this.card_form.value.active
       }).subscribe(
         (res:any) => {
-          if(res.status == true){
-            this.toastr.success(res.msg,"Success");
-          }else{
-            this.toastr.error(res.msg,"Error");
-          }
+          this.toastr.success(res.msg,"Success");
           this.submitted = false;
         },
         (err:any) => {
@@ -109,12 +105,7 @@ export class HighlightEditComponent implements OnInit {
         url:this.card_form.value.url,
         active:this.card_form.value.active
       }).subscribe((res:any) => {
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
-        }else{
-          this.toastr.error(res.msg,"Error");
-          // TODO redirect
-        }
+        this.toastr.success(res.msg,"Success");
         this.submitted = false;
       }, err =>{
         if ('msg' in err.error) {
