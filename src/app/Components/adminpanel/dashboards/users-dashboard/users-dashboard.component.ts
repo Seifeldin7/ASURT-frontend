@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { UsersService } from 'src/app/Services/adminpanel/users.service';
-import { User } from 'src/app/Models/user';
+import { User, Group } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-users-dashboard',
@@ -11,20 +11,9 @@ import { User } from 'src/app/Models/user';
 })
 export class UsersDashboardComponent implements OnInit {
 
-  users_table:User[] = [
-    {
-      id:0,
-      name:'--',
-      email:'--',
-      phone:'--',
-      college_id:'--',
-      group:'--'
-    }
-  ]
+  users_table:User[] = []
 
-  user_groups:string[] = [
-    '--'
-  ]
+  user_groups:Group[] = []
 
   private search_field:FormControl = new FormControl('');
 
@@ -40,13 +29,12 @@ export class UsersDashboardComponent implements OnInit {
     })
 
     this.search_field.valueChanges.subscribe(val=>{
-      console.log(val)
       this.users_table = this.usersService.get_users().filter((user)=>{
         return (''+user.name+' '
                   +user.email+' '
                   +user.phone+' '
                   +user.college_id+' '
-                  +user.group).toLowerCase().includes(val.toLowerCase());
+                  +user.group.name).toLowerCase().includes(val.toLowerCase());
       })
     })
   }

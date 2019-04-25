@@ -4,5 +4,10 @@ export interface User{
 		name: string,
 		phone:string,
 		college_id:string,
-		group:string
+		group:Group
+}
+
+export interface Group{
+	id:Number,
+	name:string,
 }

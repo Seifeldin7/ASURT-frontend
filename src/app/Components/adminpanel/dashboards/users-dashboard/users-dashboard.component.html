@@ -36,8 +36,8 @@
                   <div class="form-group bmd-form-group">
                     <select class="form-control" (change)="update_group($event.target.value,user.id)">
                       <option class="my-2" *ngFor="let group of user_groups" 
-                        value="{{group}}"
-                        [selected]="group == user.group">{{group}}</option>
+                        value="{{group.name}}"
+                        [selected]="group.name == user.group.name">{{group.name}}</option>
                     </select>
                   </div>
                 </td>
