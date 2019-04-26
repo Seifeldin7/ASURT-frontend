@@ -1,7 +1,7 @@
 <div class="card card-chart">
   <div class="card-header card-header-light p-0">
     <div class="ct-chart" id="dailySalesChart">
-      <img src="{{card.image}}" class="rounded" alt="" style="width:100%">
+      <img src="http://127.0.0.1:8000{{card.image[card.image.length -1].image}}" class="rounded" alt="" style="width:100%">
     </div>
   </div>
   <div class="card-body position-relative">
@@ -15,7 +15,6 @@
     </div>
     <h4 class="card-title">{{card.title}}</h4>
     <p class="card-category">
-      {{card.description}}
     </p>
   </div>
   <div class="card-footer">

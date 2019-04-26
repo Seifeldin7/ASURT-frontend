@@ -94,7 +94,7 @@ export class HighlightsService {
   }
 
   delete_highlight(id:Number){
-    this.http.delete('/api/highlights/'+ id +'/').subscribe((res:any)=>{
+    this.http.delete('api/highlights/'+ id +'/').subscribe((res:any)=>{
       this.toastr.success(res.msg,"Success");
       /** 
        * delete from local array

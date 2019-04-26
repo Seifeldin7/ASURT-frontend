@@ -66,7 +66,7 @@ export class HighlightEditComponent implements OnInit {
           description: card.description,
           url: card.url,
           active: card.active,
-          image: card.image,
+          image: card.image[card.image.length -1].image,
         })
       })
     }
@@ -79,7 +79,7 @@ export class HighlightEditComponent implements OnInit {
       this.highlightsServices.update_highlight(this.updating_card_id,{
         title:this.card_form.value.title,
         description:this.card_form.value.description,
-        image:this.card_form.value.image,
+        image: (this.croppedImage) ? this.card_form.value.image : '',
         url:this.card_form.value.url,
         active:this.card_form.value.active
       }).subscribe(
