@@ -28,7 +28,6 @@ export class NewsfeedService {
   }
 
   fetch_articles_page(page_number:Number = 1){
-    console.log('bla');
     this.onReachMaxPages.next(this.current_page_number == this.pages_number);
     if(page_number <= this.current_page_number){
       /** if requested page same current page next articles without send new request */
@@ -77,7 +76,7 @@ export class NewsfeedService {
       }
     }
     /** else no articles before or required id does not exist */
-    this.http.get<Article>('api/article/'+id+'/').subscribe(
+    this.http.get<Article>('api/edit-news-feed/'+id+'/').subscribe(
       (article:Article)=>{
         this.onReceiveOneArticle.next(article);
       },
@@ -112,7 +111,7 @@ export class NewsfeedService {
     this.articles = [];
     this.current_page_number = 0;
     this.onReachMaxPages.next(false);
-    return this.http.put('api/article/'+id+'/',{
+    return this.http.put('api/edit-news-feed/'+id+'/',{
       title: data.title,
       description:  data.description,
       date: data.date,
@@ -124,7 +123,7 @@ export class NewsfeedService {
   }
 
   delete_article(id:Number){
-    this.http.delete('api/news-feed/'+ id +'/').subscribe(
+    this.http.delete('api/edit-news-feed/'+ id +'/').subscribe(
       (res:any)=>{
         this.toastr.success(res.msg,"Success");
         

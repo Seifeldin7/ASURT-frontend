@@ -5,7 +5,7 @@
         <div class="card-header card-header-light p-0">
           <div class="ct-chart" id="dailySalesChart">
             <div *ngIf="article.article_type == 'image'">
-              <img src="{{article.image[article.image.length -1].image}}" class="rounded" alt="" style="width:100%">
+              <img src="http://127.0.0.1:8000{{article.image[article.image.length -1].image}}" class="rounded" alt="" style="width:100%">
             </div>
       
             <div class="embed-responsive embed-responsive-16by9 rounded" *ngIf="article.article_type == 'video'">
@@ -15,7 +15,7 @@
         </div>
         <div class="card-body position-relative">
           <div class="control-btns position-absolute">
-            <button class="btn btn-sm btn-success btn-fab btn-fab-mini btn-round mr-2" [routerLink]="['./edit/',article.id]" routerLinkActive="active" >
+            <button class="btn btn-sm btn-success btn-fab btn-fab-mini btn-round mr-2" [routerLink]="['../edit/',article.id]" routerLinkActive="active" >
                 <i class="material-icons">edit</i></button>
             <button class="btn btn-sm btn-danger btn-fab btn-fab-mini btn-round mr-2"
                 (click)="delete_article()">
@@ -47,7 +47,7 @@
       <div class="card-stats">
         <div class="stats ml-auto">
           <div class="control-btns position-absolute">
-            <button class="btn btn-sm btn-success btn-fab btn-fab-mini btn-round mr-2" [routerLink]="['./edit/',article.id]" routerLinkActive="active" >
+            <button class="btn btn-sm btn-success btn-fab btn-fab-mini btn-round mr-2" [routerLink]="['../edit/',article.id]" routerLinkActive="active" >
                 <i class="material-icons">edit</i></button>
             <button class="btn btn-sm btn-danger btn-fab btn-fab-mini btn-round mr-2"
                 (click)="delete_article()">

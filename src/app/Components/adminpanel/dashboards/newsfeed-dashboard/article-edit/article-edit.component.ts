@@ -5,6 +5,7 @@ import { NewsfeedService, get_youtube_id_from_url } from 'src/app/Services/admin
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-article-edit',
@@ -29,9 +30,9 @@ export class ArticleEditComponent implements OnInit {
   article_form:FormGroup = this.formBuilder.group({
     title:[null,[Validators.required]],
     description:[null,[Validators.required]],
-    date:[],
-    image:[null,[Validators.required]],
-    video:[null,[Validators.required]]
+    date:[formatDate(new Date(), 'yyyy-MM-dd', 'en')],
+    image:[null],
+    video:[null]
   });
   video_embedd_link:any = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed');
   
@@ -48,7 +49,7 @@ export class ArticleEditComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.article_form.patchValue({
-    image:this.croppedImage
+      image:this.croppedImage
     });
   }
   loadImageFailed() {
@@ -108,6 +109,22 @@ export class ArticleEditComponent implements OnInit {
      * Change article type from DOM
      */
     this.article_type = type;
+    if(type == 'video'){
+      this.article_form.controls.image.setValidators(null);
+      this.article_form.controls.video.setValidators([Validators.required]);
+      this.article_form.controls.image.updateValueAndValidity();
+      this.article_form.controls.video.updateValueAndValidity();
+    }else if(type == 'image'){
+      this.article_form.controls.video.setValidators(null);
+      this.article_form.controls.image.setValidators([Validators.required]);
+      this.article_form.controls.image.updateValueAndValidity();
+      this.article_form.controls.video.updateValueAndValidity();
+    }else {
+      this.article_form.controls.video.setValidators(null);
+      this.article_form.controls.image.setValidators(null);
+      this.article_form.controls.image.updateValueAndValidity();
+      this.article_form.controls.video.updateValueAndValidity();
+    }
   }
 
   onSubmit(){
@@ -119,7 +136,7 @@ export class ArticleEditComponent implements OnInit {
       let article_data = {
         title: this.article_form.value.title,
         description:  this.article_form.value.description,
-        date: this.article_form.value.description,
+        date: this.article_form.value.date,
         status: false,
         article_type: this.article_type,
         /**
@@ -151,7 +168,7 @@ export class ArticleEditComponent implements OnInit {
       let article_data = {
         title: this.article_form.value.title,
         description:  this.article_form.value.description,
-        date: new Date(),
+        date: this.article_form.value.date,
         status: false,
         article_type: this.article_type,
         /**
