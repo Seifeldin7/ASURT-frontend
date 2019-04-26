@@ -22,7 +22,7 @@ export class FAQService {
         this.onChangeFAQ.next(this.FAQ); 
       });
     }else{
-      this.http.get<FAQ[]>('api/FAQ/').subscribe(
+      this.http.get<FAQ[]>('api/faq/').subscribe(
         (FAQ:FAQ[]) => {
           this.FAQ = FAQ;
           this.onChangeFAQ.next(this.FAQ);
@@ -46,14 +46,14 @@ export class FAQService {
   }
 
   post_FAQ(data){
-    return this.http.post('api/FAQ/',{
+    return this.http.post('api/faq/',{
       question: data.question,
       answer: data.answer
     })
   }
 
   delete_FAQ(id:Number){
-    this.http.delete('api/FAQ/'+id+'/').subscribe(
+    this.http.delete('api/faq/'+id+'/').subscribe(
       (res:any)=>{
         this.toastr.success(res.msg,"Success");
 

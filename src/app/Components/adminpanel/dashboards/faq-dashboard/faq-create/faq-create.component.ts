@@ -30,6 +30,10 @@ export class FAQCreateComponent implements OnInit {
       (res:any) => {
         this.toastr.success(res.msg,"Success");
         this.FAQService.update();
+        this.FAQ_form.patchValue({
+          question:null,
+          answer:null
+        })
       }, err =>{
         if ('msg' in err.error) {
           this.toastr.error(err.error.msg, "Error")
