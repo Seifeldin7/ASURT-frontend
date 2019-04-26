@@ -55,6 +55,10 @@ export class SponsorsCreateComponent implements OnInit {
       (res:any) => {
         this.toastr.success(res.msg,"Success");
         this.sponsorService.update();
+        this.sponsor_form.patchValue({
+          image:null,
+          url:null
+        })
         this.submitted = false;
       }, err =>{
         if ('msg' in err.error) {
