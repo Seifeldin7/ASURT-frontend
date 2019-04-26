@@ -106,7 +106,7 @@ export class EventsService {
   }
 
   delete_event(id:Number){
-    this.http.delete('/api/events/'+ id +'/').subscribe((res:any)=>{
+    this.http.delete('api/events/'+ id +'/').subscribe((res:any)=>{
       this.toastr.success(res.msg,"Success");
       /**
        * delete from local array

@@ -94,11 +94,7 @@ export class EventEditComponent implements OnInit {
         status:this.card_form.value.status
       }).subscribe(
         (res:any) => {
-          if(res.status == true){
-            this.toastr.success(res.msg,"Success");
-          }else{
-            this.toastr.error(res.msg,"Error");
-          }
+          this.toastr.success(res.msg,"Success");
           this.submitted = false;
         },
         (err:any) => {

@@ -4,6 +4,6 @@ export interface Event{
   date:Date,
   description:string,
   status:boolean,
-  image:string,
+  image:Array<{id:Number,image:string}>,
   event_type:string
 }
