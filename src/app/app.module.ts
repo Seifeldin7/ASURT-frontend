@@ -55,6 +55,11 @@ import { LatestnewsComponent } from './Components/website/homepage/latestnews/la
 import { EventsComponent } from './Components/website/homepage/events/events.component';
 import { SponsorsComponent } from './Components/website/sponsors/sponsors.component';
 
+//import { EventListComponent } from './components/events/event-list/event-list.component';
+//import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
+import { EventService } from './Services/Events/events.service';
+import { EventDetailComponent } from './Components/events/event-detail/event-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -73,6 +78,9 @@ import { SponsorsComponent } from './Components/website/sponsors/sponsors.compon
     LatestnewsComponent,
     EventsComponent,
     SponsorsComponent,
+    EventsComponent,
+
+    EventDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +117,7 @@ import { SponsorsComponent } from './Components/website/sponsors/sponsors.compon
     AuthenticationService,
     GeneralService,
     ProfileService,
+    EventService,
     IsLoggedInGuardService,
     NewsFeedService,
 
