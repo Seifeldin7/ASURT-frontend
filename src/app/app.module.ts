@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
+
 
 //Directives
 
@@ -46,6 +48,12 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './Components/website/footer/footer.component';
+import { HomepageComponent } from './Components/website/homepage/homepage.component';
+import { NavbarComponent } from './Components/website/navbar/navbar.component';
+import { LatestnewsComponent } from './Components/website/homepage/latestnews/latestnews.component';
+import { EventsComponent } from './Components/website/homepage/events/events.component';
+import { SponsorsComponent } from './Components/website/sponsors/sponsors.component';
 
 
 @NgModule({
@@ -59,6 +67,12 @@ import { ToastrModule } from 'ngx-toastr';
     PostComponent,
     TeamsComponent,
     TeamPageComponent,
+    FooterComponent,
+    HomepageComponent,
+    NavbarComponent,
+    LatestnewsComponent,
+    EventsComponent,
+    SponsorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +81,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     RouterModule,
     NgbModalModule,
+    NgbModule.forRoot(),
+
 
     BrowserAnimationsModule,
     ToastrModule.forRoot({

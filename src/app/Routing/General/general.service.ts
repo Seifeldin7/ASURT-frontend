@@ -4,6 +4,8 @@ import { NewsFeedComponent } from 'src/app/Components/news-feed/news-feed.compon
 import { TeamsComponent } from 'src/app/Components/website/teams/teams.component';
 import { TeamPageComponent } from 'src/app/Components/website/teams/team-page/team-page.component';
 
+import { HomepageComponent } from 'src/app/Components/website/homepage/homepage.component';
+
 export const router = [
   { path:'news/:id', component: NewsFeedComponent},
   { path: 'teams/:type', component: TeamsComponent },
@@ -11,7 +13,6 @@ export const router = [
   // { path: '**', redirectTo: '/' },
   // { path: '', redirectTo: '/', pathMatch: 'full' }
 ]
-
 
 /* Exporting routes variable so we can use in the app.module.ts */
 export const GeneralRoutesModule: ModuleWithProviders = RouterModule.forRoot(router);
