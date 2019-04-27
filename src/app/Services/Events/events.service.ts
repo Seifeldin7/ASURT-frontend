@@ -13,7 +13,7 @@ constructor (private http:HttpClient){}
 
 
 getEvents (){
-    return this.http.get<Evnt>('api/events/all/');
+    return this.http.get<Evnt[]>('api/events/all/');
 }
 // setEvents (events:Event[]){
 //      this.events =events;

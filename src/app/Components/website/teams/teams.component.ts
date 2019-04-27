@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Team,Achivement } from '../../../Models/team.interface';
+import { Team,Achivement } from '../../../Models/team.model';
 import { HttpClient } from '@angular/common/http';
 import { TeamsService } from '../../../Services/teams/teams.service';
 import { ActivatedRoute,Params,Router } from '@angular/router';

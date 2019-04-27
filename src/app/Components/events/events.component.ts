@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Evnt } from 'src/app/Models/event.model';
-import { EventService } from 'src/app/Services/events/events.service';
+import { EventService } from 'src/app/Services/Events/events.service';
 import Swal from 'sweetalert2';
 
 @Component({
