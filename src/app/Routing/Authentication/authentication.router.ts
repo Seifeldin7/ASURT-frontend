@@ -7,8 +7,12 @@ import { ChangePasswordComponent } from 'src/app/Components/authentication/chang
 import { ForgetPasswordComponent } from 'src/app/Components/authentication/forget-password/forget-password.component';
 import { AuthenticationComponent } from 'src/app/Components/authentication/authentication.component';
 import { ChangePasswordGuardService } from './auth-guard.service';
+// import { TeamsComponent } from 'src/app/Components/website/teams/teams.component';
 
 export const router = [
+  // {
+  //   path: 'teams', component: TeamsComponent
+  // },
   {
     path: 'auth', component: AuthenticationComponent, children: [
       { path: '', redirectTo: 'login', pathMatch:'full' },

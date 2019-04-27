@@ -40,6 +40,8 @@ import { WebsiteComponent } from './Components/website/website.component';
 import { NewsFeedComponent } from './Components/news-feed/news-feed.component';
 import { PostComponent } from './Components/news-feed/post/post.component';
 import { NewsFeedService } from './Services/NewsFeed/news-feed.service';
+import { TeamsComponent } from './Components/website/teams/teams.component';
+import { TeamPageComponent } from './Components/website/teams/team-page/team-page.component';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -55,6 +57,8 @@ import { ToastrModule } from 'ngx-toastr';
     WebsiteComponent,
     NewsFeedComponent,
     PostComponent,
+    TeamsComponent,
+    TeamPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,7 @@ import { ToastrModule } from 'ngx-toastr';
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
       // { path: '**', redirectTo: 'auth/login' }
-    ])
+    ]),
   ],
   providers: [
     AuthenticationService,

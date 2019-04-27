@@ -1,0 +1,98 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="split left">
+  <div class="centered">
+    <h3>Management Teams</h3>
+    <p>Description</p>
+    <div *ngFor="let team of teams ; index as i">
+      <!-- <div class="card" *ngIf="team.visiable && team.type=='manag'">
+          <img class="team_pic" src ="{{team.pic}}">
+          <h3>{{team.description}}</h3>
+        </div> -->
+        <!-- <div class="card" style="width: 18rem;" *ngIf="team.type=='manag'">
+          <img class="card-img-top team_pic" src="{{team.images[0]}}">
+          <div class="card-body">
+            <h5 class="card-title">{{team.name}}</h5>
+            <p class="card-text">{{team.description}}</p>
+            <a href="teams/{{team.id}}" class="btn btn-light">open full page</a>
+          </div>
+        </div> -->
+        <!-- <div class="row" *ngIf="team.type=='manag'">
+          <div class="col s12 m7">
+            <div class="card">
+              <div class="card-image">
+                <img src="{{team.images[0]}}">
+                <span class="card-title">{{team.name}}</span>
+              </div>
+              <div class="card-content">
+                <p>{{team.description}}</p>
+              </div>
+              <div class="card-action">
+                <a href="teams/{{team.id}}">open full page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <br>
+      <br>
+      </div>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    <h3>Technical Teams</h3>
+    <p>Description</p>
+    <div *ngFor="let team of teams ; index as i"> -->
+      <!-- <div class="card" *ngIf="team.visiable && team.type=='tech'">
+          <img class="team_pic" src ="{{team.pic}}">
+          <h3>{{team.description}}</h3>
+        </div> -->
+        <!-- <div class="card" style="width: 18rem;" *ngIf="team.type=='tech'">
+          <img class="card-img-top team_pic" src="{{team.images[0]}}">
+          <div class="card-body">
+            <h5 class="card-title">{{team.name}}</h5>
+            <p class="card-text">{{team.description}}</p>
+            <a href="teams/{{team.id}}" class="btn btn-light">open full page</a>
+          </div>
+        </div> -->
+        <!-- <div class="row" *ngIf="team.type=='tech'">
+          <div class="col s12 m7">
+            <div class="card">
+              <div class="card-image">
+                <img src="{{team.images[0]}}">
+                <span class="card-title">{{team.name}}</span>
+              </div>
+              <div class="card-content">
+                <p>{{team.description}}</p>
+              </div>
+              <div class="card-action">
+                <a href="teams/{{team.id}}">open full page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <br>
+      <br>
+      </div>
+    </div>
+  </div> -->
+
+
+
+  <br>
+  <h1 style="text-align:center"> {{out}} </h1>
+  <div class="main">
+    <ul class="cards">
+      <li class="cards_item" *ngFor="let team of teams">
+        <div class="card" *ngIf="team.type == teams_type">
+          <div class="card_image"><img src="{{team.images[0]}}"></div>
+          <div class="card_content">
+            <h2 class="card_title">{{team.name}}</h2>
+            <p class="card_text">{{team.description}}</p>
+            <a href="teams/{{teams_type}}/{{team.id}}"><button class="btn card_btn">Read More</button></a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
