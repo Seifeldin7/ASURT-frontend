@@ -2,7 +2,7 @@
   <div class="card-header">
       {{post.title}}
   </div>
-  <img [src]="post.image['0']['image']" *ngIf="post.image" class="card-img-top" style="height: 300px">
+  <img [src]="'http://127.0.0.1:8000'+post.image['0']['image']" *ngIf="post.image" class="card-img-top" style="height: 300px">
   <div class="embed-responsive embed-responsive-16by9" *ngIf="post.video">
       <iframe class="embed-responsive-item" [src]="embedUrl(post)" allowfullscreen></iframe>
     </div>
