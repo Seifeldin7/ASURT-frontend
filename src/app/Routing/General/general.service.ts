@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TeamsComponent } from 'src/app/Components/website/teams/teams.component';
-import { TeamPageComponent } from 'src/app/Components/website/teams/team-page/team-page.component';
+import { TeamsComponent } from 'src/app/Components/teams/teams.component';
+import { TeamPageComponent } from 'src/app/Components/teams/team-page/team-page.component';
 
 export const router = [
   { path: 'teams/:type', component: TeamsComponent },

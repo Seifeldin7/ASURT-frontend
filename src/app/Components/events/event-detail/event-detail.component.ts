@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/Services/adminpanel/events.service';
-import { Evnt } from '../../../Models/event.interface';
+import { EventsService } from 'src/app/Services/adminpanel/events.service';
+import { Event } from '../../../Models/event.interface';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
@@ -9,10 +9,10 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
-  event:Evnt = new Evnt(null,'','','',[],'',null);
+  event:Event = null;
   id:number;
-  events2:Evnt[]=[];
-  constructor(private eventservice:EventService,private route:ActivatedRoute,private router:Router) { }
+  events2:Event[]=[];
+  constructor(private eventservice:EventsService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
     //this.event = new Event(1,"Formula","asdsdfhygfgfdefa","12-22-2013","scdg","racing",true);

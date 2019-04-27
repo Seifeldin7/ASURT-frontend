@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/Services/adminpanel/events.service';
+import { EventsService } from 'src/app/Services/adminpanel/events.service';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Evnt } from '../../Models/event.interface';
+import { Event } from '../../Models/event.interface';
 
 @Component({
   selector: 'app-events',
@@ -10,18 +10,18 @@ import { Evnt } from '../../Models/event.interface';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events:Evnt[]=[];
-  event:Evnt;
+  events:Event[]=[];
+  event:Event;
   view:boolean=false;
 
-  constructor(private eventService:EventService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private eventService:EventsService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
 
   this.eventService.fetch_Events().subscribe(
     (events)=>{
       this.events = events;
-      this.eventService.setEvents(this.events);
+      //this.eventService.setEvents(this.events);
     },error => {
       Swal.fire({
         title: 'Something went wrong!',

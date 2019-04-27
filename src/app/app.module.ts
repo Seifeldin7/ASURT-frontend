@@ -36,14 +36,12 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
-import { WebsiteComponent } from './Components/website/website.component';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { TeamsComponent } from './Components/website/teams/teams.component';
-import { TeamPageComponent } from './Components/website/teams/team-page/team-page.component';
-import { EventService } from './Services/events/events.service';
+import { TeamsComponent } from './Components/teams/teams.component';
+import { TeamPageComponent } from './Components/teams/team-page/team-page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +49,6 @@ import { EventService } from './Services/events/events.service';
     AuthenticationComponent,
     GeneralComponent,
     LoadingComponent,
-    WebsiteComponent,
     TeamsComponent,
     TeamPageComponent,
   ],
@@ -89,7 +86,7 @@ import { EventService } from './Services/events/events.service';
     AuthenticationService,
     GeneralService,
     ProfileService,
-    EventService,
+    EventsService,
     IsLoggedInGuardService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
