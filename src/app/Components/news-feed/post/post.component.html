@@ -1,0 +1,15 @@
+<div class="card post my-5">
+  <div class="card-header">
+      {{post.title}}
+  </div>
+  <img [src]="post.image['0']['image']" *ngIf="post.image" class="card-img-top" style="height: 300px">
+  <div class="embed-responsive embed-responsive-16by9" *ngIf="post.video">
+      <iframe class="embed-responsive-item" [src]="embedUrl(post)" allowfullscreen></iframe>
+    </div>
+  <div class="card-body">
+    <p class="card-text">{{post.description}}</p>
+  </div>
+  <footer class="blockquote-footer">{{post.date}}</footer>
+</div>
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/6wD4V0rvlDI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->

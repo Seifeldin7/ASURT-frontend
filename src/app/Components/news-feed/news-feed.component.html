@@ -1,0 +1,23 @@
+<body>
+  <div class="container mt-5 "*ngIf="loaded">
+    <div class="col-lg-10 col-xl-9 mx-auto content">
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-12">
+            <app-post *ngFor="let post of posts;let i=index"
+            [post]=post
+            [index]="i"></app-post>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mx-auto my-5">
+            <button class=" btn previous round"(click)="onPrevious()" [disabled]='!prevExist'>&#8249;</button>
+            <button class="btn next round" (click)="onNext()"[disabled]='!nextExist'>&#8250;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+</body>

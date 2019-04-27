@@ -37,6 +37,9 @@ import { AuthenticationComponent } from './Components/authentication/authenticat
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
 import { WebsiteComponent } from './Components/website/website.component';
+import { NewsFeedComponent } from './Components/news-feed/news-feed.component';
+import { PostComponent } from './Components/news-feed/post/post.component';
+import { NewsFeedService } from './Services/NewsFeed/news-feed.service';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -50,6 +53,8 @@ import { ToastrModule } from 'ngx-toastr';
     GeneralComponent,
     LoadingComponent,
     WebsiteComponent,
+    NewsFeedComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +90,7 @@ import { ToastrModule } from 'ngx-toastr';
     GeneralService,
     ProfileService,
     IsLoggedInGuardService,
+    NewsFeedService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },
