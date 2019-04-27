@@ -111,10 +111,11 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     // ProfileModule,
 
     RouterModule.forRoot([
-      // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+      // { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', component: HomepageComponent },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
-      // { path: '**', redirectTo: 'auth/login' }
+      { path: '**', redirectTo: '' }
     ]),
   ],
   providers: [
