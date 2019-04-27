@@ -104,6 +104,9 @@ export class TeamsService {
     this.http.delete('api/teams/'+id+'/').subscribe(
       (res:any) => {
         this.toastr.success(res.msg,"Success");
+
+        let index = this.teams.findIndex(el => el.id == id);
+        this.teams.splice(index,1);
         this.router.navigate(['adminpanel/teams']);
       },
       (err:any) => {

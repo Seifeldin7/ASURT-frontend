@@ -75,8 +75,8 @@
                   <input type="file" id="{{ 'achievement-'+i+'-image' }}" style="display:none" (change)="achievement_image_change($event,i)">
                 </div>
   
-                <div *ngIf="achievements.value[i].image != null" class="position-relative w-50">
-                  <img src="{{achievements.value[i].image}}" class="rounded w-100 mx-auto d-block">
+                <div *ngIf="achievements.value[i].image != null" class="position-relative w-100">
+                  <img src="{{achievements.value[i].image}}" class="rounded w-75 mx-auto d-block">
                   <button class="btn btn-sm btn-danger btn-fab btn-fab-mini btn-round mr-2 delete-image-btn position-absolute"
                     (click)="delete_image('achievement',i)">
                     <i class="material-icons">delete</i></button>

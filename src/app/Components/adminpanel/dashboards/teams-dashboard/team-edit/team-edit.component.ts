@@ -69,11 +69,11 @@ export class TeamEditComponent implements OnInit {
   add_one_more_achievement(achievement:any=null){
     this.achievements.push(
       this.formBuilder.group({
-        title:[achievement.title,[Validators.required]],
-        position:[achievement.position,[Validators.required]],
-        description:[achievement.description,[Validators.required]],
-        year:[achievement.year,[Validators.required]],
-        image:[achievement.image,[Validators.required]]
+        title:      [(achievement != null ? achievement.title       : null),[Validators.required]],
+        position:   [(achievement != null ? achievement.position    : null),[Validators.required]],
+        description:[(achievement != null ? achievement.description : null),[Validators.required]],
+        year:       [(achievement != null ? achievement.year        : null),[Validators.required]],
+        image:      [(achievement != null ? achievement.image       : null),[Validators.required]]
       })
     );
   }
