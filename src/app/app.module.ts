@@ -58,10 +58,9 @@ import { SponsorsComponent } from './Components/website/sponsors/sponsors.compon
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { FAQComponent } from './Components/faq/faq.component';
 
-//import { EventListComponent } from './components/events/event-list/event-list.component';
-//import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
+
 import { EventService } from './Services/Events/events.service';
-import { EventDetailComponent } from './Components/events/event-detail/event-detail.component';
+
 
 
 @NgModule({
@@ -79,10 +78,8 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     HomepageComponent,
     NavbarComponent,
     LatestnewsComponent,
-    EventsComponent,
     SponsorsComponent,
     EventsComponent,
-    EventDetailComponent,
     AboutUsComponent,
     FAQComponent,
   ],
@@ -114,6 +111,7 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
       // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
+      { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
       // { path: '**', redirectTo: 'auth/login' }
     ]),
   ],
@@ -121,6 +119,7 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     AuthenticationService,
     GeneralService,
     ProfileService,
+    EventsService,
     EventService,
     IsLoggedInGuardService,
     NewsFeedService,
