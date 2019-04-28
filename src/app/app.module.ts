@@ -108,11 +108,13 @@ import { EventService } from './Services/Events/events.service';
     // ProfileModule,
 
     RouterModule.forRoot([
-      // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+      // { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', component: HomepageComponent },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
       { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
       // { path: '**', redirectTo: 'auth/login' }
+      { path: '**', redirectTo: '' }
     ]),
   ],
   providers: [

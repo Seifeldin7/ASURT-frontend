@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient } from '@angular/common/http';
-
-interface Highlight {
-  id: Number,
-  title: String,
-  description: String,
-  image: String,
-  url: String,
-  active: boolean
-}
+import { Highlight } from 'src/app/Models/highlight.interface'
+import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service'
 
 @Component({
   selector: 'app-latestnews',
@@ -18,11 +10,8 @@ interface Highlight {
 })
 export class LatestnewsComponent implements OnInit {
 
-  highlights: Highlight[] = [
-    { id: 1, title: "slide 1", description: "lorem", image: "https://dummyimage.com/1920x720/eeeeee/ffffff", url: "", active: true },
-    { id: 2, title: "slide 2", description: "bla bla", image: "https://dummyimage.com/1920x720/eeeeee/ffffff", url: "", active: true },]
-
-  constructor(config: NgbCarouselConfig, private http: HttpClient) {
+  highlights: Highlight[] = []
+  constructor(config: NgbCarouselConfig, private highlightsService: HighlightsService) {
     // customize default values of carousels used by this component tree
     config.interval = 2000;
     config.wrap = true;
@@ -30,14 +19,10 @@ export class LatestnewsComponent implements OnInit {
     config.pauseOnHover = true;
   }
 
-  getActiveHighlights() {
-    return this.http.get<Highlight[]>("/api/highlights/active/")
-  }
-
   ngOnInit() {
-    this.getActiveHighlights().subscribe(response => {
-      this.highlights = response;
-    })
+    this.highlightsService.fetch_highlights().subscribe(response => {
+      this.highlights = response.filter(el => el.active);
+    });
   }
 
 }

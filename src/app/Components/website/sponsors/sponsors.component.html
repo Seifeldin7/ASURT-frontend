@@ -9,7 +9,8 @@
     </div>
     <div class="client-box">
       <ul class="sponsor-list">
-        <li *ngFor="let sponsor of sponsors"><a href="{{sponsor.url}}"><img src="{{sponsor.image}}" alt=""></a></li>
+        <li *ngFor="let sponsor of sponsors"><a href="{{sponsor.url}}"><img src="{{sponsor.image}}"
+              alt="{{sponsor.id}}"></a></li>
       </ul>
     </div>
   </div>

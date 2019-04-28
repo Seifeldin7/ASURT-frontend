@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Sponsor } from 'src/app/Models/sponsor.interface'
+import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service'
 
-interface Sponsor {
-  id: Number,
-  image: String,
-  url: String,
-}
 
 @Component({
   selector: 'app-sponsors',
@@ -18,16 +14,11 @@ export class SponsorsComponent implements OnInit {
     { id: 1, image: "https://dummyimage.com/100x100/eeeeee/ffffff", url: "" },
     { id: 2, image: "https://dummyimage.com/100x100/eeeeee/ffffff", url: "" },]
 
-  constructor(private http: HttpClient) { }
-
-  getSponsors() {
-    return this.http.get<Sponsor[]>("/api/sponsors/all")
-  }
+  constructor(private sponsorsService: SponsorsService) { }
 
   ngOnInit() {
-    this.getSponsors().subscribe(response => {
+    this.sponsorsService.fetch_sponsors().subscribe(response => {
       this.sponsors = response;
-    })
+    });
   }
-
 }
