@@ -18,6 +18,7 @@ import { AuthenticationService, JwtInterceptor, APIInterceptor } from './Service
 import { GeneralService, LoadingHttpInterseptorService } from './Services/General/general.service';
 import { ProfileService } from './Services/Profile/profile.service';
 import { EventsService } from './Services/adminpanel/events.service';
+import { EventService } from './Services/Events/events.service';
 
 
 // Routers
@@ -50,8 +51,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './Components/website/footer/footer.component';
 import { HomepageComponent } from './Components/website/homepage/homepage.component';
 import { NavbarComponent } from './Components/website/navbar/navbar.component';
-import { LatestnewsComponent } from './Components/website/homepage/latestnews/latestnews.component';
-import { EventsComponent } from './Components/website/homepage/events/events.component';
+import { HomeHighlightsComponent } from './Components/website/homepage/home-highlights/home-highlights.component';
+import { HomeEventsComponent } from './Components/website/homepage/home-events/home-events.component';
 import { SponsorsComponent } from './Components/website/sponsors/sponsors.component';
 
 // Components
@@ -60,7 +61,7 @@ import { FAQComponent } from './Components/faq/faq.component';
 
 //import { EventListComponent } from './components/events/event-list/event-list.component';
 //import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
-import { EventService } from './Services/Events/events.service';
+import { EventsComponent } from './Components/events/events.component';
 import { EventDetailComponent } from './Components/events/event-detail/event-detail.component';
 
 
@@ -78,8 +79,8 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     FooterComponent,
     HomepageComponent,
     NavbarComponent,
-    LatestnewsComponent,
-    EventsComponent,
+    HomeHighlightsComponent,
+    HomeEventsComponent,
     SponsorsComponent,
     EventsComponent,
     EventDetailComponent,
@@ -123,6 +124,7 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     GeneralService,
     ProfileService,
     EventService,
+    EventsService,
     IsLoggedInGuardService,
     NewsFeedService,
 

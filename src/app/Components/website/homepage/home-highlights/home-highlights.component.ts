@@ -4,11 +4,11 @@ import { Highlight } from 'src/app/Models/highlight.interface'
 import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service'
 
 @Component({
-  selector: 'app-latestnews',
-  templateUrl: './latestnews.component.html',
-  styleUrls: ['./latestnews.component.css']
+  selector: 'app-home-highlights',
+  templateUrl: './home-highlights.component.html',
+  styleUrls: ['./home-highlights.component.css']
 })
-export class LatestnewsComponent implements OnInit {
+export class HomeHighlightsComponent implements OnInit {
 
   highlights: Highlight[] = []
   constructor(config: NgbCarouselConfig, private highlightsService: HighlightsService) {
