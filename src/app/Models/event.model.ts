@@ -3,7 +3,7 @@ export class Evnt{
     public name:string;
     public description:string;
     public date:string;
-    public image:any[];
+    public image:Array<{id:Number,image:string}>;
     public event_type:string;
     public status:boolean;
     constructor(id:number,name:string,description:string,date:string,image:any[],event_type:string,status:boolean){

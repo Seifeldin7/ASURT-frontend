@@ -83,7 +83,6 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     HomeEventsComponent,
     SponsorsComponent,
     EventsComponent,
-    EventDetailComponent,
     AboutUsComponent,
     FAQComponent,
   ],
@@ -116,6 +115,8 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
       { path: '', component: HomepageComponent },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
+      { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
+      // { path: '**', redirectTo: 'auth/login' }
       { path: '**', redirectTo: '' }
     ]),
   ],
@@ -123,6 +124,7 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     AuthenticationService,
     GeneralService,
     ProfileService,
+    EventsService,
     EventService,
     EventsService,
     IsLoggedInGuardService,
