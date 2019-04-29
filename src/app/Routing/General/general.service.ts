@@ -7,7 +7,7 @@ import { TeamPageComponent } from 'src/app/Components/website/teams/team-page/te
 import { HomepageComponent } from 'src/app/Components/website/homepage/homepage.component';
 
 export const router = [
-  { path:'news/:id', component: NewsFeedComponent},
+  { path:'newsfeed', component: NewsFeedComponent},
   { path: 'teams/:type', component: TeamsComponent },
   { path: 'teams/:type/:id', component: TeamPageComponent },
   // { path: '**', redirectTo: '/' },
