@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClient } from '@angular/common/http';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, empty } from 'rxjs';
 
 import * as jwt_decode from "jwt-decode";
 import { delay } from 'rxjs/operators';
@@ -172,7 +172,20 @@ export function passwordMatchValidator(ac: AbstractControl) {
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = JSON.parse(localStorage.getItem('token'));
+    let token = "";
+    
+    if(localStorage.getItem('token') === null){
+      token ="";
+      
+    }
+    else{
+      //console.log(token)
+      
+      token = localStorage.getItem('token');
+      
+    }
+    
+    
     if (token) {
       request = request.clone({
         setHeaders: {

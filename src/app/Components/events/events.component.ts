@@ -16,7 +16,8 @@ export class EventsComponent implements OnInit {
   events:Evnt[]=[];
   event:Evnt;
   view:boolean=false;
-  
+  activeEvent:Evnt = new Evnt(null,'','','',[],'',null);
+  events2:Evnt[];
   constructor(private eventService:EventService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,11 +25,14 @@ export class EventsComponent implements OnInit {
   this.eventService.getEvents().subscribe(
     (events)=>{
       console.log(events)
-      this.events = events;
+     this.events = events;
+      this.activeEvent =this.events[0];
+      
+      this.events2 = this.events.slice(1);
       this.eventService.setEvents(this.events);
     },
     error => {
-      console.log(error)
+      
       Swal.fire({
         
         title: 'Something went wrong!',
@@ -36,8 +40,9 @@ export class EventsComponent implements OnInit {
       })
     }
   );
+  
   $('#recipeCarousel').carousel({
-    interval: 1500
+    interval: 2000
   })
   $('.carousel .carousel-item').each(function(){
     var next = $(this).next();

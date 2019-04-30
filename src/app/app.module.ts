@@ -61,8 +61,7 @@ import { FAQComponent } from './Components/faq/faq.component';
 
 //import { EventListComponent } from './components/events/event-list/event-list.component';
 //import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
-import { EventsComponent } from './Components/events/events.component';
-import { EventDetailComponent } from './Components/events/event-detail/event-detail.component';
+
 
 
 @NgModule({
@@ -82,7 +81,6 @@ import { EventDetailComponent } from './Components/events/event-detail/event-det
     HomeHighlightsComponent,
     HomeEventsComponent,
     SponsorsComponent,
-    EventsComponent,
     AboutUsComponent,
     FAQComponent,
   ],
