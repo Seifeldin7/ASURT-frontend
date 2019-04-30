@@ -26,12 +26,12 @@
     {
       "id": 1,
       "next_page_num": "1/null",
-      "num_pages": 12,
+      "num_pages": 2,
       "articles": [
         {
           "id": 1,
           "title": "name",
-          "description": "b la l fbsfvdv,ovoef",
+          "description": "b la l fbsfvdv,ovoef jkjhgk  kvvldkmvddl",
           "image": null,
           "video": "S_GVbuddri8",
           "date": "12548/2515/2019",
@@ -41,7 +41,7 @@
         {
           "id": 1,
           "title": "kgbrjkblj",
-          "description": "b la l fbsfvdv,ovoef hjbdijsf;d vfm fv fbj f",
+          "description": "b la l fbsfvdv,ovoef hjbdijsf;d vfm  sk dsf fdg gfdg gfhgfh fhfhjhgjh jghjhgj jhghgjmnsdnokfd vfdknvfdpkfdnvfd fdlknfdknvdfkvnfdlkv fv fbj f",
           "image":[
             {
               "id":1,
@@ -61,6 +61,65 @@
             {
               "id":1,
               "image":"https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+            },
+            {
+              "id":1,
+              "image":"https://homepages.cae.wisc.edu/~ece533/images/barbara.png"
+            }
+          ],
+          "video": null,
+          "date": "12548/2515/2019",
+          "status": "true/false",
+          "article_type": "video/post"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "next_page_num": "1/null",
+      "num_pages": 2,
+      "articles": [
+        {
+          "id": 1,
+          "title": "name 2222",
+          "description": "b la l fbsfvdv,ovoef",
+          "image": null,
+          "video": "S_GVbuddri8",
+          "date": "12548/2515/2019",
+          "status": "true/false",
+          "article_type": "video/post"
+        },
+        {
+          "id": 2,
+          "title": "kgbrjkblj 2222",
+          "description": "b la l fbsfvdv,ovoef hjbdijsf;d vfm fv fbj f",
+          "image":[
+            {
+              "id":1,
+              "image":"https://homepages.cae.wisc.edu/~ece533/images/boat.png"
+            },
+            {
+              "id":2,
+              "image":"https://homepages.cae.wisc.edu/~ece533/images/goldhill.png"
+            }
+          ] ,
+          "video": null,
+          "date": "12548/2515/2019",
+          "status": "true/false",
+          "article_type": "video/post"
+        },
+        {
+          "id": 1,
+          "title": "cat cat 222",
+          "description": "b la l fbsfvdv,ovoef hjbdijsf;d vfm fv fbj f",
+          "image": [
+            {
+              "id":1,
+              "image":"https://homepages.cae.wisc.edu/~ece533/images/cat.png"
+            },
+            {
+              "id":1,
+              "image":"https://homepages.cae.wisc.edu/~ece533/images/girl.png"
             }
           ],
           "video": null,
