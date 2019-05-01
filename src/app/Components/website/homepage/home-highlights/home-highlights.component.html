@@ -1,9 +1,10 @@
 <ngb-carousel #carousel>
   <ng-template ngbSlide *ngFor="let highlight of highlights">
-    <div class="highlight-wrapper">
-      <img src="http://127.0.0.1:8000{{highlight.image[highlight.image.length-1].image}}"
-        alt="highlight {{highlight.id}}">
-      <div class="carousel-caption">
+    <div class="row highlight-wrapper">
+      <div class="carousel-image col-md-8">
+        <img src="{{highlight.image[highlight.image.length-1].image}}" alt="highlight {{highlight.id}}">
+      </div>
+      <div class="carousel-caption col-md-4">
         <h3>{{highlight.title}}</h3>
         <p>{{highlight.description}}</p>
         <a [routerLink]="['/#']" routerLinkActive="active" class="float-right"> Read More</a>

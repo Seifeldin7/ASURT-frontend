@@ -2,6 +2,7 @@
   width: 100vw;
   height: 70vh;
   margin-bottom: 3rem;
+  text-align: center;
 }
 
 .highlight-wrapper .carousel-caption h3,
@@ -11,7 +12,7 @@
   opacity: 0.6;
 }
 
-.highlight-wrapper img {
+.highlight-wrapper .carousel-image img {
   max-width: 100%;
   height: auto;
 }

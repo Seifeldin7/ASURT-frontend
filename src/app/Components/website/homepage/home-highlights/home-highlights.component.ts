@@ -10,10 +10,19 @@ import { HighlightsService } from 'src/app/Services/adminpanel/highlights.servic
 })
 export class HomeHighlightsComponent implements OnInit {
 
-  highlights: Highlight[] = []
+  highlights: Highlight[] = [{
+    id: 1,
+    title: "one",
+    description: "bla bla bla bla blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    image: [{
+      id: 1, image: "https://dummyimage.com/1800x999/000/fff"
+    }],
+    url: "nth",
+    active: true
+  }]
   constructor(config: NgbCarouselConfig, private highlightsService: HighlightsService) {
     // customize default values of carousels used by this component tree
-    config.interval = 2000;
+    config.interval = 4000;
     config.wrap = true;
     config.keyboard = false;
     config.pauseOnHover = true;
