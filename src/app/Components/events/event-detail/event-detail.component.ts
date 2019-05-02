@@ -33,7 +33,7 @@ export class EventDetailComponent implements OnInit {
     
   });
   }
-  back(){
-    this.router.navigate(['../events']);
-  }
+  // back(){
+  //   this.router.navigate(['../events']);
+  // }
 }
