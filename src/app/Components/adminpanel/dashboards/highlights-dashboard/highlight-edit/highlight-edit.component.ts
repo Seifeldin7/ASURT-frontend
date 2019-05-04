@@ -5,6 +5,7 @@ import { HighlightsService } from 'src/app/Services/adminpanel/highlights.servic
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
+import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
 
 @Component({
   selector: 'app-highlight-edit',
@@ -13,36 +14,44 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HighlightEditComponent implements OnInit {
 
-  editmode:boolean = false;
-  updating_card_id:Number = null;
+  /** For Edit Mode */
+  editmode = {
+    flag: false,
+    current_card_id: null,
+    current_img:{
+      updated: false,
+      id: null
+    }
+  };
+
   submitted:boolean = false;
 
   /** Card Form */
-  cropper_show = false;
-  imageChangedEvent: any = null;
-  croppedImage: any = null;
+  cropper = {
+    show: false,
+    croppedImage: null,
+  }
+  imageChangedEvent:any = null;
   onImgChange(event: any): void {
+    /**
+     * Image input change event to be cropped
+     */
     this.imageChangedEvent = event;
-    /** trigger cropper */
-    this.cropper_show = true;
+    this.cropper.show = true;
   }
   imageCropped(event: ImageCroppedEvent) {
-      this.croppedImage = event.base64;
+      this.cropper.croppedImage = event.base64;
       this.card_form.patchValue({
-      image:this.croppedImage
-    })
-  }
-  imageLoaded() {
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
+        image:this.cropper.croppedImage
+      });
+      this.editmode.current_img.updated = true;
   }
   loadImageFailed() {
     // show message
-    this.cropper_show = false;
+    this.cropper.show = false;
     this.toastr.error('Select Valied Image','Error');
   }
+
   card_form:FormGroup = this.formBuilder.group({
     title: [null, [Validators.required]],
     description:[null,[Validators.required]],
@@ -54,20 +63,23 @@ export class HighlightEditComponent implements OnInit {
   constructor(private activatedRoute:ActivatedRoute,
               private highlightsServices:HighlightsService,
               private formBuilder:FormBuilder,
-              private toastr:ToastrService) {}
+              private toastr:ToastrService,
+              private adminpanelService:AdminpanelService) {}
 
   ngOnInit() {
     if(this.activatedRoute.snapshot.params['id']){
-      this.editmode = true;
-      this.highlightsServices.get_highlights_by_id(this.activatedRoute.snapshot.params['id']).subscribe(card=>{
-        this.updating_card_id = card.id;
-        this.card_form.patchValue({
-          title: card.title,
-          description: card.description,
-          url: card.url,
-          active: card.active,
-          image: card.image[card.image.length -1].image,
-        })
+      this.editmode.flag = true;
+      this.highlightsServices.get_highlights_by_id(this.activatedRoute.snapshot.params['id']).subscribe(
+        card=>{
+          this.editmode.current_card_id = card.id;
+          this.card_form.patchValue({
+            title: card.title,
+            description: card.description,
+            url: card.url,
+            active: card.active,
+            image: card.image[card.image.length -1].image,
+        });
+        this.editmode.current_img.id = card.image[card.image.length -1].id;
       })
     }
   }
@@ -75,11 +87,14 @@ export class HighlightEditComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
 
-    if(this.editmode){
-      this.highlightsServices.update_highlight(this.updating_card_id,{
+    if(this.editmode.flag){
+      if(this.editmode.current_img.updated){
+        this.adminpanelService.delete_image_from('highlight',this.editmode.current_card_id,this.editmode.current_img.id);
+      }
+      this.highlightsServices.update_highlight(this.editmode.current_card_id,{
         title:this.card_form.value.title,
         description:this.card_form.value.description,
-        image: (this.croppedImage) ? this.card_form.value.image : '',
+        image: (this.cropper.croppedImage) ? this.card_form.value.image : '',
         url:this.card_form.value.url,
         active:this.card_form.value.active
       }).subscribe(
