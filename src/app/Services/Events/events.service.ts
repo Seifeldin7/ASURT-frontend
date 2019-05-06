@@ -19,7 +19,12 @@ setEvents (events:Evnt[]){
      this.events =events;
 }
 getEvent(id:number){
+    if(this.events[id]){
     return this.events[id];
+    }
+    else{
+        return null;
+    }
 }
 
  }

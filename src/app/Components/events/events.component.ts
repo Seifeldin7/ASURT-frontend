@@ -16,15 +16,15 @@ export class EventsComponent implements OnInit {
   events:Evnt[]=[];
   event:Evnt;
   view:boolean=false;
-  activeEvent:Evnt = new Evnt(null,'','','',[],'',null);
+  activeEvent:Evnt = new Evnt(null,'','','',[{image:null,id:null}],'',null);
   events2:Evnt[];
   constructor(private eventService:EventService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    
+   
   this.eventService.getEvents().subscribe(
     (events)=>{
-      console.log(events)
+      
      this.events = events;
       this.activeEvent =this.events[0];
       
@@ -42,7 +42,7 @@ export class EventsComponent implements OnInit {
   );
   
   $('#recipeCarousel').carousel({
-    interval: 2000
+    interval: 4000
   })
   $('.carousel .carousel-item').each(function(){
     var next = $(this).next();
