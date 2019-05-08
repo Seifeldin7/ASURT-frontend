@@ -53,12 +53,12 @@ export class SponsorsCreateComponent implements OnInit {
       image: this.sponsor_form.value.image
     }).subscribe(
       (res:any) => {
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
-          this.sponsorService.update();
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        this.toastr.success(res.msg,"Success");
+        this.sponsorService.update();
+        this.sponsor_form.patchValue({
+          image:null,
+          url:null
+        })
         this.submitted = false;
       }, err =>{
         if ('msg' in err.error) {

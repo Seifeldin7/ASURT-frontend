@@ -6,10 +6,23 @@
     border-radius: 50px;
     background-color: white;
 }
+<<<<<<< HEAD
 .con2{
     -webkit-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
      -moz-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
      box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
     border-radius: 50px;
     background-color: white;
+=======
+ .con2{
+    -webkit-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
+     -moz-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
+     box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
+    
+    background-color: white;
+    border: 4px solid #a7a2a2 ;
+} 
+h3{
+    color: #b21908;
+>>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
 }

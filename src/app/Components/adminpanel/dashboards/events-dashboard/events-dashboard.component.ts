@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from 'src/app/Models/event.interface';
-import { EventsService } from 'src/app/Services/adminpanel/events.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-events-dashboard',

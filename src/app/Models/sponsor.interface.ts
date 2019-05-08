@@ -1,5 +1,5 @@
 export interface Sponsor{
     id:Number,
-    image: {id:Number, image:string},
+    image:String,
     url:string
 }

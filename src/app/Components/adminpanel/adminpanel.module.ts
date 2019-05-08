@@ -41,6 +41,7 @@ import { FAQDashboardComponent } from './dashboards/faq-dashboard/faq-dashboard.
 import { FAQCreateComponent } from './dashboards/faq-dashboard/faq-create/faq-create.component';
 import { FAQListComponent } from './dashboards/faq-dashboard/faq-list/faq-list.component';
 import { FAQService } from 'src/app/Services/adminpanel/faq.service';
+import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service';
 
 
 
@@ -87,7 +88,8 @@ import { FAQService } from 'src/app/Services/adminpanel/faq.service';
     NewsfeedService,
     TeamsService,
     EventsService,
-    FAQService
+    FAQService,
+    SponsorsService,
   ]
 })
 export class AdminpanelModule { }

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TeamsService {
 
+<<<<<<< HEAD
   // achiv:Achivement = new Achivement("achiv1","pos1","descrip1","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
   // achiv2:Achivement = new Achivement("achiv2","pos2","descrip2","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
   // achiv3:Achivement = new Achivement("achiv3","pos3","descrip3","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
@@ -27,6 +28,9 @@ export class TeamsService {
     // ,this.team2,
     // this.team3
   ];
+=======
+  private teams = [];
+>>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
   private onChangeTeams = new Subject<Team[]>();
   private onReceiveOneTeam = new Subject<Team>();
 
@@ -97,7 +101,7 @@ export class TeamsService {
 
     return this.http.post('api/teams/',{
       name: data.name,
-      description: data.name,
+      description: data.description,
       team_type: data.team_type,
       achievement: data.achievement,
       image: data.images
@@ -109,7 +113,7 @@ export class TeamsService {
 
     return this.http.put('api/teams/'+id+'/',{
       name: data.name,
-      description: data.name,
+      description: data.description,
       team_type: data.team_type,
       achievement: data.achievement,
       image: data.images
@@ -119,12 +123,11 @@ export class TeamsService {
   delete_team(id:Number){
     this.http.delete('api/teams/'+id+'/').subscribe(
       (res:any) => {
-        if(res.status == true){
-          this.toastr.success(res.msg,"Success");
-          this.router.navigate(['adminpanel/teams'])
-        }else{
-          this.toastr.error(res.msg,"Error");
-        }
+        this.toastr.success(res.msg,"Success");
+
+        let index = this.teams.findIndex(el => el.id == id);
+        this.teams.splice(index,1);
+        this.router.navigate(['adminpanel/teams']);
       },
       (err:any) => {
         if ('msg' in err.error) {
@@ -135,6 +138,10 @@ export class TeamsService {
         }
       }
     )
+  }
+
+  delete_achievement_by_id(team_id:Number,achievement_id:Number){
+    return this.http.get('api/remove-from/1/'+team_id+'/'+achievement_id+'/');
   }
 
 }

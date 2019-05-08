@@ -18,8 +18,8 @@ export class EventsService {
 
   fetch_Events(){
     /**
-     * Fetch highlights from database
-     * if highlights fetched before next without send another request
+     * Fetch events from database
+     * if events fetched before next without send another request
      */
     if(this.events.length > 0){
       setTimeout(() => {
@@ -80,7 +80,7 @@ export class EventsService {
       description:data.description,
       image:data.image,
       status:data.status,
-      type:data.type,
+      event_type:data.event_type,
       date:data.date
     });
   }
@@ -91,7 +91,7 @@ export class EventsService {
   // description:string,
   // status:boolean,
   // image:string,
-  // type:string
+  // event_type:string
 
   update_event(id:Number,data){
     this.events = [];
@@ -100,21 +100,19 @@ export class EventsService {
       description:data.description,
       image:data.image,
       status:data.status,
-      type:data.type,
+      event_type:data.event_type,
       date:data.date
     });
   }
 
   delete_event(id:Number){
-    this.http.delete('/api/events/'+ id +'/').subscribe((res:any)=>{
-      if(res.status == true){
-        this.toastr.success(res.msg,"Success");
-        /**
-         * TODO: delete this highlight from array
-         */
-      }else{
-        this.toastr.error(res.msg,"Error");
-      }
+    this.http.delete('api/events/'+ id +'/').subscribe((res:any)=>{
+      this.toastr.success(res.msg,"Success");
+      /**
+       * delete from local array
+       */
+      let index = this.events.findIndex(el => el.id == id);
+      this.events.splice(index,1);
     },(err)=>{
       if ('msg' in err.error) {
         this.toastr.error(err.error.msg, "Error")
