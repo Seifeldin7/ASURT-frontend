@@ -85,8 +85,8 @@
   <div class="main">
     <ul class="cards">
       <li class="cards_item" *ngFor="let team of teams">
-        <div class="card" *ngIf="team.type == teams_type">
-          <div class="card_image"><img src="{{team.images[0]}}"></div>
+        <div class="card" *ngIf="team.team_type == teams_type">
+          <div class="card_image"><img src="{{team.image[0][image]}}"></div>
           <div class="card_content">
             <h2 class="card_title">{{team.name}}</h2>
             <p class="card_text">{{team.description}}</p>

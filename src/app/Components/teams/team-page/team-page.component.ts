@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Params,Router } from '@angular/router';
-import { TeamsService } from '../../../../Services/adminpanel/teams.service';
-import { Team,Achivement } from '../../../../Models/team.interface';
+import { TeamsService } from '../../../Services/adminpanel/teams.service';
+import { Team,Achivement } from '../../../Models/team.interface';
 
 @Component({
   selector: 'app-team-page',
@@ -12,6 +12,7 @@ export class TeamPageComponent implements OnInit {
 
   id:number;
   team:Team=null;
+  achivements : Achivement[]=null;
   constructor(private route:ActivatedRoute,private router:Router,private ts: TeamsService) {
   }
 
@@ -23,6 +24,8 @@ export class TeamPageComponent implements OnInit {
         this.ts.get_team_by_id(this.id).subscribe(
           team =>{
             this.team = team;
+            this.achivements=team.achivement;
+            console.log(this.team);
           }
         );
         // console.log(this.id);

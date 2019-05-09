@@ -16,11 +16,8 @@ import { TeamsListComponent } from 'src/app/Components/adminpanel/dashboards/tea
 import { TeamEditComponent } from 'src/app/Components/adminpanel/dashboards/teams-dashboard/team-edit/team-edit.component';
 import { SponsorsDashboardComponent } from 'src/app/Components/adminpanel/dashboards/sponsors-dashboard/sponsors-dashboard.component';
 import { FAQDashboardComponent } from 'src/app/Components/adminpanel/dashboards/faq-dashboard/faq-dashboard.component';
-<<<<<<< HEAD
-=======
 import { EventListComponent } from 'src/app/Components/adminpanel/dashboards/events-dashboard/event-list/event-list.component';
 import { EventEditComponent } from 'src/app/Components/adminpanel/dashboards/events-dashboard/event-edit/event-edit.component';
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
 
 export const router = [
     { path: '', component: AdminpanelComponent, children: [
@@ -43,16 +40,12 @@ export const router = [
             { path: 'create', component: TeamEditComponent},
             { path: 'edit/:id', component: TeamEditComponent},
         ]},
-<<<<<<< HEAD
-        { path: 'events', component: EventsDashboardComponent},
-=======
         { path: 'events', component: EventsDashboardComponent, children:[
             { path: '', redirectTo:'all', pathMatch:'full'},
             { path: 'all', component: EventListComponent},
             { path: 'create', component: EventEditComponent},
             { path: 'edit/:id', component: EventEditComponent},
         ]},
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
         { path: 'sponsors', component: SponsorsDashboardComponent},
         { path: 'FAQ', component: FAQDashboardComponent},
     ]},

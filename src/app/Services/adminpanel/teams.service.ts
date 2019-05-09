@@ -10,27 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TeamsService {
 
-<<<<<<< HEAD
-  // achiv:Achivement = new Achivement("achiv1","pos1","descrip1","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
-  // achiv2:Achivement = new Achivement("achiv2","pos2","descrip2","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
-  // achiv3:Achivement = new Achivement("achiv3","pos3","descrip3","https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",null);
-  //
-  //
-  //
-  // team1:Team =  new Team(1,"Team1","description1",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv,this.achiv2,this.achiv3],"managemant");
-  //
-  // team2:Team =  new Team(2,"Team2","description2",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv,this.achiv2,this.achiv3],"technical");
-  // team3:Team =  new Team(3,"Team3","description3",["https://images.pexels.com/photos/12801/pexels-photo-12801.jpeg?cs=srgb&dl=auto-racing-car-wallpapers-f1-12801.jpg&fm=jpg",""],[this.achiv,this.achiv2,this.achiv3],"managemant");
-
-
-  private teams = [
-    // this.team1
-    // ,this.team2,
-    // this.team3
-  ];
-=======
   private teams = [];
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
   private onChangeTeams = new Subject<Team[]>();
   private onReceiveOneTeam = new Subject<Team>();
 

@@ -38,29 +38,21 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './Components/authentication/authentication.component';
 import { GeneralComponent } from './Components/general/general.component';
 import { LoadingComponent } from './Components/general/loading/loading.component';
-<<<<<<< HEAD
-=======
-import { WebsiteComponent } from './Components/website/website.component';
 import { NewsFeedComponent } from './Components/news-feed/news-feed.component';
 import { PostComponent } from './Components/news-feed/post/post.component';
 import { NewsFeedService } from './Services/NewsFeed/news-feed.service';
-import { TeamsComponent } from './Components/website/teams/teams.component';
-import { TeamPageComponent } from './Components/website/teams/team-page/team-page.component';
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
+import { TeamsComponent } from './Components/teams/teams.component';
+import { TeamPageComponent } from './Components/teams/team-page/team-page.component';
 
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-<<<<<<< HEAD
-import { TeamsComponent } from './Components/teams/teams.component';
-import { TeamPageComponent } from './Components/teams/team-page/team-page.component';
-=======
-import { FooterComponent } from './Components/website/footer/footer.component';
-import { HomepageComponent } from './Components/website/homepage/homepage.component';
-import { NavbarComponent } from './Components/website/navbar/navbar.component';
-import { HomeHighlightsComponent } from './Components/website/homepage/home-highlights/home-highlights.component';
-import { HomeEventsComponent } from './Components/website/homepage/home-events/home-events.component';
-import { SponsorsComponent } from './Components/website/sponsors/sponsors.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { HomepageComponent } from './Components/homepage/homepage.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { HomeHighlightsComponent } from './Components/homepage/home-highlights/home-highlights.component';
+import { HomeEventsComponent } from './Components/homepage/home-events/home-events.component';
+import { SponsorsComponent } from './Components/sponsors/sponsors.component';
 
 // Components
 import { AboutUsComponent } from './Components/about-us/about-us.component';
@@ -70,7 +62,6 @@ import { FAQComponent } from './Components/faq/faq.component';
 //import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
 
 
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
 
 @NgModule({
   declarations: [
@@ -78,11 +69,6 @@ import { FAQComponent } from './Components/faq/faq.component';
     AuthenticationComponent,
     GeneralComponent,
     LoadingComponent,
-<<<<<<< HEAD
-    TeamsComponent,
-    TeamPageComponent,
-=======
-    WebsiteComponent,
     NewsFeedComponent,
     PostComponent,
     TeamsComponent,
@@ -95,7 +81,6 @@ import { FAQComponent } from './Components/faq/faq.component';
     SponsorsComponent,
     AboutUsComponent,
     FAQComponent,
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
   ],
   imports: [
     BrowserModule,
@@ -136,11 +121,8 @@ import { FAQComponent } from './Components/faq/faq.component';
     GeneralService,
     ProfileService,
     EventsService,
-<<<<<<< HEAD
-=======
     EventService,
     EventsService,
->>>>>>> c83181eb79b6389c935531e73e11c71fa4f95e2f
     IsLoggedInGuardService,
     NewsFeedService,
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Team,Achivement } from '../../../Models/team.interface';
+import { Team,Achivement } from '../../Models/team.interface';
 import { HttpClient } from '@angular/common/http';
-import { TeamsService } from '../../../Services/adminpanel/teams.service';
+import { TeamsService } from '../../Services/adminpanel/teams.service';
 import { ActivatedRoute,Params,Router } from '@angular/router';
 
 @Component({
@@ -40,6 +40,7 @@ export class TeamsComponent implements OnInit {
     this.ts.fetch_teams().subscribe(
       teams => {
         this.teams = teams;
+        console.log(this.teams);
       }
     );
     this.route.params.subscribe(
@@ -50,7 +51,7 @@ export class TeamsComponent implements OnInit {
     else this.out='Management Teams';
     console.log(this.out);
     console.log(this.teams_type);
-    console.log(this.teams);
+
 
   }
   // onclick(index:number){
