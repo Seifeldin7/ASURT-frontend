@@ -4,11 +4,16 @@
 @import "https://use.fontawesome.com/releases/v5.7.2/css/all.css";
 
 #toast-container>div {
-    opacity: 1;
+  opacity: 1;
 }
 
 .btn-danger {
-    color: #fff;
-    background-color: #b21908;
-    border-color: #b21908;
+  color: #fff;
+  background-color: #b21908;
+  border-color: #b21908;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 999;
 }

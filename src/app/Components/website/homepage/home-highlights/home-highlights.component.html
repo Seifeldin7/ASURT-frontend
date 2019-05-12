@@ -1,13 +1,13 @@
 <ngb-carousel #carousel>
   <ng-template ngbSlide *ngFor="let highlight of highlights">
     <div class="row highlight-wrapper">
-      <div class="carousel-image col-md-8">
+      <div class="carousel-image col-12 p-0">
         <img src="{{highlight.image[highlight.image.length-1].image}}" alt="highlight {{highlight.id}}">
       </div>
-      <div class="carousel-caption col-md-4">
+      <div class="carousel-caption text-justify col-md-4 col-sm-5 col-6">
         <h3>{{highlight.title}}</h3>
         <p>{{highlight.description}}</p>
-        <a [routerLink]="['/#']" routerLinkActive="active" class="float-right"> Read More</a>
+        <a [routerLink]="['/#']" routerLinkActive="active"> Read More</a>
       </div>
     </div>
   </ng-template>

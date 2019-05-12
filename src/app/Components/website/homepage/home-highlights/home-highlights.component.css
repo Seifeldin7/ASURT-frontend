@@ -1,18 +1,119 @@
 .highlight-wrapper {
   width: 100vw;
   height: 70vh;
-  margin-bottom: 3rem;
   text-align: center;
+  position: relative;
+  margin: 0;
 }
 
-.highlight-wrapper .carousel-caption h3,
-.highlight-wrapper .carousel-caption p {
+.highlight-wrapper .carousel-caption {
+  height: 100%;
+  background-color: rgba(109, 106, 106, 0.2);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 66%;
+  padding: 1rem;
+  overflow-wrap: break-word;
+}
+
+.highlight-wrapper .carousel-caption h3 {
+  font-size: 4.8em;
+  text-transform: capitalize;
   text-align: left;
-  color: black;
-  opacity: 0.6;
+  color: white;
+}
+
+.highlight-wrapper .carousel-caption p {
+  font-size: 1.6em;
+  text-align: left;
+  color: white;
+  margin-bottom: 0px;
+}
+
+.highlight-wrapper .carousel-caption a {
+  font-size: 1em;
+  text-align: left;
 }
 
 .highlight-wrapper .carousel-image img {
-  max-width: 100%;
-  height: auto;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: center center no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+  .highlight-wrapper .carousel-caption {
+    left: 49%;
+  }
+
+  .highlight-wrapper .carousel-caption h3 {
+    font-size: 3em;
+  }
+
+  .highlight-wrapper .carousel-caption p {
+    font-size: 1em;
+  }
+
+  .highlight-wrapper .carousel-caption a {
+    font-size: 0.8em;
+  }
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .highlight-wrapper .carousel-caption {
+    left: 58%;
+  }
+
+  .highlight-wrapper .carousel-caption h3 {
+    font-size: 3.4em;
+  }
+
+  .highlight-wrapper .carousel-caption p {
+    font-size: 1.2em;
+  }
+
+  .highlight-wrapper .carousel-caption a {
+    font-size: 0.9em;
+  }
+
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .highlight-wrapper .carousel-caption h3 {
+    font-size: 3.8em;
+  }
+
+  .highlight-wrapper .carousel-caption p {
+    font-size: 1.3em;
+  }
+
+  .highlight-wrapper .carousel-caption a {
+    font-size: 0.9em;
+  }
+
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .highlight-wrapper .carousel-caption h3 {
+    font-size: 4.2em;
+  }
+
+  .highlight-wrapper .carousel-caption p {
+    font-size: 1.4em;
+  }
+
+  .highlight-wrapper .carousel-caption a {
+    font-size: 0.9em;
+  }
 }

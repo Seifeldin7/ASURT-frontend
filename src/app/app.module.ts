@@ -48,6 +48,7 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
 //others
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { FooterComponent } from './Components/website/footer/footer.component';
 import { HomepageComponent } from './Components/website/homepage/homepage.component';
 import { NavbarComponent } from './Components/website/navbar/navbar.component';
@@ -58,11 +59,10 @@ import { SponsorsComponent } from './Components/website/sponsors/sponsors.compon
 // Components
 import { AboutUsComponent } from './Components/about-us/about-us.component';
 import { FAQComponent } from './Components/faq/faq.component';
+import { DateCountdownTimerComponent } from './Components/general/date-countdown-timer/date-countdown-timer.component';
 
 //import { EventListComponent } from './components/events/event-list/event-list.component';
 //import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
-
-
 
 @NgModule({
   declarations: [
@@ -83,6 +83,7 @@ import { FAQComponent } from './Components/faq/faq.component';
     SponsorsComponent,
     AboutUsComponent,
     FAQComponent,
+    DateCountdownTimerComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,8 +93,7 @@ import { FAQComponent } from './Components/faq/faq.component';
     RouterModule,
     NgbModalModule,
     NgbModule.forRoot(),
-
-
+    SlickCarouselModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       closeButton: true,
