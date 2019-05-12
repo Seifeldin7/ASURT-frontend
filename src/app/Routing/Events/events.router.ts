@@ -6,18 +6,19 @@ import { EventDetailComponent } from '../../Components/events/event-detail/event
 const EventRoutes: Routes = [
     {
       path: '', component: EventsComponent,  children: [
-        
+
         { path: ':id', component: EventDetailComponent },
-        
+        { path: '**', redirectTo: '/events/0' },
+
       ]
     },
   ];
-  
+
   @NgModule({
     imports: [
       RouterModule.forChild(EventRoutes)
     ],
     exports: [RouterModule],
-  
+
   })
   export class EventRoutingModule { }

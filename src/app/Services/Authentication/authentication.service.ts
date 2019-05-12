@@ -172,17 +172,15 @@ export function passwordMatchValidator(ac: AbstractControl) {
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = "";
+    let token = null;
     
     if(localStorage.getItem('token') === null){
-      token ="";
-      
+      token = null;
     }
     else{
       //console.log(token)
-      
-      token = localStorage.getItem('token');
-      
+     token = JSON.parse(localStorage.getItem('token'));
+      // token = localStorage.getItem('token');
     }
     
     

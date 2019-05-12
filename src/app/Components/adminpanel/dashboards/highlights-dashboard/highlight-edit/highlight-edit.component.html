@@ -4,7 +4,7 @@
       <div class="card card-chart">
         <div class="card-header card-header-light p-0">
           <div class="ct-chart position-relative" id="dailySalesChart">
-              <div *ngIf="cropper_show" class="image-cropper rounded">
+              <div *ngIf="cropper.show" class="image-cropper rounded">
                 <image-cropper
                 [imageChangedEvent]="imageChangedEvent"
                 [maintainAspectRatio]="true"
@@ -12,13 +12,11 @@
                 [resizeToWidth]=""
                 format="png"
                 (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded()"
-                (cropperReady)="cropperReady()"
                 (loadImageFailed)="loadImageFailed()"
               ></image-cropper>
               </div>
             <img src="{{ card_form.value.image != null ? card_form.value.image : 'https://dummyimage.com/600x300/#eee/fff' }}" 
-              class="rounded" alt="" style="width:100%" *ngIf="!cropper_show">
+              class="rounded" alt="" style="width:100%" *ngIf="!cropper.show">
             <label for="image-input-btn" class="btn btn-sm btn-success btn-fab btn-fab-mini btn-round position-absolute add-image-btn"><i class="material-icons">add_photo_alternate</i></label>
             <input type="file" id="image-input-btn" style="display:none"
               (change)="onImgChange($event)" >
@@ -58,7 +56,7 @@
                   </div>
                 </div>
                 <div class="col-6 text-right">
-                    <button type="submit" class="btn btn-primary" [disabled]="card_form.invalid || submitted">{{ editmode ? 'Update' : 'Submit'}}</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="card_form.invalid || submitted">{{ editmode.flag ? 'Update' : 'Submit'}}</button>
                 </div>
               </div>
           </div>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../Services/Events/events.service';
+import { EventsService } from 'src/app/Services/adminpanel/events.service';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Evnt } from '../../Models/event.model';
-
+import { Event } from '../../Models/event.interface';
 declare var jquery: any;
 declare var $: any;
 
@@ -13,36 +12,29 @@ declare var $: any;
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events:Evnt[]=[];
-  event:Evnt;
+  events:Event[]=[];
+  event:Event;
   view:boolean=false;
-  activeEvent:Evnt = new Evnt(null,'','','',[],'',null);
-  events2:Evnt[];
-  constructor(private eventService:EventService, private router:Router, private route:ActivatedRoute) { }
+
+  constructor(private eventService:EventsService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    
-  this.eventService.getEvents().subscribe(
+
+  this.eventService.fetch_Events().subscribe(
     (events)=>{
-      console.log(events)
-     this.events = events;
-      this.activeEvent =this.events[0];
-      
-      this.events2 = this.events.slice(1);
-      this.eventService.setEvents(this.events);
-    },
-    error => {
-      
+      this.events = events;
+      //this.eventService.setEvents(this.events);
+    },error => {
       Swal.fire({
-        
+
         title: 'Something went wrong!',
 
       })
     }
   );
-  
+
   $('#recipeCarousel').carousel({
-    interval: 2000
+    interval: 4000
   })
   $('.carousel .carousel-item').each(function(){
     var next = $(this).next();
@@ -50,13 +42,13 @@ export class EventsComponent implements OnInit {
     next = $(this).siblings(':first');
     }
     next.children(':first-child').clone().appendTo($(this));
-    
+
     for (var i=0;i<4;i++) {
         next=next.next();
         if (!next.length) {
         	next = $(this).siblings(':first');
       	}
-        
+
         next.children(':first-child').clone().appendTo($(this));
       }
 });
@@ -66,15 +58,15 @@ export class EventsComponent implements OnInit {
   // this.events = [new Evnt(1,"formula","awesome event","22-2-123",[{id:1,image:"232"}],"dont know",true),
   // new Evnt(2,"rov","awesome event","22-2-143",[{id:1,image:"232"}],"dont know2",true),new Evnt(2,"rov","awesome event","22-2-143",[{id:1,image:"232"}],"dont know2",true),
   // new Evnt(2,"rov","awesome event","22-2-143",[{id:1,image:"232"}],"dont know2",true)];
-  
-   
- 
+
+
+
   }
   onview(i:number){
     this.event = this.events[i];
     //this.view =true;
     this.router.navigate(['/events',i]);
   }
-  
- 
+
+
 }

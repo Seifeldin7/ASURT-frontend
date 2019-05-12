@@ -6,6 +6,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
+import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
 
 @Component({
   selector: 'app-article-edit',
@@ -19,8 +20,16 @@ export class ArticleEditComponent implements OnInit {
   croppedImage:string = null;
   
   /** for editing article */
-  editmode:boolean = false;
-  updating_article_id:Number;
+  editmode = {
+    flag: false,
+    current_article_id: null,
+    current_article_image: {
+      updated: false,
+      id: null
+    }
+  }
+  // editmode:boolean = false;
+  // updating_article_id:Number;
   
   /** Flags */
   submitted:boolean = false;
@@ -51,6 +60,7 @@ export class ArticleEditComponent implements OnInit {
     this.article_form.patchValue({
       image:this.croppedImage
     });
+    this.editmode.current_article_image.updated = true;
   }
   loadImageFailed() {
     // show message
@@ -62,7 +72,8 @@ export class ArticleEditComponent implements OnInit {
               private activatedRoute:ActivatedRoute,
               private newsfeedService:NewsfeedService,
               private sanitizer:DomSanitizer,
-              private toastr:ToastrService) { }
+              private toastr:ToastrService,
+              private adminpanelService:AdminpanelService) { }
 
   ngOnInit() {
     if(this.activatedRoute.snapshot.params['id']){
@@ -71,10 +82,10 @@ export class ArticleEditComponent implements OnInit {
        *  -trigger edit mode
        *  -get article and update form with old data
        */
-      this.editmode = true;
+      this.editmode.flag = true;
       this.newsfeedService.get_article_by_id(this.activatedRoute.snapshot.params['id']).subscribe(
         article =>{
-          this.updating_article_id = article.id;
+          this.editmode.current_article_id = article.id;
           this.article_form.patchValue({
             title: article.title,
             description: article.description,
@@ -83,6 +94,7 @@ export class ArticleEditComponent implements OnInit {
             video: article.video
           });
 
+          this.editmode.current_article_image.id = article.image[article.image.length -1].id;
           this.article_type = article.article_type;
           if(article.video != ''){
             /**
@@ -129,10 +141,15 @@ export class ArticleEditComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
-    if(this.editmode){
-      /**
-       * TODO: Delete old image
-       */
+    if(this.editmode.flag){
+      
+      if(this.editmode.current_article_image.updated){
+        /**
+         * Delete old image
+         */
+        this.adminpanelService.delete_image_from('news-feed',this.editmode.current_article_id,this.editmode.current_article_image.id);
+      }
+
       let article_data = {
         title: this.article_form.value.title,
         description:  this.article_form.value.description,
@@ -145,7 +162,7 @@ export class ArticleEditComponent implements OnInit {
         image: this.article_type == 'image' && this.croppedImage != null ? this.croppedImage : '',
         video: this.article_type == 'video' && this.article_form.value.video != null ? this.article_form.value.video : ''
       }
-      this.newsfeedService.update_article(this.updating_article_id,article_data).subscribe(
+      this.newsfeedService.update_article(this.editmode.current_article_id,article_data).subscribe(
         (res:any) => {
           this.toastr.success(res.msg,"Success");
           /**

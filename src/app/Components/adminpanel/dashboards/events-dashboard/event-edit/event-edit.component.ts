@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { EventsService } from 'src/app/Services/adminpanel/events.service';
+import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
 
 @Component({
   selector: 'app-event-edit',
@@ -12,8 +13,15 @@ import { EventsService } from 'src/app/Services/adminpanel/events.service';
 })
 export class EventEditComponent implements OnInit {
 
-  editmode:boolean = false;
-  updating_card_id:Number = null;
+  editmode = {
+    flag: false,
+    current_card_id: null,
+    current_card_img: {
+      updated: false,
+      id: null
+    }
+  };
+
   submitted:boolean = false;
 
   /** Card Form */
@@ -29,7 +37,8 @@ export class EventEditComponent implements OnInit {
       this.croppedImage = event.base64;
       this.card_form.patchValue({
       image:this.croppedImage
-    })
+    });
+    this.editmode.current_card_img.updated = true;
   }
   imageLoaded() {
     // show cropper
@@ -43,13 +52,6 @@ export class EventEditComponent implements OnInit {
     this.toastr.error('Select Valied Image','Error');
   }
 
-  //id:Number,
-  //name:string,
-  //date:Date,
-  //description:string,
-  //status:boolean,
-  //image:string,
-  //type:string
   card_form:FormGroup = this.formBuilder.group({
     name: [null, [Validators.required]],
     description:[null,[Validators.required]],
@@ -62,21 +64,23 @@ export class EventEditComponent implements OnInit {
   constructor(private activatedRoute:ActivatedRoute,
               private eventsServices:EventsService,
               private formBuilder:FormBuilder,
-              private toastr:ToastrService) {}
+              private toastr:ToastrService,
+              private adminpanelService:AdminpanelService) {}
 
   ngOnInit() {
     if(this.activatedRoute.snapshot.params['id']){
-      this.editmode = true;
+      this.editmode.flag = true;
       this.eventsServices.get_events_by_id(this.activatedRoute.snapshot.params['id']).subscribe(card=>{
-        this.updating_card_id = card.id;
+        this.editmode.current_card_id = card.id;
         this.card_form.patchValue({
           name: card.name,
           description: card.description,
           event_type: card.event_type,
           date: card.date,
           status: card.status,
-          image: card.image,
-        })
+          image: card.image[card.image.length -1].image,
+        });
+        this.editmode.current_card_img.id = card.image[card.image.length -1].id;
       })
     }
   }
@@ -84,8 +88,16 @@ export class EventEditComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
 
-    if(this.editmode){
-      this.eventsServices.update_event(this.updating_card_id,{
+    if(this.editmode.flag){
+
+      if(this.editmode.current_card_img.updated){
+        /**
+         * delete old image
+         */
+        this.adminpanelService.delete_image_from('event',this.editmode.current_card_id,this.editmode.current_card_img.id);
+      }
+
+      this.eventsServices.update_event(this.editmode.current_card_id,{
         name:this.card_form.value.name,
         description:this.card_form.value.description,
         image: (this.croppedImage) ? this.card_form.value.image : '',

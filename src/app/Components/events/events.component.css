@@ -88,6 +88,9 @@
     border-radius: 12px 0px 0px 12px !important;
     width: 2% !important;
 }
+h4{
+    color: #b21908;
+}
 
 @media (max-width: 590.98px) {
     .carousel-inner .carousel-item-right.active,

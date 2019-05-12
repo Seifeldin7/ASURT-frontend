@@ -28,15 +28,19 @@ export class AdminpanelService {
   /** For All services */
   delete_image_from(img_type:string,obj_id:Number,img_id:Number){
     let type_id = (img_type =='team')         ? 0 :
-                  (img_type =='achievement')  ? 1 :
                   (img_type =='event')        ? 2 :
                   (img_type =='highlight')    ? 3 :
                   (img_type =='news-feed')    ? 4 : null;
 
-    if( img_type != null ){
-      return this.http.delete('remove-from/'+type_id+'/'+obj_id+'/'+img_id+'/')
-    }
-    return false;
+    /** change get request to delete */
+    return this.http.get('api/remove-from/'+type_id+'/'+obj_id+'/'+img_id+'/').subscribe(
+      resonse=>{
+        this.toastr.info('Old image deleted');
+      },
+      err => {
+        this.toastr.error('Something went wrong while deleting old image');
+      }
+    );
   }
 
 }

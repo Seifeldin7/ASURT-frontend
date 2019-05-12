@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Team } from 'src/app/Models/team.interface';
+import { Team, Achivement } from 'src/app/Models/team.interface';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class TeamsService {
 
-  private teams: Team[] = [];
+  private teams = [];
   private onChangeTeams = new Subject<Team[]>();
   private onReceiveOneTeam = new Subject<Team>();
 
@@ -22,7 +22,7 @@ export class TeamsService {
     if(this.teams.length > 0){
       /** If teams fetched before next without sending request */
       setTimeout(() => {
-        this.onChangeTeams.next(this.teams); 
+        this.onChangeTeams.next(this.teams);
       });
     }else{
       this.http.get<Team[]>('api/teams/').subscribe(
@@ -63,7 +63,7 @@ export class TeamsService {
     this.http.get<Team>('api/teams/'+id+'/').subscribe(
       (team: Team) => {
         this.onReceiveOneTeam.next(team);
-      },  
+      },
       (err:any) => {
         if ('msg' in err.error) {
           this.toastr.error(err.error.msg, "Error")
@@ -81,7 +81,7 @@ export class TeamsService {
 
     return this.http.post('api/teams/',{
       name: data.name,
-      description: data.name,
+      description: data.description,
       team_type: data.team_type,
       achievement: data.achievement,
       image: data.images
@@ -93,7 +93,7 @@ export class TeamsService {
 
     return this.http.put('api/teams/'+id+'/',{
       name: data.name,
-      description: data.name,
+      description: data.description,
       team_type: data.team_type,
       achievement: data.achievement,
       image: data.images
@@ -118,6 +118,10 @@ export class TeamsService {
         }
       }
     )
+  }
+
+  delete_achievement_by_id(team_id:Number,achievement_id:Number){
+    return this.http.get('api/remove-from/1/'+team_id+'/'+achievement_id+'/');
   }
 
 }
