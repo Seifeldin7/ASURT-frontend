@@ -179,7 +179,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
     else{
       //console.log(token)
-     //token = JSON.parse(localStorage.getItem('token'));
+     token = JSON.parse(localStorage.getItem('token'));
       // token = localStorage.getItem('token');
     }
     
