@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="text-center container">
+  <!-- <div class="text-center container">
     <div class="row background mx-auto my-auto">
       <div id="recipeCarousel" class="carousel slide w-100 " data-ride="carousel">
         <div class="carousel-inner w-100 " role="listbox">
@@ -19,7 +19,7 @@
               <div class="card-body d-block ">
                 <h4 class="card-title">{{activeEvent.name | uppercase}}</h4>
                 <hr>
-                <!-- <p class="card-text">{activeEvent.description}</p> -->
+            
                 <button class="btn btn-link my-4" type="button" (click)="onview(0)">View Event</button>
               </div>
             </div>
@@ -32,8 +32,7 @@
               <div class="card-body d-block ">
                 <h4 class="card-title">{{event.name | uppercase}}</h4>
                 <hr>
-                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p> -->
+              
                 <button class="btn btn-link my-4" type="button" (click)="onview(i+1)">View Event</button>
               </div>
             </div>
@@ -50,6 +49,19 @@
         </div>
       </div>
     </div>
-  </div>
-
+  </div> -->
+  <ngb-carousel #carousel>
+    <ng-template ngbSlide *ngFor="let event of events;let i=index">
+      <div class="row highlight-wrapper">
+        <div class="carousel-image col-12 p-0">
+          <img src="http://127.0.0.1:8000{{event.image[event.image.length-1].image}}" >
+        </div>
+        <div class="carousel-caption text-justify col-md-4 col-sm-5 col-6">
+          <h3>{{event.name}}</h3>
+  
+          <button class="btn btn-danger my-4" type="button" (click)="onview(i)">View Event</button>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
   <router-outlet></router-outlet>

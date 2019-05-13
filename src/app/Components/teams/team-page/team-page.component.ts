@@ -24,7 +24,7 @@ export class TeamPageComponent implements OnInit {
         this.ts.get_team_by_id(this.id).subscribe(
           team =>{
             this.team = team;
-            this.achivements=team.achivement;
+            this.achivements=team.achievement;
             console.log(this.team);
           }
         );
