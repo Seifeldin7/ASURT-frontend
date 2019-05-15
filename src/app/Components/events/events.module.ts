@@ -5,16 +5,22 @@ import { EventsComponent } from './events.component';
 import { EventRoutingModule } from 'src/app/Routing/Events/events.router';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
+
+
+
 @NgModule({
     declarations: [
       EventsComponent,
-      EventDetailComponent
+      EventDetailComponent,
+     
     ],
     imports: [
       CommonModule,
       EventRoutingModule,
       NgbModalModule,
       NgbModule.forRoot(),
+      
     ]
    
   })

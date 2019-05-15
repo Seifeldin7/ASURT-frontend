@@ -58,8 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
-//import { EventListComponent } from './components/events/event-list/event-list.component';
-//import { EventItemComponent } from './components/events/event-list/event-item/event-item.component';
+
 
 @NgModule({
   declarations: [
@@ -128,6 +127,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingHttpInterseptorService, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[NavbarComponent]
 })
 export class AppModule { }
