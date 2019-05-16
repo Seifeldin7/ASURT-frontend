@@ -16,7 +16,9 @@
       <div class="d-none d-md-block">
         <p> {{event.description}}</p>
         <p class=" read-more">
-          <a [routerLink]="[ '/#']" routerLinkActive="active">Read More</a>
+          <!-- <a [routerLink]="[/#]" routerLinkActive="active">Read More</a> -->
+          <button class="btn btn-link my-4" type="button" (click)="onview(i)">Read More</button>
+
         </p>
       </div>
     </div>

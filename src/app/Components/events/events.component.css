@@ -92,7 +92,7 @@ h4{
     color: #b21908;
 }
 
-@media (max-width: 590.98px) {
+/* @media (max-width: 590.98px) {
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(100%);
@@ -170,7 +170,7 @@ h4{
     .carousel-inner .carousel-item-left {
         transform: translateX(0);
     }
-}
+} */
 .highlight-wrapper {
     width: 100vw;
     height: 70vh;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/Models/event.interface';
 import { EventsService } from 'src/app/Services/adminpanel/events.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-events',
@@ -29,12 +30,15 @@ export class HomeEventsComponent implements OnInit {
       event_type: "string"
     },
   ]
-  constructor(private eventsService: EventsService) { }
+  constructor(private eventsService: EventsService, private router:Router) { }
 
   ngOnInit() {
     this.eventsService.fetch_Events().subscribe(response => {
       this.events = response.filter(el => el.status);
     });
+  }
+  onview(i:number){
+    this.router.navigate(['/events',this.events[i].id]);
   }
 
 }
