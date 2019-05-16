@@ -23,15 +23,14 @@ export class EventDetailComponent implements OnInit {
       this.eventservice.getEvents().subscribe(
         (events)=>{
           this.events2 = events;
-          // if(this.eventservice.getEvent(this.id)){
-          //   this.event=this.eventservice.getEvent(this.id);
-          //   console.log(this.event.image[this.event.image.length-1].image);
-          // }
-          // else{
-          //   alert("Event doesn't exist");
-          //   this.router.navigate(['../events/0']);
-          // }
-          this.event  = this.events2[this.id];
+          if(this.events2[this.id]){
+            this.event  = this.events2[this.id];
+          }
+          else{
+            alert("Event doesn't exist");
+            this.router.navigate(['../events/0']);
+          }
+          
         },error => {
           alert("Error");
         }
