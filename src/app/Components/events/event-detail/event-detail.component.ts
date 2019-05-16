@@ -9,35 +9,38 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./event-detail.component.css']
 })
 export class EventDetailComponent implements OnInit {
-  event:Evnt = new Evnt(null,'','','',[{image:null,id:null}],'',null);
-  id:number;
-  events2:Evnt[]=[];
-  constructor(private eventservice:EventService,private route:ActivatedRoute,private router:Router) { }
+  event: Evnt = new Evnt(null, '', '', '', [{ image: null, id: null }], '', null);
+  id: number;
+  events2: Evnt[] = [];
+  constructor(private eventservice: EventService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
 
-    this.route.params.subscribe((params:Params)=>{
-       
-      this.id= +params['id'];
-      
-      this.eventservice.getEvents().subscribe(
-        (events)=>{
-          this.events2 = events;
-          if(this.events2[this.id]){
-            this.event  = this.events2[this.id];
+    this.route.params.subscribe((params: Params) => {
+
+      this.id = +params['id'];
+      if (this.route.snapshot.params['id']) {
+        this.eventservice.get_events_by_id(this.id).subscribe(
+          (event) => {
+
+            this.event = event;
+
+          }, err => {
+            if ('msg' in err.error) {
+              this.toastr.error(err.error.msg, "Error");
+              this.router.navigate(['../']);
+            }
+            else {
+              this.toastr.error("Something went wrong", "Error")
+            }
           }
-          else{
-            alert("Event doesn't exist");
-            this.router.navigate(['../events/0']);
-          }
-          
-        },error => {
-          alert("Error");
-        }
-      );
- 
-    
-  });
+        );
+      }
+
+    });
 
   }
 

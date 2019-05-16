@@ -46,5 +46,6 @@ export class HomeHighlightsComponent implements OnInit {
       this.highlights = response.filter(el => el.active);
     });
   }
+  
 
 }

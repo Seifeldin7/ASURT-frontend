@@ -1,6 +1,9 @@
 import { Evnt } from '../../Models/event.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -8,8 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class EventService{
 
 private events:Evnt[] =[];
-
-constructor (private http:HttpClient){}
+private onReceive = new Subject<Evnt>();
+constructor (private http:HttpClient,private toastr:ToastrService,private router:Router){}
 
 
 getEvents (){
@@ -18,13 +21,27 @@ getEvents (){
 setEvents (events:Evnt[]){
      this.events =events;
 }
-getEvent(id:number){
-    if(this.events[id]){
-    return this.events[id];
+
+get_events_by_id(id:Number){
+    if(this.events.length > 0){
+      let index = this.events.findIndex(x=>x.id == id);
+      setTimeout(() => {
+        this.onReceive.next(this.events[index]);
+      });
+    }else{
+      this.http.get<Evnt>('api/events/'+id+'/').subscribe(resp=>{
+        this.onReceive.next(resp);
+      },err=>{
+        if ('msg' in err.error) {
+          this.toastr.error(err.error.msg, "Error");
+          this.router.navigate(['../']);
+        }
+        else {
+          this.toastr.error("Something went wrong", "Error")
+        }
+      })
     }
-    else{
-        return null;
-    }
-}
+    return this.onReceive;
+  }
 
  }
