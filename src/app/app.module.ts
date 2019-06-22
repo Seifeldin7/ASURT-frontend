@@ -57,6 +57,7 @@ import { DateCountdownTimerComponent } from './Components/general/date-countdown
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { GroupPermissionGuard } from './Routing/adminpanel/group-permission.guard';
 
 
 
@@ -107,7 +108,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
       // { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomepageComponent },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
-      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule' },
+      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule', canActivate: [IsLoggedInGuardService]},
       { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
       // { path: '**', redirectTo: 'auth/login' }
       { path: '**', redirectTo: '' }
@@ -122,6 +123,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     EventsService,
     IsLoggedInGuardService,
     NewsFeedService,
+    GroupPermissionGuard,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },

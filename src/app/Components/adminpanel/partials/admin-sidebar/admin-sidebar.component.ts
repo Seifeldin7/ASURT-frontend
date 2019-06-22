@@ -19,4 +19,8 @@ export class AdminSidebarComponent implements OnInit {
     this.adminpanelService.admin_sidebar_toggle();
   }
 
+  show(page_to_be_accessed: string){
+    return this.adminpanelService.permission_authorized(page_to_be_accessed);
+  }
+
 }
