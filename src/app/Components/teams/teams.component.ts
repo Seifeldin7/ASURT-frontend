@@ -39,7 +39,11 @@ export class TeamsComponent implements OnInit {
   ngOnInit() {
     this.ts.fetch_teams().subscribe(
       teams => {
-        this.teams = teams;
+        for (var team of teams) {
+          if(team.team_type == this.teams_type){
+            this.teams.push(team);
+          }
+        }
         console.log(this.teams);
       }
     );
