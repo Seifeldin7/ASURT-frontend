@@ -108,8 +108,10 @@ import { GroupPermissionGuard } from './Routing/adminpanel/group-permission.guar
       // { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomepageComponent },
       { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
-      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule', canActivate: [IsLoggedInGuardService]},
+      { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule', canActivate: [IsLoggedInGuardService] },
       { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
+      { path: 'faq', component: FAQComponent },
+      { path: 'aboutus', component: AboutUsComponent },
       // { path: '**', redirectTo: 'auth/login' }
       { path: '**', redirectTo: '' }
     ]),
@@ -130,6 +132,6 @@ import { GroupPermissionGuard } from './Routing/adminpanel/group-permission.guar
     { provide: HTTP_INTERCEPTORS, useClass: LoadingHttpInterseptorService, multi: true },
   ],
   bootstrap: [AppComponent],
-  exports:[NavbarComponent]
+  exports: [NavbarComponent]
 })
 export class AppModule { }
