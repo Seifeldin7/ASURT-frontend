@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import 'hammerjs';
+import 'mousetrap';
+import {ModalGalleryModule} from 'angular-modal-gallery';
 
 // Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
@@ -16,7 +19,7 @@ import { AuthenticationModule } from './Components/authentication/authentication
 import { AuthenticationService, JwtInterceptor, APIInterceptor } from './Services/Authentication/authentication.service';
 import { GeneralService, LoadingHttpInterseptorService } from './Services/General/general.service';
 import { ProfileService } from './Services/Profile/profile.service';
-import { EventsService } from './Services/adminpanel/events.service';
+// import { EventsService } from './Services/adminpanel/events.service';
 
 
 // Routers
@@ -69,6 +72,8 @@ import { TeamPageComponent } from './Components/website/teams/team-page/team-pag
       enableHtml: true,
       positionClass: 'toast-bottom-right',
     }),
+    
+    ModalGalleryModule.forRoot(),
 
     GeneralRoutesModule,
     // ProfileRoutesModule,
