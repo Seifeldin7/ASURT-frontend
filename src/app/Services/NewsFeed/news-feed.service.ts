@@ -12,8 +12,8 @@ export class NewsFeedService {
   constructor(private http:HttpClient) { }
 
   getPosts(){
-    return this.http.get('news/'+this.pageId+'/');//testing route
-    //return this.http.get('api/news-feed/'+this.pageId+'/');
+    //return this.http.get('news/'+this.pageId+'/');//testing route
+    return this.http.get('api/news-feed/'+this.pageId+'/');
 
   }
 
