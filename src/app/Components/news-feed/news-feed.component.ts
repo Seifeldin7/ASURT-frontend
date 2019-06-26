@@ -73,10 +73,10 @@ export class NewsFeedComponent implements OnInit {
           this.posts.push(news['articles'][i]);
           //console.log(news['articles'][i]);
        }
-        
+
         //console.log(this.posts);
       }
     );
-    
+
   }
 }
