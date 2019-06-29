@@ -10,6 +10,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular-6-social-login';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signin',
@@ -48,7 +49,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
     
-    this.authenticationService.isLoggedIn().subscribe(
+    this.authenticationService.isLoggedIn().pipe(take(1)).subscribe(
       status => {
           if(status){ 
               this.toastr.info("You need to logout first.");
