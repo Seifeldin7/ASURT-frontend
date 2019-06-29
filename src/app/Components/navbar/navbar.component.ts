@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +8,8 @@ import { Component, OnInit, HostListener, ViewChild, ElementRef, Renderer2 } fro
 })
 export class NavbarComponent implements OnInit {
 
+  loggedInUserName: string = null;
+
   navbar_status: boolean = false;
   scroll_position: number = 100000;
   mouseHideTimeOut = null;
@@ -14,9 +17,17 @@ export class NavbarComponent implements OnInit {
   @ViewChild('navbar_wrapper') navbar_wrapper: ElementRef;
   @ViewChild('navbar') navbar: ElementRef;
 
-  constructor(private renderer2: Renderer2) { }
+  constructor(private renderer2: Renderer2,
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authService.isLoggedIn().subscribe(
+      isloggedIn => {
+        if(isloggedIn){
+          this.loggedInUserName = this.authService.tokenDecode(localStorage.getItem('token'))['username'];
+        }
+      }
+    );
   }
 
   @HostListener('document:scroll', [])
@@ -53,6 +64,10 @@ export class NavbarComponent implements OnInit {
 
   toggle_navbar() {
     this.navbar_status = !this.navbar_status;
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 
 }

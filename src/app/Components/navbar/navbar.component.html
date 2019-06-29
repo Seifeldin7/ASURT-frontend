@@ -21,31 +21,43 @@
           <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
             ngbDropdown>
             <a class="nav-link" ngbDropdownToggle>Teams</a>
-            <div ngbDropdownMenu>
-              <button class="dropdown-item">Management</button>
-              <button class="dropdown-item">Technical</button>
-            </div>
-          </li>
-
-          <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-            ngbDropdown>
-            <a class="nav-link" ngbDropdownToggle>Our Events</a>
-            <div ngbDropdownMenu>
-              list
+            <div ngbDropdownMenu class="shadow">
+              <button class="dropdown-item" ngbDropdownItem [routerLink]="[ '/teams/management' ]">Management</button>
+              <button class="dropdown-item" ngbDropdownItem [routerLink]="[ '/teams/technical' ]">Technical</button>
             </div>
           </li>
 
           <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" [routerLink]="[ '/faq' ]">FAQ </a>
+            <a class="nav-link" [routerLink]="[ '/events' ]">Events</a>
+          </li>
+
+          <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" [routerLink]="[ '/newsfeed' ]">NewsFeed </a>
           </li>
 
           <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a class="nav-link" [routerLink]="[ '/aboutus']">About us </a>
           </li>
 
-          <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" [routerLink]="[ '/auth/login']">Login/Register </a>
-          </li>
+          <ng-container *ngIf="loggedInUserName == null; else logout">
+            <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link" [routerLink]="[ '/auth/login']">Login/Register </a>
+            </li>
+          </ng-container>
+
+          <ng-template #logout>
+
+            <li class="nav-item cursor-ptr" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+              ngbDropdown>
+              <a class="nav-link" ngbDropdownToggle>Profile</a>
+              <div ngbDropdownMenu>
+                <button class="dropdown-item" ngbDropdownItem
+                  [routerLink]="[ '/profile/view']">{{loggedInUserName}}</button>
+                <button class="dropdown-item" ngbDropdownItem (click)="onLogout()">Logout</button>
+              </div>
+            </li>
+          </ng-template>
+
 
         </ul>
       </div>
