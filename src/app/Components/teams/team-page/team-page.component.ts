@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Params,Router } from '@angular/router';
 import { TeamsService } from '../../../Services/adminpanel/teams.service';
 import { Team,Achivement } from '../../../Models/team.interface';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-team-page',
@@ -13,9 +14,8 @@ export class TeamPageComponent implements OnInit {
   id:number;
   team:Team=null;
   achivements : Achivement[]=null;
-  constructor(private route:ActivatedRoute,private router:Router,private ts: TeamsService) {
+  constructor(private modalService: NgbModal,private route:ActivatedRoute,private router:Router,private ts: TeamsService) {
   }
-
   ngOnInit() {
     this.route.params.subscribe(
       (params:Params) => {
@@ -38,5 +38,7 @@ export class TeamPageComponent implements OnInit {
       }
     );
   }
+
+  openXl(content) { this.modalService.open(content, {size: 'xl'}); }
 
 }

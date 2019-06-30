@@ -8,9 +8,9 @@ import { HomepageComponent } from 'src/app/Components/homepage/homepage.componen
 
 export const router = [
   { path:'', component: HomepageComponent},
-  { path:'newsfeed', component: NewsFeedComponent},
-  { path: 'teams/:type', component: TeamsComponent },
-  { path: 'teams/:type/:id', component: TeamPageComponent },
+  { path:'newsfeed', component: NewsFeedComponent, data: {animation: 'newsfeed'} },
+  { path: 'teams', component: TeamsComponent, data: {animation: 'team'} },
+  { path: 'teams/:id', component: TeamPageComponent, data: {animation: 'teamtype'} },
   // { path: '**', redirectTo: '/' },
   // { path: '', redirectTo: '/', pathMatch: 'full' }
 ]

@@ -6,10 +6,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {NgsRevealModule} from 'ngx-scrollreveal';
 // Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
-
 
 
 
@@ -88,6 +87,7 @@ import { GroupPermissionGuard } from './Routing/adminpanel/group-permission.guar
     HttpClientModule,
     RouterModule,
     NgbModalModule,
+    NgsRevealModule,
     NgbModule.forRoot(),
     SlickCarouselModule,
     BrowserAnimationsModule,
@@ -107,13 +107,13 @@ import { GroupPermissionGuard } from './Routing/adminpanel/group-permission.guar
     RouterModule.forRoot([
       // { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomepageComponent },
-      { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule' },
+      { path: 'profile', loadChildren: './Components/profile/profile.module#ProfileModule', data: {animation: 'profile'} },
       { path: 'adminpanel', loadChildren: './Components/adminpanel/adminpanel.module#AdminpanelModule', canActivate: [IsLoggedInGuardService] },
-      { path: 'events', loadChildren: './Components/events/events.module#EventsModule' },
-      { path: 'faq', component: FAQComponent },
-      { path: 'aboutus', component: AboutUsComponent },
+      { path: 'events', loadChildren: './Components/events/events.module#EventsModule', data: {animation: 'events'} },
+      { path: 'faq', component: FAQComponent , data: {animation: 'faq'}},
+      { path: 'aboutus', component: AboutUsComponent, data: {animation: 'aboutus'} },
       // { path: '**', redirectTo: 'auth/login' }
-      { path: '**', redirectTo: '' }
+      { path: '**', redirectTo: '', data: {animation: 'whatever'} }
     ]),
   ],
   providers: [

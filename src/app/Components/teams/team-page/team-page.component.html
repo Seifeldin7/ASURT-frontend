@@ -1,51 +1,96 @@
-<!-- <div class="card text-white bg-dark mb-2">
-  <img class="card-img-top" src="{{team.images[0]}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{team.name}}</h5>
-    <p class="card-text">{{team.description}}</p>
+
+
+<br>
+<br>
+<br>
+<h1 style="text-align:center"> {{team.name}} </h1>
+<hr>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Gallery</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</div> -->
+  <div class="modal-body">
+    <ngb-carousel *ngIf="team.image">
+      <ng-template ngbSlide *ngFor="let img of team.image">
+        <img class="gal" src="http://127.0.0.1:8000{{img.image}}" alt="Random third slide">
+      </ng-template>
+    </ngb-carousel>
+  </div>
+
+</ng-template>
 
 
 
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-<div class="container">
-  <div class="row ">
-    <div class="col-lg-12">
-      <div>
 
 
-        <div class="col-md-4">
-          <div class="profile-card text-center">
 
-            <img class="img-responsive" src="{{team.images[0]}}">
-            <div class="profile-info">
-              <h2 class="hvr-underline-from-center">{{team.name}}</h2>
-              <div>{{team.description}}</div>
-              <a href="https://www.twitter.com/mike_youngg"><i class="fa fa-twitter fa-2x"></i></a>
-              <a href="mailto:michael_y@live.co.uk"><i class="fa fa-envelope-o fa-2x"></i></a>
-              <a href="https://www.linkedin.com"><i class="fa fa-linkedin fa-2x"></i></a>
+
+
+
+<br>
+<br>
+<div [ngsReveal]="{ reset: true}" class="col-md-12 lib-item" data-category="view">
+    <div class="lib-panel">
+        <div class="row box-shadow">
+            <div class="col-md-6">
+                <img class="lib-img-show" src="url(../../asset/logo.png)">
             </div>
+            <div class="col-md-6">
+                <div class="lib-row lib-header">
+                    {{team.description}}
+                    <div class="lib-header-seperator"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <button style="align-self: center;" class="btn btn-outline-primary mb-2 mr-2" (click)="openXl(content)">View Gallery</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-          </div>
+<br>
+<br>
+<div class="row centered">
+  <div
+  class="col-sm-6 col-lg-4 col-xs-12 centered"*ngFor="let achivement of achivements" >
+      <div
+      class="card text-white bg-dark mb-2 centered" style="width: 16rem;">
+        <img class="card-img-top" src="http://127.0.0.1:8000{{achivement.image}}" alt="Card image cap">
+        <div class="card-header">
+          <h2>{{achivement.title}}</h2>
+        </div>
+        <div class="card-body">
+          <span style="padding-right: 25px;font-size:50px;">{{achivement.position}}</span>
+          <span _ngcontent-c5="" class="card-extra ">th</span>
+          <p class="card-text">{{achivement.description}}</p>
+          <p class="card-text">{{achivement.year}}</p>
         </div>
       </div>
-    </div>
   </div>
-</div> -->
+</div>
+<br>
+<br>
+<br>
+<br>
 
 
-<html>
+
+
+
+
+
+<!-- <html>
   <head>
-    <!-- Material Design Lite -->
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
-    <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <!-- Wide card with share menu button -->
     <div class="mdl-card mdl-shadow--2dp demo-card-wide">
       <img class="big-image" src = "{{team.image[0][image]}}">
       <div class="mdl-card__title">
@@ -57,9 +102,7 @@
       <div class="mdl-card__actions mdl-card--border">
       </div>
       <div class="mdl-card__menu">
-        <!-- <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-          <i class="material-icons">share</i>
-        </button> -->
+
       </div>
     </div>
     <h1 style="text-align:center">Achivements</h1>
@@ -79,4 +122,4 @@
       </ul>
     </div>
   </body>
-</html>
+</html> -->
