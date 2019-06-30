@@ -125,6 +125,7 @@ export class AuthenticationService {
 
   storeToken(token: string) {
     localStorage.setItem('token', JSON.stringify(token));
+    this.verifyLoggedIn.next(true);
   }
 
   logout() {
@@ -132,6 +133,7 @@ export class AuthenticationService {
      * Clear JWT from local storage
      */
     localStorage.removeItem('token');
+    this.verifyLoggedIn.next(false);
   }
 
   forgetPassword(email: string) {
@@ -179,7 +181,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
     else{
       //console.log(token)
-      //token = JSON.parse(localStorage.getItem('token'));
+      token = JSON.parse(localStorage.getItem('token'));
       // token = localStorage.getItem('token');
     }
 

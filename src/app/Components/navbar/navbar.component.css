@@ -20,8 +20,13 @@
     background: linear-gradient(180deg, rgba(32,32,32,0.70) 0%, rgba(32,32,32,0.6) 100%);
 }
 
-.navbar li a{
-    color: #202020;
+.navbar .nav-link{
+    /* color: #202020; */
+    color: rgba(255,255,255,0.5);
+}
+
+.navbar .nav-link:hover, .navbar .nav-link:active, .navbar .nav-item.active .nav-link  {
+    color: white;
 }
 
 .navbar-collapsed li a {
@@ -42,4 +47,19 @@ li.nav-item.active{
 
 .cursor-ptr{
     cursor: pointer;
+}
+
+/* DropDown menu style */
+
+.dropdown-menu {
+    background: linear-gradient(180deg, rgba(32,32,32,0.7) 0%, rgba(255,255,255,0) 97%);
+    border: none;
+}
+
+.dropdown-menu, .dropdown-item {
+    color: #FFF;   
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(180deg, rgba(32,32,32,0.70) 100%, rgba(32,32,32,0.70) 100%);
 }
