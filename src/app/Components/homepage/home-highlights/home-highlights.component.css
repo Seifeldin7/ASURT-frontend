@@ -1,6 +1,6 @@
 .highlight-wrapper {
   width: 100vw;
-  height: 70vh;
+  /* height: 70vh; */
   text-align: center;
   position: relative;
   margin: 0;
@@ -8,24 +8,25 @@
 
 .highlight-wrapper .carousel-caption {
   height: 100%;
-  background-color: rgba(109, 106, 106, 0.2);
+  background-color: rgba(109, 106, 106, 0.6);
   position: absolute;
   top: 0;
   right: 0;
   left: 66%;
-  padding: 1rem;
+  padding-top: 3.3rem;
   overflow-wrap: break-word;
 }
 
 .highlight-wrapper .carousel-caption h3 {
-  font-size: 4.8em;
+  font-size: 2rem;
+  font-weight: bold;
   text-transform: capitalize;
   text-align: left;
   color: white;
 }
 
 .highlight-wrapper .carousel-caption p {
-  font-size: 1.6em;
+  font-size: 1rem;
   text-align: left;
   color: white;
   margin-bottom: 0px;
@@ -55,7 +56,7 @@
   }
 
   .highlight-wrapper .carousel-caption h3 {
-    font-size: 3em;
+    font-size: 2em;
   }
 
   .highlight-wrapper .carousel-caption p {
@@ -68,7 +69,7 @@
 }
 
 /* // Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) and (max-width: 767px) {
+/* @media (min-width: 576px) and (max-width: 767px) {
   .highlight-wrapper .carousel-caption {
     left: 58%;
   }
@@ -85,10 +86,10 @@
     font-size: 0.9em;
   }
 
-}
+} */
 
 /* // Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991px) {
+/* @media (min-width: 768px) and (max-width: 991px) {
   .highlight-wrapper .carousel-caption h3 {
     font-size: 3.8em;
   }
@@ -101,10 +102,10 @@
     font-size: 0.9em;
   }
 
-}
+} */
 
 /* // Large devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199px) {
+/* @media (min-width: 992px) and (max-width: 1199px) {
   .highlight-wrapper .carousel-caption h3 {
     font-size: 4.2em;
   }
@@ -116,4 +117,4 @@
   .highlight-wrapper .carousel-caption a {
     font-size: 0.9em;
   }
-}
+} */

@@ -23,10 +23,10 @@ export class TeamsComponent implements OnInit {
     this.ts.fetch_teams().subscribe(
       teams => {
         for (var team of teams) {
-          if(team.team_type == "technical"){
+          if(team.team_type.toLowerCase() == "technical"){
             this.teams.push(team);
           }
-          else if(team.team_type == "management"){
+          else if(team.team_type.toLowerCase() == "management"){
             this.management_teams.push(team);
           }
         }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Event } from 'src/app/Models/event.interface';
 import { EventsService } from 'src/app/Services/adminpanel/events.service'
 import { Router } from '@angular/router';
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home-events',
   templateUrl: './home-events.component.html',
-  styleUrls: ['./home-events.component.css']
+  styleUrls: ['./home-events.component.css'],
 })
 export class HomeEventsComponent implements OnInit {
 

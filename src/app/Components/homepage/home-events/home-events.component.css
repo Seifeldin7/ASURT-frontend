@@ -84,12 +84,12 @@
   }
 
   .blog-card .meta {
-    flex-basis: 40%;
+    /* flex-basis: 40%; */
     height: auto;
   }
-
+  
   .blog-card .description {
-    flex-basis: 60%;
+    /* flex-basis: 60%; */
   }
 
   .blog-card.alt {
@@ -116,4 +116,9 @@
   img {
     height: 100%;
   }
+}
+
+
+.time-to span {
+  font-size: 1.5rem;
 }

@@ -25,6 +25,8 @@ export class NavbarComponent implements OnInit {
       isloggedIn => {
         if(isloggedIn){
           this.loggedInUserName = this.authService.tokenDecode(localStorage.getItem('token'))['username'];
+        }else {
+          this.loggedInUserName = null;
         }
       }
     );
