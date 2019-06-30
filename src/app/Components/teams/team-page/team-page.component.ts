@@ -39,6 +39,6 @@ export class TeamPageComponent implements OnInit {
     );
   }
 
-  openXl(content) { this.modalService.open(content, {size: 'xl'}); }
+  openXl(content) { this.modalService.open(content, {size: 'lg'}); }
 
 }
