@@ -13,6 +13,7 @@ export class DateCountdownTimerComponent implements OnInit, OnDestroy {
   private counter$: Observable<number>;
   private subscription: Subscription;
   private message: string;
+ 
 
   @Input() inputDate: Date;
 
@@ -40,6 +41,7 @@ export class DateCountdownTimerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    
     this.future = new Date(this.inputDate.toString());
     this.counter$ = Observable.interval(1000).map((x) => {
       return Math.floor((this.future.getTime() - new Date().getTime()) / 1000);

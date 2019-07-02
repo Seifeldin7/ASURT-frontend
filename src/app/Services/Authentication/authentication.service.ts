@@ -84,7 +84,7 @@ export class AuthenticationService {
     /**
      * Check if user logged in and verify token
      *
-     * 
+     *
      * @returns Subject<boolean> Of loggedin status
      */
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
@@ -92,7 +92,7 @@ export class AuthenticationService {
 
     if(token == null){
       setTimeout(() => {
-        this.verifyLoggedIn.next(false);        
+        this.verifyLoggedIn.next(false);
       });
     }else {
       this.tokenVerify(token).
@@ -125,6 +125,7 @@ export class AuthenticationService {
 
   storeToken(token: string) {
     localStorage.setItem('token', JSON.stringify(token));
+    this.verifyLoggedIn.next(true);
   }
 
   logout() {
@@ -132,6 +133,7 @@ export class AuthenticationService {
      * Clear JWT from local storage
      */
     localStorage.removeItem('token');
+    this.verifyLoggedIn.next(false);
   }
 
   forgetPassword(email: string) {
@@ -173,7 +175,7 @@ export function passwordMatchValidator(ac: AbstractControl) {
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = null;
-    
+
     if(localStorage.getItem('token') === null){
       token = null;
     }
@@ -182,8 +184,8 @@ export class JwtInterceptor implements HttpInterceptor {
       token = JSON.parse(localStorage.getItem('token'));
       // token = localStorage.getItem('token');
     }
-    
-    
+
+
     if (token) {
       request = request.clone({
         setHeaders: {
@@ -199,7 +201,7 @@ export class JwtInterceptor implements HttpInterceptor {
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
   baseUrl = 'http://127.0.0.1:8000/';
-   //baseUrl = 'http://localhost:3000/';
+  //baseUrl = 'http://localhost:3000/';
   // baseUrl ='https://domain-name.com/';
   constructor() { }
 

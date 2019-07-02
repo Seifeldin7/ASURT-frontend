@@ -16,7 +16,7 @@ export class HomeHighlightsComponent implements OnInit {
       title: "String",
       description: "String",
       image: [{
-        id: 1, image: "https://dummyimage.com/1920x400/000/fff"
+        id: 1, image: "https://dummyimage.com/1920x400/fff/000"
       }],
       url: "",
       active: true
@@ -26,7 +26,7 @@ export class HomeHighlightsComponent implements OnInit {
           title: "String String",
       description: "String",
       image: [{
-        id: 1, image: "https://dummyimage.com/1920x720/000/fff"
+        id: 1, image: "https://dummyimage.com/1920x720/fff/000"
       }],
       url: "",
       active: true

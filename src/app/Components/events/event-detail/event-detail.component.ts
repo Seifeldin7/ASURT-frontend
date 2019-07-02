@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EventDetailComponent implements OnInit {
   event: Evnt = new Evnt(null, '', '', '', [{ image: null, id: null }], '', null);
+  event_date: Date = null;
   id: number;
   events2: Evnt[] = [];
   constructor(private eventservice: EventService,
@@ -27,7 +28,7 @@ export class EventDetailComponent implements OnInit {
           (event) => {
 
             this.event = event;
-
+            this.event_date = new Date(event.date);
           }, err => {
             if ('msg' in err.error) {
               this.toastr.error(err.error.msg, "Error");
