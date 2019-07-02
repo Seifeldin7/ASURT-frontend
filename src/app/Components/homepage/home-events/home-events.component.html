@@ -3,7 +3,9 @@
   <hr style="width:30%;">
 </div>
 
-<div [ngsReveal]="{ reset: true}" class=" blog-card" *ngFor="let event of events; let i = index" [ngClass]=" {'alt':i%2!=0}">
+<!-- <div [ngsReveal]="{ reset: true}" class=" blog-card" *ngFor="let event of events; let i = index" [ngClass]=" {'alt':i%2!=0}"> -->
+
+<div class=" container" *ngFor="let event of events; let i = index" [ngClass]=" {'alt':i%2!=0}" (window:resize)="onResize($event)" >
   <div class="meta">
     <div class="photo"></div>
     <!-- <img src="http://127.0.0.1:8000{{event.image[event.image.length-1].image}}" -->
@@ -22,8 +24,8 @@
         </p>
       </div>
     </div>
-    <!-- <div class="counter align-bottom">
-      <countdown-timer [inputDate]="event.date"></countdown-timer>
-    </div> -->
+    <div class="counter align-bottom">
+      <countdown-timer [inputDate]="event.date" > </countdown-timer>
+    </div>
   </div>
 </div>

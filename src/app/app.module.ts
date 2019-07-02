@@ -18,7 +18,7 @@ import { GeneralService, LoadingHttpInterseptorService } from './Services/Genera
 import { ProfileService } from './Services/Profile/profile.service';
 import { EventsService } from './Services/adminpanel/events.service';
 import { EventService } from './Services/Events/events.service';
-
+import{responsiveService}from './Services/Events/responsive.service'
 
 // Routers
 import { GeneralRoutesModule } from './Routing/General/general.service';
@@ -87,6 +87,7 @@ import { SharedModule } from './shared.module';
     IsLoggedInGuardService,
     NewsFeedService,
     GroupPermissionGuard,
+    responsiveService,
 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true },
