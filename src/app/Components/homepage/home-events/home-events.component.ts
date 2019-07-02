@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/Models/event.interface';
 import { EventsService } from 'src/app/Services/adminpanel/events.service'
 import { Router } from '@angular/router';
+import{responsiveService} from 'src/app/Services/Events/responsive.service'
 
 @Component({
   selector: 'app-home-events',
@@ -30,16 +31,31 @@ export class HomeEventsComponent implements OnInit {
       event_type: "string"
     },
   ]
-  constructor(private eventsService: EventsService, private router:Router) { }
+  constructor(private eventsService: EventsService, private router:Router , private responsiveService:responsiveService) { }
 
   ngOnInit() {
     this.eventsService.fetch_Events().subscribe(response => {
       this.events = response.filter(el => el.status);
     });
-  }
-  onview(i:number){
+  
+      this.responsiveService.getMobileStatus().subscribe( isMobile =>{
+        if(isMobile){
+          console.log('Mobile device detected')
+        }
+        else{
+          console.log('Desktop detected')
+        }
+         
+  
+  
+    });
+    this.onResize();
+    }
+onview(i:number){
     this.router.navigate(['/events',this.events[i].id]);
   }
-
-}
-
+  onResize(){
+    this.responsiveService.checkWidth();
+  }
+  }
+    
