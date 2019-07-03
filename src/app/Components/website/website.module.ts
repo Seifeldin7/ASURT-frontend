@@ -32,7 +32,7 @@ import { SharedModule } from 'src/app/shared.module';
     SponsorsComponent,
     AboutUsComponent,
     FAQComponent,
-    // DateCountdownTimerComponent,
+    DateCountdownTimerComponent,
   ],
   imports: [
     CommonModule,

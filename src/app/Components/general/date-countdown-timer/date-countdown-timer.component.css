@@ -1,4 +1,4 @@
-@import '//fonts.googleapis.com/css?family=Bangers';
+/* @import '//fonts.googleapis.com/css?family=Bangers'; */
 
 body {
   margin: 0;
@@ -23,6 +23,11 @@ body {
   display: block;
   font-size: 2rem;
   color: red;
+}
+span{
+  font-family: Impact, Charcoal, sans-serif;
+  font-style: italic;
+  color: #450202;
 }
 
 @media (max-width: 640px) {

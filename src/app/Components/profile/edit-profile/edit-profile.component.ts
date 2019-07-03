@@ -42,12 +42,12 @@ export class EditProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
     this.year = new Date().getFullYear();
     this.profileservice.profileExist();
     this.profileservice.editMode.take(1).subscribe(
       edit => {
-       
+
         this.editMode = edit;
         this.profileservice.seteditMode(edit);
         if (edit == true) {
@@ -55,7 +55,7 @@ export class EditProfileComponent implements OnInit {
           this.removed = false;
           this.profileservice.fetchProfile().subscribe(
             (response) => {
-              console.log(response)
+              // console.log(response)
               this.profile = response['0'];
               let baseUrlBackTest = "http://localhost:8000";
               this.temp = baseUrlBackTest + this.profile.profile_pic;
@@ -114,7 +114,7 @@ export class EditProfileComponent implements OnInit {
     if (this.profileservice.geteditMode()) {
       this.profileservice.EditProfile(pro).subscribe(
         (response: Profile) => {
-          console.log(response);
+          // console.log(response);
           this.loading = false;
           Swal.fire({
             position: 'center',
@@ -128,7 +128,7 @@ export class EditProfileComponent implements OnInit {
         error => {
           var keys = Object.keys(error["error"]);
           this.errors = error["error"];
-          
+
           this.loading = false;
           this.submitBtn = false;
           Swal.fire({
@@ -158,7 +158,7 @@ export class EditProfileComponent implements OnInit {
           this.errors = error["error"];
           this.loading = false;
           this.submitBtn = false;
-          
+
           Swal.fire({
             type: 'error',
             title: error["error"][keys[0]][0]
@@ -168,7 +168,7 @@ export class EditProfileComponent implements OnInit {
       );
 
       this.submitBtn = true;
-      this.msgs =[];   
+      this.msgs =[];
     }
 
   }
@@ -228,7 +228,7 @@ export class EditProfileComponent implements OnInit {
   imageLoaded() {
     // show cropper
     this.imageLoadedFlag = false;
-    console.log("imageLoaded");
+    // console.log("imageLoaded");
   }
   loadImageFailed() {
     // show message
@@ -333,12 +333,3 @@ export class EditProfileComponent implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-

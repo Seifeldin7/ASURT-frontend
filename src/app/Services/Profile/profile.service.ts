@@ -14,7 +14,7 @@ export class ProfileService {
   editMode=new Subject<boolean>();
   editflag = false;
   private profile=new Profile('','','','','','','','','','','','','','','','','','');
-   
+
   constructor(private http:HttpClient){}
   fetchProfile(){
   return this.http.get<Profile>('api/profile/');
@@ -40,18 +40,18 @@ export class ProfileService {
   profileExist(){
     this.fetchProfile().subscribe(
       (response:Profile)=>{
-        console.log(response)
+        // console.log(response)
         this.editMode.next(true);
-        
-       
+
+
       },
       err=>{
-        
+
         this.editMode.next(false);
-        
+
       }
     )
-    
-    
+
+
   }
 }

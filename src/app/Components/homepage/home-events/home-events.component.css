@@ -92,6 +92,7 @@
 
   .blog-card .description {
     /* flex-basis: 60%; */
+  }
   .container.meta {
     flex-basis: 40%;
     height: auto;
@@ -129,7 +130,7 @@
 @media (min-width: 768px){
   img {
     height: 100%;
-
+}
 
 
 .time-to span {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { slideInAnimation } from './animation';
+import { footer_slideInAnimation } from './animation';
 import {NgsRevealConfig} from 'ngx-scrollreveal';
 
 @Component({
@@ -8,7 +8,7 @@ import {NgsRevealConfig} from 'ngx-scrollreveal';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    slideInAnimation
+    footer_slideInAnimation
   ],
   providers: [NgsRevealConfig]
 })
@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(config: NgsRevealConfig) {
   // customize default values of ngx-scrollreveal directives used by this component tree
   config.duration = 8000;
-  config.easing = 'cubic-bezier(.29,.32,.72,.75)';
+  config.easing = 'cubic-bezier(0,0,1,1.01)';
 
   //other options here
 }

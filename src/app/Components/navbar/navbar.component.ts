@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
+import { EventsService } from 'src/app/Services/adminpanel/events.service'
+import { Event } from 'src/app/Models/event.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +15,11 @@ export class NavbarComponent implements OnInit {
   navbar_status: boolean = false;
   scroll_position: number = 100000;
   mouseHideTimeOut = null;
+  events: Event[] = null;
 
   @ViewChild('navbar_wrapper') navbar_wrapper: ElementRef;
   @ViewChild('navbar') navbar: ElementRef;
-
-  constructor(private renderer2: Renderer2,
+  constructor(private eventsService: EventsService, private renderer2: Renderer2,
               private authService: AuthenticationService) { }
 
   ngOnInit() {
@@ -30,6 +32,9 @@ export class NavbarComponent implements OnInit {
         }
       }
     );
+    this.eventsService.fetch_Events().subscribe(response => {
+      this.events = response.filter(el => el.status);
+    });
   }
 
   @HostListener('document:scroll', [])
@@ -67,7 +72,6 @@ export class NavbarComponent implements OnInit {
   toggle_navbar() {
     this.navbar_status = !this.navbar_status;
   }
-
   onLogout(){
     this.authService.logout();
   }

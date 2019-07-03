@@ -7,7 +7,7 @@ import { NgsRevealConfig } from 'ngx-scrollreveal';
   templateUrl: './website.component.html',
   styleUrls: ['./website.component.css'],
   animations: [
-    slideInAnimation
+    slideInAnimation,
   ],
   providers: [NgsRevealConfig]
 })

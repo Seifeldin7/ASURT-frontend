@@ -18,7 +18,7 @@ import { GeneralService, LoadingHttpInterseptorService } from './Services/Genera
 import { ProfileService } from './Services/Profile/profile.service';
 import { EventsService } from './Services/adminpanel/events.service';
 import { EventService } from './Services/Events/events.service';
-import{responsiveService}from './Services/Events/responsive.service'
+import { responsiveService }from './Services/Events/responsive.service'
 
 // Routers
 import { GeneralRoutesModule } from './Routing/General/general.service';

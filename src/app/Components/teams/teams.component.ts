@@ -30,8 +30,8 @@ export class TeamsComponent implements OnInit {
             this.management_teams.push(team);
           }
         }
-        console.log(this.teams);
-        console.log(this.management_teams);
+        // console.log(this.teams);
+        // console.log(this.management_teams);
       }
     );
     // this.route.params.subscribe(
@@ -42,8 +42,8 @@ export class TeamsComponent implements OnInit {
     //     if(this.teams_type == "technical") this.out='Technical Teams';
     //     else if(this.teams_type == "managemant") this.out='Management Teams';
     //   });
-    console.log(this.out);
-    console.log(this.teams_type);
+    // console.log(this.out);
+    // console.log(this.teams_type);
 
 
   }

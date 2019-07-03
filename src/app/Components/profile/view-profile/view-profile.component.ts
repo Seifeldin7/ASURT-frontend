@@ -23,8 +23,8 @@ export class ViewProfileComponent implements OnInit {
         this.pro = profile['0'];
         this.profileservice.setProfile(this.pro);
         this.loaded = true;
-        console.log(this.pro.profile_pic)
-        
+        // console.log(this.pro.profile_pic)
+
         if (this.pro.profile_pic == null || this.pro.profile_pic == '') {
           this.NullImage = true
         }

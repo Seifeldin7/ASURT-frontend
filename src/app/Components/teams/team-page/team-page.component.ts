@@ -25,16 +25,8 @@ export class TeamPageComponent implements OnInit {
           team =>{
             this.team = team;
             this.achivements=team.achievement;
-            console.log(this.team);
           }
         );
-        // console.log(this.id);
-        // console.log(this.team);
-        // console.log(this.team.id);
-        // console.log(this.team.name);
-        // console.log(this.team.description);
-        // console.log(this.team.achivements);
-        // this.recipe1 = this.rs.getRecipe(this.id);
       }
     );
   }

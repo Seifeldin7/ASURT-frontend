@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Sponsor } from 'src/app/Models/sponsor.interface'
 import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service'
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sponsors',
@@ -11,12 +13,22 @@ export class SponsorsComponent implements OnInit {
 
   sponsors: Sponsor[] = []
 
-  constructor(private sponsorsService: SponsorsService) { }
+  constructor(private router:Router, private toastr: ToastrService, private sponsorsService: SponsorsService) { }
 
   ngOnInit() {
     this.sponsorsService.fetch_sponsors().subscribe(response => {
       this.sponsors = response;
-    });
+    },
+    err => {
+      if ('msg' in err.error) {
+        this.toastr.error(err.error.msg, "Error");
+        this.router.navigate(['../']);
+      }
+      else {
+        this.toastr.error("Something went wrong", "Error")
+      }
+    }
+  );
   }
 
   slideConfig = {

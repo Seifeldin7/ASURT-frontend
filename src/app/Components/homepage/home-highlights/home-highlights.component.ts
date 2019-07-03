@@ -44,8 +44,11 @@ export class HomeHighlightsComponent implements OnInit {
   ngOnInit() {
     this.highlightsService.fetch_highlights().subscribe(response => {
       this.highlights = response.filter(el => el.active);
+      for (var highlight of this.highlights) {
+        highlight.description = highlight.description.substring(0, 30);
+      }
     });
   }
-  
+
 
 }

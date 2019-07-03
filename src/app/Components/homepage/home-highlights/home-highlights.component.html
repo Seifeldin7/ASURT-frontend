@@ -1,4 +1,4 @@
-<ngb-carousel #carousel>
+<ngb-carousel #carousel *ngIf="highlights!=null">
   <ng-template ngbSlide *ngFor="let highlight of highlights">
     <div class="row highlight-wrapper">
       <div class="carousel-image col-12 p-0">
@@ -7,7 +7,7 @@
       <div class="carousel-caption text-justify col-md-4 col-sm-5 col-6">
         <h3>{{highlight.title}}</h3>
         <p>{{highlight.description}}</p>
-        <a [routerLink]="['/#']" routerLinkActive="active"> Read More</a>
+        <a href="{{highlight.url}}">Read More</a>
       </div>
     </div>
   </ng-template>

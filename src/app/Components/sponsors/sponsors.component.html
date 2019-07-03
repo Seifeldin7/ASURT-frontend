@@ -1,12 +1,12 @@
-<div class="text-center p-4">
+<div class="text-center p-4" [ngsReveal]="{ reset: true}">
   <h2>Meet Our Sponsors</h2>
   <hr style="width:30%;">
 </div>
 
-<div class="container text-center">
-  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+<div class="container text-center" [ngsReveal]="{ reset: true}">
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" *ngIf="sponsors!=null">
     <div ngxSlickItem *ngFor="let sponsor of sponsors" class="slide">
-      <a href="{{sponsor.url}}"><img src="{{sponsor.image}}" alt="{{sponsor.id}}"></a>
+      <a href="{{sponsor.url}}"><img src="http://127.0.0.1:8000{{sponsor.image}}" alt="{{sponsor.id}}"></a>
     </div>
   </ngx-slick-carousel>
 </div>

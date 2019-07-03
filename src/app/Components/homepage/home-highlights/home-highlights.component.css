@@ -56,15 +56,15 @@
   }
 
   .highlight-wrapper .carousel-caption h3 {
-    font-size: 2em;
-  }
-
-  .highlight-wrapper .carousel-caption p {
     font-size: 1em;
   }
 
+  .highlight-wrapper .carousel-caption p {
+    font-size: 0.5em;
+  }
+
   .highlight-wrapper .carousel-caption a {
-    font-size: 0.8em;
+    font-size: 0.4em;
   }
 }
 

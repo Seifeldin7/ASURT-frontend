@@ -66,13 +66,15 @@ hr{
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {
-  .column {
+  .col {
     width: 100%;
     display: block;
     margin-bottom: 20px;
+    align-self: center;
   }
   .card{
-    height: 100%;
+    /* height: 100%; */
+    width: 100%;
     border-bottom: 10px;
     width: 100%;
   }

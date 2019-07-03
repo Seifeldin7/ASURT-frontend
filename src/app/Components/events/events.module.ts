@@ -15,14 +15,13 @@ import { DateCountdownTimerComponent } from '../general/date-countdown-timer/dat
     declarations: [
       EventsComponent,
       EventDetailComponent,
-      DateCountdownTimerComponent
+      // DateCountdownTimerComponent
     ],
     imports: [
       CommonModule,
       EventRoutingModule,
       SharedModule
     ]
-   
+
   })
   export class EventsModule { }
-  

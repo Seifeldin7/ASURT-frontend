@@ -8,9 +8,9 @@
 }
 
 .d{
-    background-size: cover; 
+    background-size: cover;
     background-size: contain;
-    max-width: 100px; 
+    max-width: 100px;
     background:url("https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
 }
 .pic{
@@ -33,7 +33,7 @@
 .events{
     list-style: none;
     width:100%;
-    
+
 }
 
 .events li{
@@ -41,7 +41,7 @@
     float: left;
     width:25%;
     margin: 0 ;
- 
+
 }
 /* .con{
     -webkit-box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
@@ -57,7 +57,7 @@
      box-shadow: -1px 0px 29px 3px rgba(0, 0, 0, 0.29);
     border-radius: 50px;
     background-color: white;
-    
+
 }
 
 .background {
@@ -74,7 +74,7 @@
     /* padding-right: 0px;
     padding-left: 0px; */
     height: 170px;
-   
+
     padding: 0px;
 }
 .right {
@@ -92,7 +92,7 @@ h4{
     color: #b21908;
 }
 
-/* @media (max-width: 590.98px) {
+@media (max-width: 590.98px) {
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(100%);
@@ -109,6 +109,7 @@ h4{
         padding-right: 50px;
         padding-left: 50px;
         height: 120px;
+        position: center;
     }
 }
 
@@ -116,14 +117,17 @@ h4{
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(33.3333333333%);
+        position: center;
     }
     .carousel-inner .carousel-item-left.active,
     .carousel-inner .carousel-item-prev {
         transform: translateX(-33.3333333333%);
+        position: center;
     }
     .carousel-inner .carousel-item-right,
     .carousel-inner .carousel-item-left {
         transform: translateX(0);
+        position: center;
     }
 }
 
@@ -131,14 +135,17 @@ h4{
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(25%);
+        position: center;
     }
     .carousel-inner .carousel-item-left.active,
     .carousel-inner .carousel-item-prev {
         transform: translateX(-25%);
+        position: center;
     }
     .carousel-inner .carousel-item-right,
     .carousel-inner .carousel-item-left {
         transform: translateX(0);
+        position: center;
     }
 }
 
@@ -146,14 +153,17 @@ h4{
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(16.6666666667%);
+        position: center;
     }
     .carousel-inner .carousel-item-left.active,
     .carousel-inner .carousel-item-prev {
         transform: translateX(-16.6666666667%);
+        position: center;
     }
     .carousel-inner .carousel-item-right,
     .carousel-inner .carousel-item-left {
         transform: translateX(0);
+        position: center;
     }
 }
 
@@ -161,16 +171,19 @@ h4{
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(16.6666666667%);
+        position: center;
     }
     .carousel-inner .carousel-item-left.active,
     .carousel-inner .carousel-item-prev {
         transform: translateX(-16.6666666667%);
+        position: center;
     }
     .carousel-inner .carousel-item-right,
     .carousel-inner .carousel-item-left {
         transform: translateX(0);
+        position: center;
     }
-} */
+}
 .highlight-wrapper {
     width: 100vw;
     height: 70vh;
@@ -178,7 +191,7 @@ h4{
     position: relative;
     margin: 0;
   }
-  
+
   .highlight-wrapper .carousel-caption {
     height: 100%;
     background-color: rgba(109, 106, 106, 0.2);
@@ -189,26 +202,26 @@ h4{
     padding: 1rem;
     overflow-wrap: break-word;
   }
-  
+
   .highlight-wrapper .carousel-caption h3 {
     font-size: 4.8em;
     text-transform: capitalize;
     text-align: left;
     color: white;
   }
-  
+
   .highlight-wrapper .carousel-caption p {
     font-size: 1.6em;
     text-align: left;
     color: white;
     margin-bottom: 0px;
   }
-  
+
   .highlight-wrapper .carousel-caption a {
     font-size: 1em;
     text-align: left;
   }
-  
+
   .highlight-wrapper .carousel-image img {
     height: 100%;
     width: 100%;
@@ -220,74 +233,73 @@ h4{
     -o-background-size: cover;
     background-size: cover;
   }
-  
+
   /* // Extra small devices (portrait phones, less than 576px) */
   @media (max-width: 575px) {
     .highlight-wrapper .carousel-caption {
       left: 49%;
     }
-  
+
     .highlight-wrapper .carousel-caption h3 {
       font-size: 3em;
     }
-  
+
     .highlight-wrapper .carousel-caption p {
       font-size: 1em;
     }
-  
+
     .highlight-wrapper .carousel-caption a {
       font-size: 0.8em;
     }
   }
-  
+
   /* // Small devices (landscape phones, 576px and up) */
   @media (min-width: 576px) and (max-width: 767px) {
     .highlight-wrapper .carousel-caption {
       left: 58%;
     }
-  
+
     .highlight-wrapper .carousel-caption h3 {
       font-size: 3.4em;
     }
-  
+
     .highlight-wrapper .carousel-caption p {
       font-size: 1.2em;
     }
-  
+
     .highlight-wrapper .carousel-caption a {
       font-size: 0.9em;
     }
-  
+
   }
-  
+
   /* // Medium devices (tablets, 768px and up) */
   @media (min-width: 768px) and (max-width: 991px) {
     .highlight-wrapper .carousel-caption h3 {
       font-size: 3.8em;
     }
-  
+
     .highlight-wrapper .carousel-caption p {
       font-size: 1.3em;
     }
-  
+
     .highlight-wrapper .carousel-caption a {
       font-size: 0.9em;
     }
-  
+
   }
-  
+
   /* // Large devices (desktops, 992px and up) */
   @media (min-width: 992px) and (max-width: 1199px) {
     .highlight-wrapper .carousel-caption h3 {
       font-size: 4.2em;
     }
-  
+
     .highlight-wrapper .carousel-caption p {
       font-size: 1.4em;
     }
-  
+
     .highlight-wrapper .carousel-caption a {
       font-size: 0.9em;
     }
   }
-  

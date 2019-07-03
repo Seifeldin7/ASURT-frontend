@@ -39,17 +39,17 @@ export class HomeEventsComponent implements OnInit {
     this.eventsService.fetch_Events().subscribe(response => {
       this.events = response.filter(el => el.status);
     });
-  
+
       this.responsiveService.getMobileStatus().subscribe( isMobile =>{
         if(isMobile){
-          console.log('Mobile device detected')
+          // console.log('Mobile device detected')
         }
         else{
-          console.log('Desktop detected')
+          // console.log('Desktop detected')
         }
-         
-  
-  
+
+
+
     });
     this.onResize();
     }
@@ -60,4 +60,3 @@ onview(i:number){
     this.responsiveService.checkWidth();
   }
   }
-    
