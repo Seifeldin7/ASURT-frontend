@@ -12,7 +12,7 @@ import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.servic
   styleUrls: ['./team-edit.component.css']
 })
 export class TeamEditComponent implements OnInit {
-  
+
   submitted:boolean = false;
 
   editmode = {
@@ -33,7 +33,7 @@ export class TeamEditComponent implements OnInit {
     image: this.formBuilder.array([]),
     achievements: this.formBuilder.array([
       this.formBuilder.group({
-        id:[null],
+        id:[null,[Validators.required]],
         title:[null,[Validators.required]],
         position:[null,[Validators.required]],
         description:[null,[Validators.required]],
@@ -42,15 +42,15 @@ export class TeamEditComponent implements OnInit {
       })
     ])
   });
-  
+
   get get_form_achievements(){
     return this.team_form.get('achievements') as FormArray;
   }
-  
+
   get get_form_images(){
     return this.team_form.get('image') as FormArray;
   }
-  
+
   add_form_image(value:string=null,id:Number=null){
     this.get_form_images.push(
       this.formBuilder.group({
@@ -59,11 +59,11 @@ export class TeamEditComponent implements OnInit {
       })
       );
     }
-    
+
   add_form_achievement(achievement:any=null){
     this.get_form_achievements.push(
       this.formBuilder.group({
-        id:         [(achievement != null ? achievement.id       : null),],
+        id:         [(achievement != null ? achievement.id       : null),[Validators.required]],
         title:      [(achievement != null ? achievement.title       : null),[Validators.required]],
         position:   [(achievement != null ? achievement.position    : null),[Validators.required]],
         description:[(achievement != null ? achievement.description : null),[Validators.required]],
@@ -73,8 +73,8 @@ export class TeamEditComponent implements OnInit {
       );
     }
   /** ./Team form */
-      
-      
+
+
   constructor(private formBuilder: FormBuilder,
               private toastr:ToastrService,
               private teamService:TeamsService,

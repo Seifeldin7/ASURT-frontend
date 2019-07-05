@@ -23,15 +23,19 @@ export class TeamsComponent implements OnInit {
     this.ts.fetch_teams().subscribe(
       teams => {
         for (var team of teams) {
+          // team = Team(team);
           if(team.team_type.toLowerCase() == "technical"){
             this.teams.push(team);
+            // for(var achiv of team.achivement){
+            //   console.log(achiv);
+            // }
           }
           else if(team.team_type.toLowerCase() == "management"){
             this.management_teams.push(team);
           }
         }
-        // console.log(this.teams);
-        // console.log(this.management_teams);
+        console.log(this.teams);
+        console.log(this.management_teams);
       }
     );
     // this.route.params.subscribe(
