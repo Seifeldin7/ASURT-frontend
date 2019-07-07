@@ -22,7 +22,7 @@ export class SponsorsComponent implements OnInit {
     err => {
       if ('msg' in err.error) {
         this.toastr.error(err.error.msg, "Error");
-        this.router.navigate(['../']);
+        //this.router.navigate(['../']);
       }
       else {
         this.toastr.error("Something went wrong", "Error")

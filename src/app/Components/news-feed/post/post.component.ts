@@ -69,7 +69,7 @@ export class PostComponent implements OnInit {
     if(this.index%2==0){
       this.imgRight=false;
     }
-    if(this.post.image){
+    if(this.post.image != null){
       this.len =this.post.image.length-1;
       //console.log(this.post.image[this.post.image.length-1]);
       this.image=this.post.image[this.len]['image'];

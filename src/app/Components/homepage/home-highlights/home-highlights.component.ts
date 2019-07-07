@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Highlight } from 'src/app/Models/highlight.interface'
 import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service'
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-highlights',
@@ -33,7 +35,7 @@ export class HomeHighlightsComponent implements OnInit {
     }
   ]
 
-  constructor(config: NgbCarouselConfig, private highlightsService: HighlightsService) {
+  constructor(private router:Router, private toastr: ToastrService, config: NgbCarouselConfig, private highlightsService: HighlightsService) {
     // customize default values of carousels used by this component tree
     config.interval = 4000;
     config.wrap = true;
@@ -47,7 +49,18 @@ export class HomeHighlightsComponent implements OnInit {
       for (var highlight of this.highlights) {
         highlight.description = highlight.description.substring(0, 30);
       }
-    });
+    },
+    err => {
+      if ('msg' in err.error) {
+        this.toastr.error(err.error.msg, "Error");
+        //this.router.navigate(['../']);
+      }
+      else {
+        this.toastr.error("Something went wrong", "Error")
+      }
+    }
+
+  );
   }
 
 

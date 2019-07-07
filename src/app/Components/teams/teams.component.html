@@ -4,9 +4,9 @@
 <br>
 <h1 style="text-align:center">Teams </h1>
 <hr>
-<div id="top">
+<div id="top" *ngIf="management_teams != null">
   <br>
-<div class="row centered">
+<div class="row centered" *ngIf="teams != null">
 
   <div class="col-sm-6 col-lg-4 col-xs-12 centered"*ngFor="let team of teams" >
       <div [ngsReveal]="{ reset: true}"
