@@ -37,7 +37,7 @@ export class PostComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event){
-    if (window.innerWidth < 760) {
+    if (window.innerWidth <= 770) {
       this.small = true;
     } else {
       this.small = false;
@@ -46,7 +46,7 @@ export class PostComponent implements OnInit {
   }
   constructor(private sanitizer:DomSanitizer,public el:ElementRef) {
 
-    if (window.innerWidth < 760) {
+    if (window.innerWidth <= 770) {
       this.small = true;
     } else {
       this.small = false;
@@ -66,6 +66,7 @@ export class PostComponent implements OnInit {
   // }
 
   ngOnInit() {
+    //console.log(this.post);
     if(this.index%2==0){
       this.imgRight=false;
     }
