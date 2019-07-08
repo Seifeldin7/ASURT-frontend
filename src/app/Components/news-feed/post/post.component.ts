@@ -78,6 +78,7 @@ export class PostComponent implements OnInit {
 
   }
   embedUrl(post){
-  return  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+post.video);
+  // return  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+post.video);
+  return  this.sanitizer.bypassSecurityTrustResourceUrl(post.video);
   }
 }
