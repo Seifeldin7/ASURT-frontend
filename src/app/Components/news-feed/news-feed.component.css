@@ -8,11 +8,10 @@ html {
     border: 0;
     /* border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1); */
-    overflow: hidden;
+     overflow: hidden;
   }
   body{
-    background-color: #f3f1f1;
-    /* background-color: black; */
+    /* background-color: #f3f1f1; */
     display: flex;
     justify-content: center;
     align-items: center;

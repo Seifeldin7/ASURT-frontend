@@ -74,10 +74,12 @@ export class PostComponent implements OnInit {
       this.len =this.post.image.length-1;
       //console.log(this.post.image[this.post.image.length-1]);
       this.image=this.post.image[this.len]['image'];
+      //console.log(this.image);
     }
 
   }
   embedUrl(post){
-  return  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+post.video);
+  // return  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+post.video);
+  return  this.sanitizer.bypassSecurityTrustResourceUrl(post.video);
   }
 }

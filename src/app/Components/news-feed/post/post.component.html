@@ -27,17 +27,17 @@
 
 
 
-<div class="card post my-5 row "  (window:resize)="onResize($event)" *ngIf="small" [ngsReveal]="{ reset: true}"  >
+<div class="card post my-5 container justify-content-center pt-2"  (window:resize)="onResize($event)" *ngIf="small" [ngsReveal]="{ reset: true}"  >
 
-    <div class="col-l d-flex align-self-center">
+    <div class="col-l d-flex  align-self-center">
         <div class="text">
-          <h4 >{{post.title}}</h4>
-          <p class="text-monospace">{{post.description}}</p>
+          <h4 class="text-center" >{{post.title}}</h4>
+          <p class="text-monospace ">{{post.description}}</p>
         </div>
       </div>
-      <div class="col-l float-right  clearfix d-flex media" >
-          <img src="http://127.0.0.1:8000{{image}}" *ngIf="image" class="rounded img-fluid">
-          <div class="embed-responsive embed-responsive-16by9" *ngIf="post.video">
+      <div class="col-l  d-flex media" >
+          <img src="http://127.0.0.1:8000{{image}}" *ngIf="image!=null" class="rounded img-fluid mx-auto" style="width: 100%;">
+          <div class="embed-responsive embed-responsive-16by9 align-self-center" *ngIf="post.video">
             <iframe class="embed-responsive-item rounded" [src]="embedUrl(post)" allowfullscreen></iframe>
           </div>
       </div>
