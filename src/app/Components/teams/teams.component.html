@@ -8,14 +8,14 @@
   <br>
 <div class="row centered" *ngIf="teams != null">
 
-  <div class="col-sm-6 col-lg-4 col-xs-12 centered"*ngFor="let team of teams" >
-      <div [ngsReveal]="{ reset: true}"
-      class="card text-white bg-dark mb-3 centered tech" style="width: 18rem;">
+  <div class="col-sm-6 col-lg-4  col-xs-12 centered"*ngFor="let team of teams" >
+      <div [ngsReveal]="{ reset: true}" *ngIf="team != null"
+      class="card text-white border-danger bg-light mb-3 centered tech" style="width: 16rem;">
         <img class="card-img-top" src="http://127.0.0.1:8000{{team.image[team.image.length-1].image}}" alt="Card image cap">
         <div class="card-body">
           <hr style="border-color: red;">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item list-group-item-dark"><h1>{{team.name | uppercase}}</h1><small>{{team.team_type}}</small></li>
+          <li class="list-group-item list-group-item-dark"><h4>{{team.name | uppercase}}</h4><small>{{team.team_type}}</small></li>
           <!-- <li class="list-group-item list-group-item-dark">{{team.description}}</li> -->
           <li class="list-group-item list-group-item-dark"><a href="teams/{{team.id}}" class="btn btn-light">More  Info</a></li>
         </ul>
@@ -23,13 +23,13 @@
         </div>
       </div>
       <div class="col-sm-6 col-lg-4 col-xs-12 centered"*ngFor="let team of management_teams" >
-          <div [ngsReveal]="{ reset: true}"
-          class="card text-white bg-dark mb-3 centered tech" style="width: 18rem;">
+          <div [ngsReveal]="{ reset: true}" *ngIf="team != null"
+          class="card text-white border-danger bg-light mb-3 centered tech" style="width: 16rem;">
             <img class="card-img-top" src="http://127.0.0.1:8000{{team.image[team.image.length-1].image}}" alt="Card image cap">
             <div class="card-body">
-              <hr style="border-color: white;">
+              <hr style="border-color: black;">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item list-group-item-dark"><h1>{{team.name | uppercase}}</h1><small>{{team.team_type}}</small></li>
+              <li class="list-group-item list-group-item-dark"><h4>{{team.name | uppercase}}</h4><small>{{team.team_type}}</small></li>
               <!-- <li class="list-group-item list-group-item-dark">{{team.description}}</li> -->
               <li class="list-group-item list-group-item-dark"><a href="teams/{{team.id}}" class="btn btn-light">More  Info</a></li>
 
