@@ -97,7 +97,7 @@
 
 <br>
 <br>
-<div class="row centered" *ngIf="team != null">
+<!-- <div class="row centered" *ngIf="team != null">
   <div
   class="col-sm-6 col-lg-4 col-xs-12 centered"*ngFor="let achivement of achivements">
       <div [ngsReveal]="{ reset: true}"
@@ -114,7 +114,29 @@
         </div>
       </div>
   </div>
+</div> -->
+
+
+<div class="main" *ngIf="team != null">
+  <ul class="cards">
+    <li class="cards_item centered" *ngFor="let achivement of achivements" [ngsReveal]="{ reset: true}">
+      <div class="card" [ngsReveal]="{ reset: true}">
+        <div class="card_image"><img src="http://127.0.0.1:8000{{achivement.image}}" *ngIf="achivement != null"></div>
+        <div class="card_content" *ngIf="team != null">
+          <h2 class="card_title" *ngIf="team != null">{{achivement.title | uppercase}}</h2>
+          <span *ngIf="achivement != null" style="padding-right: 25px;font-size:50px;">{{achivement.position}}</span>
+          <span _ngcontent-c5="" class="card-extra ">th</span>
+          <p class="card_text" *ngIf="achivement != null">{{achivement.description}}</p>
+          <p class="card_text" *ngIf="achivement != null">{{achivement.year}}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
+
+
+
+
 <br>
 <br>
 <br>
