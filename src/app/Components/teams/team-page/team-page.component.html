@@ -119,7 +119,7 @@
 
 <div class="main" *ngIf="team != null">
   <ul class="cards">
-    <li class="cards_item centered" *ngFor="let achivement of achivements" [ngsReveal]="{ reset: true}">
+    <li class="cards_item centered" *ngFor="let achivement of achivements">
       <div class="card" [ngsReveal]="{ reset: true}">
         <div class="card_image"><img src="http://127.0.0.1:8000{{achivement.image}}" *ngIf="achivement != null"></div>
         <div class="card_content" *ngIf="team != null">

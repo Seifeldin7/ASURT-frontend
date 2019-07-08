@@ -23,7 +23,7 @@
   </ng-template>
 </ngb-carousel> -->
 <ngb-carousel #carousel *ngIf="events!=null">
-  <ng-template ngbSlide *ngFor="let event of events;let i=index">
+  <ng-template ngbSlide *ngFor="let event of events;let i=index" [ngsReveal]="{ reset: true}">
     <div class="row highlight-wrapper">
       <div class="carousel-image col-12 p-0">
         <img src="http://127.0.0.1:8000{{event.image[event.image.length-1].image}}">

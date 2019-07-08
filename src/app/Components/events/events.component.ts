@@ -40,7 +40,7 @@ export class EventsComponent implements OnInit {
     this.eventService.getEvents().subscribe(
       (events) => {
 
-        this.events = events;
+        this.events = events.filter(el => el.status);
         this.eventService.setEvents(this.events);
       },
       err => {
