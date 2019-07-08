@@ -25,12 +25,14 @@ export class TeamsComponent implements OnInit {
         for (var team of teams) {
           // team = Team(team);
           if(team.team_type.toLowerCase() == "technical"){
+            team.description = team.description.substring(0, 30);
             this.teams.push(team);
             // for(var achiv of team.achivement){
             //   console.log(achiv);
             // }
           }
           else if(team.team_type.toLowerCase() == "management"){
+            team.description = team.description.substring(0, 30);
             this.management_teams.push(team);
           }
         }

@@ -1,6 +1,6 @@
 <ngb-carousel #carousel *ngIf="highlights!=null">
   <ng-template ngbSlide *ngFor="let highlight of highlights">
-    <div class="row highlight-wrapper">
+    <div class="row highlight-wrapper" *ngIf="highlight!=null">
       <div class="carousel-image col-12 p-0">
         <img src="http://127.0.0.1:8000{{highlight.image[highlight.image.length-1].image}}" alt="highlight {{highlight.id}}">
       </div>

@@ -15,14 +15,13 @@ export class HomepageComponent implements OnInit {
 
 
   getSponsers() {
-    return this.http.get<any[]>("/api/sponsers/")
+    return this.http.get<any[]>("api/sponsers/")
   }
 
   ngOnInit() {
-    this.getSponsers().subscribe(response => {
-      this.sponsers = response;
-    })
+    // this.getSponsers().subscribe(response => {
+    //   this.sponsers = response;
+    // })
   }
 
 }
-

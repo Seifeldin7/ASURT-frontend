@@ -3,7 +3,7 @@
   <hr style="width:30%;">
 </div>
 
-<div class="container text-center" [ngsReveal]="{ reset: true}">
+<div class="container text-center" [ngsReveal]="{ reset: true}" *ngIf="sponsors != null">
   <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" *ngIf="sponsors!=null">
     <div ngxSlickItem *ngFor="let sponsor of sponsors" class="slide">
       <a href="{{sponsor.url}}"><img src="http://127.0.0.1:8000{{sponsor.image}}" alt="{{sponsor.id}}"></a>

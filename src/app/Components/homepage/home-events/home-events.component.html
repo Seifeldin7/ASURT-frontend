@@ -13,7 +13,7 @@
   </div>
   <div class="description" [ngsReveal]="{ reset: true}">
     <div class="inner-description">
-      <h2>{{event.name | uppercase}}</h2>
+      <button class="btn btn-link my-4"><h2 (click)="onview(i)">{{event.name | uppercase}}</h2></button>
       <p></p>
       <div class="d-none d-md-block">
         <p> {{event.description}}</p>
