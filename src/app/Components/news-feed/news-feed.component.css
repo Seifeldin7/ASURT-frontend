@@ -1,7 +1,9 @@
 html {
   scroll-behavior: smooth;
 }
-
+.x{
+  align-self: center;
+}
 .content {
     border: 0;
     /* border-radius: 1rem;
@@ -21,7 +23,7 @@ html {
     display: inline-block;
     padding: 8px 16px;
   }
-  
+
   button:hover{
     background-color: #ddd;
     color: black;
@@ -30,17 +32,17 @@ html {
     background-color: #c9c9c9;
     color: white;
   }
-  
+
   .previous {
     background-color: #c9c9c9;
     color: white;
   }
-  
+
   .next {
     background-color: #c9c9c9;
     color: white;
   }
-  
+
   .round {
     border-radius: 50%;
   }

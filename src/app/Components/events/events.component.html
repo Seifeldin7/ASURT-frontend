@@ -22,7 +22,7 @@
     </div>
   </ng-template>
 </ngb-carousel> -->
-<ngb-carousel #carousel>
+<ngb-carousel #carousel *ngIf="events!=null">
   <ng-template ngbSlide *ngFor="let event of events;let i=index">
     <div class="row highlight-wrapper">
       <div class="carousel-image col-12 p-0">
