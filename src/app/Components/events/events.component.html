@@ -25,13 +25,13 @@
 <ngb-carousel #carousel *ngIf="events!=null">
   <ng-template ngbSlide *ngFor="let event of events;let i=index" [ngsReveal]="{ reset: true}">
     <div class="row highlight-wrapper">
-      <div class="carousel-image col-12 p-0">
+      <div class="carousel-image col-12 p-2">
         <img src="http://127.0.0.1:8000{{event.image[event.image.length-1].image}}">
       </div>
       <div class="carousel-caption text-justify col-md-4 col-sm-5 col-6">
         <h3>{{event.name}}</h3>
 
-        <button class="btn btn-danger my-4" type="button" (click)="onview(i)">View Event</button>
+        <button class="btn btn-danger my-4" type="button" (click)="onview(i)"><p  class="small_view_5s">View Event</p></button>
       </div>
     </div>
   </ng-template>
