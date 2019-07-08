@@ -2,26 +2,14 @@ import { Component, OnInit, Input, HostListener, ElementRef } from '@angular/cor
 import { Post } from 'src/app/Models/post.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { img } from 'src/app/Models/img.model';
+import { NewsfeedService, get_youtube_id_from_url } from 'src/app/Services/adminpanel/newsfeed.service';
 //import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
-  // animations: [
-  //   trigger('scrollAnimation', [
-  //     state('show', style({
-  //       opacity: 1,
-  //       transform: "translateX(0)"
-  //     })),
-  //     state('hide',   style({
-  //       opacity: 0,
-  //       transform: "translateX(-90%)"
-  //     })),
-  //     transition('show => hide', animate('700ms ease-out')),
-  //     transition('hide => show', animate('700ms ease-in'))
-  //   ])
-  // ]
+  
 })
 export class PostComponent implements OnInit {
   image:img['image'];
@@ -29,6 +17,7 @@ export class PostComponent implements OnInit {
   imgRight=true;
   state = 'show'
   small :boolean;
+  substr:string;
 
 
   @Input() post:Post;
@@ -44,7 +33,7 @@ export class PostComponent implements OnInit {
     }
 
   }
-  constructor(private sanitizer:DomSanitizer,public el:ElementRef) {
+  constructor(private sanitizer:DomSanitizer,public el:ElementRef,private newsfeedService:NewsfeedService) {
 
     if (window.innerWidth <= 770) {
       this.small = true;
@@ -52,18 +41,7 @@ export class PostComponent implements OnInit {
       this.small = false;
     }
   }
-  //@HostListener('window:scroll', ['$event'])
-  // checkScroll() {
-  //   const componentPosition = this.el.nativeElement.offsetTop
-  //   const scrollPosition = window.pageYOffset+550
-  //
-  //   if (scrollPosition <= componentPosition) {
-  //     this.state = 'hide'
-  //   } else {
-  //     this.state = 'show'
-  //   }
-  //
-  // }
+  
 
   ngOnInit() {
     //console.log(this.post);
@@ -79,7 +57,9 @@ export class PostComponent implements OnInit {
 
   }
   embedUrl(post){
-  // return  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+post.video);
-  return  this.sanitizer.bypassSecurityTrustResourceUrl(post.video);
+  
+  // return  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/"+this.substr);
+  return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+get_youtube_id_from_url(post.video)+'?rel=0');
+
   }
 }
