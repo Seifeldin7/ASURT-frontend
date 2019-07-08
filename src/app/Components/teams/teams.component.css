@@ -29,7 +29,7 @@ body {
 .column {
   /* align-self: center; */
   width: 25%;
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 .row {
   margin: 0 -5px;
@@ -67,11 +67,12 @@ hr{
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {
-  .column {
+  .column, .row {
     width: 100%;
 		height: 100%;
     display: block;
     margin-bottom: 20px;
+		padding: 10px 10px;
   }
   .card{
     height: 100%;
