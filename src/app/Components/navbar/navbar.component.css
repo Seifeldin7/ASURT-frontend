@@ -57,9 +57,15 @@ li.nav-item.active{
 }
 
 .dropdown-menu, .dropdown-item {
-    color: #FFF;   
+    color: #FFF;
 }
 
 .dropdown-item:hover {
     background: linear-gradient(180deg, rgba(32,32,32,0.70) 100%, rgba(32,32,32,0.70) 100%);
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-wrapper{
+    max-height: 20px;
+  }
 }

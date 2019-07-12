@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {NgsRevealModule} from 'ngx-scrollreveal';
 // Componens Modules
 import { AuthenticationModule } from './Components/authentication/authentication.module';
 

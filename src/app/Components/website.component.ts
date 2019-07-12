@@ -15,7 +15,7 @@ export class WebsiteComponent implements OnInit {
 
   constructor(config: NgsRevealConfig) {
   // customize default values of ngx-scrollreveal directives used by this component tree
-  config.duration = 8000;
+  config.duration = 4000;
   config.easing = 'cubic-bezier(0,0,1,1.01)';
 
   //other options here
