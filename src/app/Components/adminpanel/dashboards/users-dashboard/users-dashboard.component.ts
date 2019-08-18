@@ -15,7 +15,7 @@ export class UsersDashboardComponent implements OnInit {
 
   user_groups:Group[] = []
 
-  private search_field:FormControl = new FormControl('');
+  search_field:FormControl = new FormControl('');
 
   constructor(private usersService:UsersService) { }
 

@@ -12,7 +12,7 @@ export class DateCountdownTimerComponent implements OnInit, OnDestroy {
   private futureString: string;
   private counter$: Observable<number>;
   private subscription: Subscription;
-  private message: string;
+  message: string;
  
 
   @Input() inputDate: Date;
