@@ -9,7 +9,7 @@
 <div class="row centered" *ngIf="teams != null">
 
   <div class="col-sm-6 col-lg-4  col-xs-6 centered"*ngFor="let team of teams" >
-      <div [ngsReveal]="{ reset: true}" *ngIf="team != null"
+      <div   *ngIf="team != null"
       class="card text-white border-danger bg-light mb-3 centered tech" style="width: 16rem;height: 25rem;">
         <img class="card-img-top" src="http://127.0.0.1:8000{{team.image[team.image.length-1].image}}" alt="Card image cap">
         <div class="card-body">
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col-sm-6 col-lg-4 col-xs-6 centered"*ngFor="let team of management_teams" >
-          <div [ngsReveal]="{ reset: true}" *ngIf="team != null"
+          <div   *ngIf="team != null"
           class="card text-white border-danger bg-light mb-3 centered tech" style="width: 16rem;">
             <img class="card-img-top" src="http://127.0.0.1:8000{{team.image[team.image.length-1].image}}" alt="Card image cap">
             <div class="card-body">
@@ -45,7 +45,7 @@
 
 <!-- <div id="bottom">
   <br>
-<div class="row centered" [ngsReveal]="{ reset: true}">
+<div class="row centered"  >
 
 
   </div>
@@ -62,7 +62,7 @@
 <div class="main centered" *ngIf="management_teams != null">
   <ul class="cards centered" *ngIf="teams != null">
     <li class="cards_item centered" *ngFor="let team of teams">
-      <div class="card centered" style="width: 16rem;" [ngsReveal]="{ reset: true}">
+      <div class="card centered" style="width: 16rem;"  >
         <div class="card_image"><img src="{{endpoint + team.image[team.image.length-1].image}}" *ngIf="team != null"></div>
         <div class="card_content" *ngIf="team != null">
           <h2 class="card_title" *ngIf="team != null">{{team.name | uppercase}}</h2>
@@ -72,7 +72,7 @@
       </div>
     </li>
     <li class="cards_item centered" *ngFor="let team of management_teams">
-      <div class="card centered" style="width: 16rem;" [ngsReveal]="{ reset: true}">
+      <div class="card centered" style="width: 16rem;"  >
         <div class="card_image"><img src="{{ endpoint + team.image[team.image.length-1].image}}" *ngIf="team != null"></div>
         <div class="card_content" *ngIf="team != null">
           <h2 class="card_title" *ngIf="team != null">{{team.name | uppercase}}</h2>

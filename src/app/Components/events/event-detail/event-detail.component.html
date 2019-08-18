@@ -1,11 +1,11 @@
 <section  class=" py-5">
     <div class="  container py-5">
         <div class="row ">
-            <div class="col-lg-6 col-md-12 text-center" [ngsReveal]="{ reset: true}">
+            <div class="col-lg-6 col-md-12 text-center"  >
                 <img src="{{endpoint + event.image[event.image.length-1].image}}" class=" img-fluid mb-3 ">
                 <p class="text-center">{{event.date}}</p>
             </div>
-            <div class="col-lg-6 col-md-12 py-2 " [ngsReveal]="{ reset: true}">
+            <div class="col-lg-6 col-md-12 py-2 "  >
                 <h3>{{event.name | uppercase}}</h3>
                 <hr>
                 <p>{{event.event_type}}</p>
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <!-- <div class="counter align-bottom" *ngIf="event_date != null" [ngsReveal]="{ reset: true}"  >
+        <!-- <div class="counter align-bottom" *ngIf="event_date != null"    >
             <countdown-timer [inputDate]="event_date"></countdown-timer>
         </div> -->
     </div>
