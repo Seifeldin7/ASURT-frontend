@@ -3,6 +3,7 @@ import { ActivatedRoute,Params,Router } from '@angular/router';
 import { TeamsService } from '../../../Services/adminpanel/teams.service';
 import { Team,Achivement } from '../../../Models/team.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-team-page',
@@ -10,6 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./team-page.component.css']
 })
 export class TeamPageComponent implements OnInit {
+
+  endpoint = environment.endpoint;
 
   id:number;
   team:Team=null;

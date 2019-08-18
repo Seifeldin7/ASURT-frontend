@@ -4,6 +4,7 @@ import { EventsService } from 'src/app/Services/adminpanel/events.service'
 import { Router } from '@angular/router';
 
 import{responsiveService} from 'src/app/Services/Events/responsive.service'
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -12,6 +13,8 @@ import{responsiveService} from 'src/app/Services/Events/responsive.service'
   styleUrls: ['./home-events.component.css'],
 })
 export class HomeEventsComponent implements OnInit {
+
+  endpoint = environment.endpoint;
 
   events: Event[] = [
     {

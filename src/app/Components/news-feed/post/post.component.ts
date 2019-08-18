@@ -3,6 +3,7 @@ import { Post } from 'src/app/Models/post.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { img } from 'src/app/Models/img.model';
 import { NewsfeedService, get_youtube_id_from_url } from 'src/app/Services/adminpanel/newsfeed.service';
+import { environment } from 'src/environments/environment';
 //import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -12,6 +13,9 @@ import { NewsfeedService, get_youtube_id_from_url } from 'src/app/Services/admin
   
 })
 export class PostComponent implements OnInit {
+
+  endpoint = environment.endpoint;
+
   image:img['image'];
   len:number;
   imgRight=true;

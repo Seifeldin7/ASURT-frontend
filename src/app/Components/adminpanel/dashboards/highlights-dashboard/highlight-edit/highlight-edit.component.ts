@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-highlight-edit',
@@ -13,6 +14,7 @@ import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.servic
   styleUrls: ['./highlight-edit.component.css']
 })
 export class HighlightEditComponent implements OnInit {
+  endpoint = environment.endpoint;
 
   /** For Edit Mode */
   editmode = {

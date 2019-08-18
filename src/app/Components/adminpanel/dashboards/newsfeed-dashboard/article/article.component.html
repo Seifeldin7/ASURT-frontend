@@ -5,7 +5,7 @@
         <div class="card-header card-header-light p-0">
           <div class="ct-chart" id="dailySalesChart">
             <div *ngIf="article.article_type == 'image'">
-              <img src="http://127.0.0.1:8000{{article.image[article.image.length -1].image}}" class="rounded" alt="" style="width:100%">
+              <img src="{{endpoint + article.image[article.image.length -1].image}}" class="rounded" alt="" style="width:100%">
             </div>
       
             <div class="embed-responsive embed-responsive-16by9 rounded" *ngIf="article.article_type == 'video'">

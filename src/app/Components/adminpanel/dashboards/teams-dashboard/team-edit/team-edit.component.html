@@ -81,7 +81,7 @@
                 
                 <!-- else display image -->
                 <div *ngIf="achievement.value['image'] != null" class="position-relative w-100">
-                  <img src="{{achievement.value.image}}" class="rounded w-75 mx-auto d-block">
+                  <img src="{{ endpoint + achievement.value.image}}" class="rounded w-75 mx-auto d-block">
                   <button class="btn btn-sm btn-danger btn-fab btn-fab-mini btn-round mr-2 delete-image-btn position-absolute"
                     (click)="delete_image('achievement',i)">
                     <i class="material-icons">delete</i></button>
@@ -108,7 +108,7 @@
         <div class="col-md-10">
           
           <div class="m-2 d-inline-block position-relative" *ngFor="let image of get_form_images.value; let i=index">
-            <img src="{{image.image}}" class="img-thumbnail" style="width:10em;" >
+            <img src="{{endpoint + image.image}}" class="img-thumbnail" style="width:10em;" >
               <button class="btn btn-sm btn-danger btn-fab btn-fab-mini btn-round mr-2 delete-image-btn position-absolute"
               (click)="delete_image('team',i,image.id)">
               <i class="material-icons">delete</i></button>

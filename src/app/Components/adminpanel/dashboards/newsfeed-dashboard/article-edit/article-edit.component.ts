@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { formatDate } from '@angular/common';
 import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-article-edit',
@@ -14,6 +15,7 @@ import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.servic
   styleUrls: ['./article-edit.component.css']
 })
 export class ArticleEditComponent implements OnInit {
+  endpoint = environment.endpoint;
   
   /** ِcurrent article */
   article_type:string = 'text';

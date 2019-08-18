@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Evnt } from '../../Models/event.model';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 declare var jquery: any;
 declare var $: any;
@@ -14,6 +15,9 @@ declare var $: any;
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+
+  endpoint = environment.endpoint;
+
   events: Evnt[] = [{
     id: 1,
     name: "String",

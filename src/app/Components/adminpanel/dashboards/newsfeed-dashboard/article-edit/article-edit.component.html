@@ -38,7 +38,7 @@
               </div>
 
               <img
-                src="{{ article_form.value.image != null ? 'http://127.0.0.1:8000'+article_form.value.image : 'https://dummyimage.com/600x300/#eee/fff'}}"
+                src="{{ article_form.value.image != null ? endpoint+article_form.value.image : 'https://dummyimage.com/600x300/#eee/fff'}}"
                 class="rounded" alt="" style="width:100%" *ngIf="!cropper_show">
               <label for="image-input-btn"
                 class="btn btn-sm btn-success btn-fab btn-fab-mini btn-round position-absolute add-image-btn"><i

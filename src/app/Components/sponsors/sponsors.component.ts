@@ -3,6 +3,7 @@ import { Sponsor } from 'src/app/Models/sponsor.interface'
 import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sponsors',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./sponsors.component.css']
 })
 export class SponsorsComponent implements OnInit {
+
+  endpoint = environment.endpoint;
 
   sponsors: Sponsor[] = []
 

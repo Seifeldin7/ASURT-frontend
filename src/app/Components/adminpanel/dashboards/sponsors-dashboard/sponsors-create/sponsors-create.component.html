@@ -22,7 +22,7 @@
 
               <div *ngIf="sponsor_form.value.image != null">
                 <div class="d-inline-block position-relative">
-                    <img [src]="sponsor_form.value.image"  class="img-thumbnail rounded">
+                    <img [src]="endpoint + sponsor_form.value.image"  class="img-thumbnail rounded">
                     <button class="btn btn-sm btn-danger btn-fab btn-fab-mini btn-round mr-2 delete-btn position-absolute"
                               (click)="delete_img()">
                               <i class="material-icons">delete</i></button>

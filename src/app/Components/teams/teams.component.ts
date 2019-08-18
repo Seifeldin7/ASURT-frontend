@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { TeamsService } from '../../Services/adminpanel/teams.service';
 import { ActivatedRoute,Params,Router } from '@angular/router';
 import {trigger, state, style, transition, animate} from '@angular/animations';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-teams',
@@ -11,6 +12,8 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
   styleUrls: ['./teams.component.css'],
 })
 export class TeamsComponent implements OnInit {
+
+  endpoint = environment.endpoint;
 
   teams:Team[] = [];
   management_teams: Team[] = [];

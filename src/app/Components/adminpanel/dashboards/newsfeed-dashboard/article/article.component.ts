@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/Models/article.interface';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NewsfeedService, get_youtube_id_from_url } from 'src/app/Services/adminpanel/newsfeed.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-article',
@@ -9,6 +10,7 @@ import { NewsfeedService, get_youtube_id_from_url } from 'src/app/Services/admin
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
+  endpoint = environment.endpoint;
 
   @Input() article:Article = null;
 

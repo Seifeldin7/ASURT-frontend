@@ -5,6 +5,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { EventsService } from 'src/app/Services/adminpanel/events.service';
 import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-event-edit',
@@ -12,6 +13,7 @@ import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.servic
   styleUrls: ['./event-edit.component.css']
 })
 export class EventEditComponent implements OnInit {
+  endpoint = environment.endpoint;
 
   editmode = {
     flag: false,

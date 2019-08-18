@@ -4,6 +4,7 @@ import { Highlight } from 'src/app/Models/highlight.interface'
 import { HighlightsService } from 'src/app/Services/adminpanel/highlights.service'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home-highlights',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-highlights.component.css']
 })
 export class HomeHighlightsComponent implements OnInit {
+
+  endpoint = environment.endpoint;
 
   highlights: Highlight[] = [
     {

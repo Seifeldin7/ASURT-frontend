@@ -58,7 +58,7 @@
   <div class="modal-body">
     <ngb-carousel *ngIf="team.image">
       <ng-template ngbSlide *ngFor="let img of team.image">
-        <img class="gal" src="http://127.0.0.1:8000{{img.image}}" alt="Random third slide">
+        <img class="gal" src="{{ endpoint + img.image}}" alt="Random third slide">
       </ng-template>
     </ngb-carousel>
   </div>
@@ -79,7 +79,7 @@
     <div class="lib-panel">
         <div class="row box-shadow">
             <div class="col-md-6" [ngsReveal]="{ reset: true}">
-                <img class="gal" src="http://127.0.0.1:8000{{team.image[team.image.length-1].image}}">
+                <img class="gal" src="{{ endpoint + team.image[team.image.length-1].image}}">
             </div>
             <div class="col-md-6" [ngsReveal]="{ reset: true}">
                 <div class="lib-row lib-header">
@@ -121,7 +121,7 @@
   <ul class="cards">
     <li class="cards_item centered" *ngFor="let achivement of achivements">
       <div class="card" [ngsReveal]="{ reset: true}">
-        <div class="card_image"><img src="http://127.0.0.1:8000{{achivement.image}}" *ngIf="achivement != null"></div>
+        <div class="card_image"><img src="{{ endpoint + achivement.image}}" *ngIf="achivement != null"></div>
         <div class="card_content" *ngIf="team != null">
           <h2 class="card_title" *ngIf="team != null">{{achivement.title | uppercase}}</h2>
           <span *ngIf="achivement != null" style="padding-right: 25px;font-size:50px;">{{achivement.position}}</span>

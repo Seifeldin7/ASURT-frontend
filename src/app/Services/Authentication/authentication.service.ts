@@ -6,6 +6,7 @@ import { Observable, Subject, empty } from 'rxjs';
 
 import * as jwt_decode from "jwt-decode";
 import { delay } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -200,9 +201,10 @@ export class JwtInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
-  baseUrl = 'http://127.0.0.1:8000/';
+  // baseUrl = 'http://127.0.0.1:8000/';
   //baseUrl = 'http://localhost:3000/';
   // baseUrl ='https://domain-name.com/';
+  baseUrl = `${environment.endpoint}/`;
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

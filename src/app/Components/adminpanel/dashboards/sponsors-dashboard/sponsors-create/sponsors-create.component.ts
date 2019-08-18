@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sponsors-create',
@@ -9,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./sponsors-create.component.css']
 })
 export class SponsorsCreateComponent implements OnInit {
+  endpoint = environment.endpoint;
 
   submitted:boolean = false;
 

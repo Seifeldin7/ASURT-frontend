@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Sponsor } from 'src/app/Models/sponsor.interface';
 import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sponsors-list',
@@ -8,6 +9,7 @@ import { SponsorsService } from 'src/app/Services/adminpanel/sponsors.service';
   styleUrls: ['./sponsors-list.component.css']
 })
 export class SponsorsListComponent implements OnInit {
+  endpoint = environment.endpoint;
 
   sponsers_list:Sponsor[] = []
 

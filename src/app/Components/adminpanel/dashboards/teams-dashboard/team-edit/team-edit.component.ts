@@ -5,6 +5,7 @@ import { ReadVarExpr } from '@angular/compiler';
 import { TeamsService } from 'src/app/Services/adminpanel/teams.service';
 import { ActivatedRoute } from '@angular/router';
 import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-team-edit',
@@ -12,6 +13,8 @@ import { AdminpanelService } from 'src/app/Services/adminpanel/adminpanel.servic
   styleUrls: ['./team-edit.component.css']
 })
 export class TeamEditComponent implements OnInit {
+
+  endpoint = environment.endpoint;
 
   submitted:boolean = false;
 

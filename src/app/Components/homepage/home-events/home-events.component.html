@@ -8,8 +8,7 @@
 <div class=" container" *ngFor="let event of events; let i = index" [ngClass]=" {'alt':i%2!=0}" (window:resize)="onResize($event)" >
   <div class="meta">
     <div class="photo"></div>
-    <!-- <img src="http://127.0.0.1:8000{{event.image[event.image.length-1].image}}" -->
-    <img src="http://127.0.0.1:8000{{event.image[event.image.length-1].image}}" alt="{{event.image[event.image.length-1].id}}" class="w-100">
+    <img src="{{ endpoint + event.image[event.image.length-1].image}}" alt="{{event.image[event.image.length-1].id}}" class="w-100">
   </div>
   <div class="description" [ngsReveal]="{ reset: true}">
     <div class="inner-description">
