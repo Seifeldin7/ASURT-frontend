@@ -54,6 +54,13 @@ export class SignupComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
 
+    get password1() {
+        return this.f.password.get('password1')
+    }
+    get password2() {
+        return this.f.password.get('password2')
+    }
+
     onSubmit() {
         // console.log(this.registerForm);
         this.submitted = true;
