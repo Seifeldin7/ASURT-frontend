@@ -1,0 +1,95 @@
+<h5 class="card-title text-center">Sign Up</h5>
+<form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <div class="form-label-group">
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" 
+      formControlName="email">
+    <label for="inputEmail">Email address</label>
+    <!-- displaying-errors -->
+    <div class="text-center" *ngIf="f.email.invalid && 
+                                    f.email.touched && 
+                                    f.email.errors != null">
+      <small class="form-text text-muted">
+          <p *ngIf="f.email.errors.required && 
+                    f.email.touched">
+                    Email is Required
+                  </p>
+
+          <p *ngIf="f.email.errors.pattern && 
+                    f.email.touched">
+                    Please enter a valid email
+                  </p>
+      </small>
+    </div> <!-- ./displaying-errors -->
+  </div>
+
+  <hr>
+
+  <!-- password-group -->
+  <div formGroupName="password">
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" 
+        formControlName="password1">
+      <label for="inputPassword">Password</label>
+      <!-- displaying-errors -->
+      <div class="text-center" *ngIf="f.password.controls.password1.invalid && 
+                                      f.password.controls.password1.touched && 
+                                      f.password.controls.password1.errors != null">
+        <small class="form-text text-muted">
+            <p *ngIf="f.password.controls.password1.errors.required && 
+                      f.password.controls.password1.touched">
+                      Password is Required
+                    </p>
+
+            <p *ngIf="( f.password.controls.password1.errors.minlength || 
+                        f.password.controls.password1.errors.maxlength ) && 
+                        f.password.controls.password1.touched">
+                      Your password must be 8-16 long
+                    </p>
+        </small>
+      </div> <!-- ./displaying-errors -->
+    </div>
+
+    <div class="form-label-group">
+      <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" 
+        formControlName="password2">
+      <label for="inputConfirmPassword">Confirm password</label>
+      <!-- displaying-errors -->
+      <div class="text-center" *ngIf="f.password.controls.password2.invalid && 
+                                      f.password.controls.password2.touched && 
+                                      f.password.controls.password2.errors != null">
+        <small class="form-text text-muted">
+            <p *ngIf="f.password.controls.password2.errors.required && 
+                      f.password.controls.password2.touched">
+                      Password is Required
+                    </p>
+
+            <p *ngIf="( f.password.controls.password2.errors.minlength || 
+                        f.password.controls.password2.errors.maxlength ) && 
+                        f.password.controls.password2.touched">
+                      Your password must be 8-16 long
+                    </p>
+            
+            
+        </small>
+      </div>
+      <div class="text-center" *ngIf="f.password.errors != null && f.password.touched">
+        <small class="form-text text-muted">
+          <p *ngIf="f.password.errors.passwordMatch && 
+                    f.password.touched">
+                    Password does not match
+                  </p>
+        </small>
+      </div>
+    </div> <!-- ./displaying-errors -->
+  </div> <!-- ./password-group -->
+
+
+  <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"
+          [disabled]="registerForm.invalid || submitted">
+          Register
+        </button>
+  <a class="d-block text-center mt-2 small" [routerLink]="['/auth/login']">
+    Sign In
+  </a>
+</form>
