@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: true,
+
+  endpoint: 'https://rt-website-19.herokuapp.com',
 };
 
 /*
