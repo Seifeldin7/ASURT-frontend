@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClient } from '@angular/common/http';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, empty } from 'rxjs';
 
 import * as jwt_decode from "jwt-decode";
 import { delay } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,7 @@ export class AuthenticationService {
     /**
      * Check if user logged in and verify token
      *
+     *
      * @returns Subject<boolean> Of loggedin status
      */
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
@@ -124,6 +126,7 @@ export class AuthenticationService {
 
   storeToken(token: string) {
     localStorage.setItem('token', JSON.stringify(token));
+    this.verifyLoggedIn.next(true);
   }
 
   logout() {
@@ -131,6 +134,7 @@ export class AuthenticationService {
      * Clear JWT from local storage
      */
     localStorage.removeItem('token');
+    this.verifyLoggedIn.next(false);
   }
 
   forgetPassword(email: string) {
@@ -171,7 +175,18 @@ export function passwordMatchValidator(ac: AbstractControl) {
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = JSON.parse(localStorage.getItem('token'));
+    let token = null;
+
+    if(localStorage.getItem('token') === null){
+      token = null;
+    }
+    else{
+      //console.log(token)
+      token = JSON.parse(localStorage.getItem('token'));
+      // token = localStorage.getItem('token');
+    }
+
+
     if (token) {
       request = request.clone({
         setHeaders: {
@@ -187,8 +202,9 @@ export class JwtInterceptor implements HttpInterceptor {
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
   // baseUrl = 'http://127.0.0.1:8000/';
-  baseUrl = 'http://localhost:3000/';
+  //baseUrl = 'http://localhost:3000/';
   // baseUrl ='https://domain-name.com/';
+  baseUrl = `${environment.endpoint}/`;
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
